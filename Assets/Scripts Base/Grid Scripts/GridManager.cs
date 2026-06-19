@@ -6,16 +6,16 @@ public class GridManager : MonoBehaviour
    [SerializeField] private int largura, altura;
    [SerializeField] private Tile tilePrefab;
    [SerializeField] private Transform camPos;
-   private Dictionary<Vector2, Tile> tiles;
+   private Tile[,] tiles;
 
-    void Start()
+    private void Awake()
     {
         GerarGrid();
     }
 
     void GerarGrid()
     {
-        tiles = new Dictionary<Vector2, Tile>();
+        tiles = new Tile[largura, altura];
         for (int x =0; x < largura; x++)
         {
             for(int y=0; y < altura; y++)
@@ -24,20 +24,23 @@ public class GridManager : MonoBehaviour
                 spawnTile.name = $"Tile: {x} e {y}";
 
                 var ehOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
-                spawnTile.Inicializar(ehOffset);
+                spawnTile.Inicializar(ehOffset, new Vector2Int(x, y));
 
-                tiles[new Vector2(x, y)] = spawnTile;
+                tiles[x, y] = spawnTile;
             }
         }
         camPos.transform.position = new Vector3((float)largura/2 - 0.5f,(float)altura/2 - 0.5f, -10);
     }
 
-    public Tile GetTilePos(Vector2 pos)
+    public Tile GetTilePos(Vector2Int pos)
     {
-        if(tiles.TryGetValue(pos, out var tile))
-        {
-            return tile;
-        }
-        return null;
+        if (pos.x < 0 || pos.x >= largura)
+            return null;
+
+        if (pos.y < 0 || pos.y >= altura)
+            return null;
+
+        return tiles[pos.x, pos.y];
     }
+        
 }

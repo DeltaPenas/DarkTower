@@ -8,14 +8,16 @@ public class Unidade : MonoBehaviour
     public Team Team;
 
     public Tile TileAtual {get; private set;}
+    public Vector2Int GridPosition => TileAtual.GridPosition;
 
 
-
-    public virtual void Spawn(Tile tile)
+    public void Spawn(Tile tile)
     {
         TileAtual = tile;
-        transform.position = tile.transform.position;
+
         tile.DefinirUnidade(this);
+
+        transform.position = tile.transform.position;
     }
     public virtual void SetStatus() //Definir status da Unidade, usar mais tarde
     {
