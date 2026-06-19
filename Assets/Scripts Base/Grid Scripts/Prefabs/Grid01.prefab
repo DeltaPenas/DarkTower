@@ -106,8 +106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a28946cee5b0c440932c1fb11887233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
-  corBase: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 1}
-  corSecundaria: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
+  corBase: {r: 1, g: 1, b: 1, a: 1}
+  corSecundaria: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
   sp: {fileID: 3415244477202240341}
   preenchimento: {fileID: 7131452555887453320}
 --- !u!61 &2101013960867101007
@@ -238,7 +238,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 77f06f64dfc0fcd44a83766a6ac6f87b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.96055627, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

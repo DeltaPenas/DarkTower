@@ -240,8 +240,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfcff29e2992126428f40cf107c83cd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridManager
-  largura: 16
-  altura: 8
+  largura: 14
+  altura: 7
   tilePrefab: {fileID: 716568890149431558, guid: 557b134c35cdc5f43bb69cdc7140260f, type: 3}
   camPos: {fileID: 519420032}
 --- !u!4 &782981027
