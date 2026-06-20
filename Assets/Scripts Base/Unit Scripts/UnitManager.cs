@@ -58,11 +58,19 @@ public class UnitManager : MonoBehaviour
     {
         if (unidadeSelecionada == null)
         {
-           Debug.Log("Nenhuma Unidade selecionada"); 
+           Debug.Log("Nenhuma Unidade selecionada!"); 
            return; 
         } 
-        if (!tile.EstaDestacado) return;
-        Debug.Log($"Movendo para {tile.GridPosition}");
+        if (!tile.EstaDestacado)
+        {
+          Debug.Log("Tile não esta destacada!");   
+          return;  
+        } 
+
+
+        unidadeSelecionada.Mover(tile);
+        LimparSelecao();
+        tile.SetVisual(TileVisual.Ocupado);
     }
 
     

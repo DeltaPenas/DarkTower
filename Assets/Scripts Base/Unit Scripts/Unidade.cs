@@ -20,12 +20,12 @@ public class Unidade : MonoBehaviour
 
         transform.position = tile.transform.position;
 
-        TileAtual.sp.color = Color.green;
     }
 
     public void Selecionar()
     {
         indicadorSelecao.SetActive(true);
+        Debug.Log($"Unidade Selecionada:{this}");
     }
 
     public void Deselecionar()
@@ -36,10 +36,25 @@ public class Unidade : MonoBehaviour
     {
         
     }
-    public virtual void Mover(Tile destino)
-    {
 
-    }
+    public virtual void Mover(Tile destino)
+{
+    if (destino == null)
+        return;
+
+    if (destino.EstaOcupada)
+        return;
+
+    TileAtual.RemoverUnidade();
+    TileAtual.SetVisual(TileVisual.Normal);
+
+    TileAtual = destino;
+
+    destino.DefinirUnidade(this);
+
+    transform.position = destino.transform.position;
+    
+}
 
     public virtual void ReceberDano(int dano)
     {

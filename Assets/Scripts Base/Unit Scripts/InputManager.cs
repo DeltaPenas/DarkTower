@@ -25,19 +25,17 @@ public class InputManager : MonoBehaviour
             if (unidade != null)
             {
                 unitManager.Selecionar(unidade);
-            }
-             else
-            {
-                unitManager.LimparSelecao();
+                return;
             }
 
             Tile tile = hit.collider.GetComponent<Tile>();
 
-            if(tile != null)
+            if (tile != null)
             {
                 unitManager.ClicarTile(tile);
+                return;
             }
-
+            unitManager.LimparSelecao();
 
         }
     }

@@ -24,6 +24,7 @@ public class SpawnerDeUnidades : MonoBehaviour
         Unidade unidade = Instantiate(prefab);
 
         unidade.Spawn(tile);
+        tile.SetVisual(TileVisual.Ocupado);
 
     }
 }
