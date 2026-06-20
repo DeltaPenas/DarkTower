@@ -13,6 +13,9 @@ public class SpawnerDeUnidades : MonoBehaviour
 
         Spawn(unitPrefab, tile);
 
+        Tile tile2 = grid.GetTilePos(new Vector2Int(1, 0));
+        Spawn(unitPrefab, tile2);
+
 
 
     }

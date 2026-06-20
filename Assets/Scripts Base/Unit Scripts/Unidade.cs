@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Unidade : MonoBehaviour
 {
+    [SerializeField] private GameObject indicadorSelecao;
     public int Vida;
     public int Movimento;
     public int Ataque;
@@ -9,7 +10,7 @@ public class Unidade : MonoBehaviour
 
     public Tile TileAtual {get; private set;}
     public Vector2Int GridPosition => TileAtual.GridPosition;
-
+    
 
     public void Spawn(Tile tile)
     {
@@ -18,6 +19,18 @@ public class Unidade : MonoBehaviour
         tile.DefinirUnidade(this);
 
         transform.position = tile.transform.position;
+
+        TileAtual.sp.color = Color.green;
+    }
+
+    public void Selecionar()
+    {
+        indicadorSelecao.SetActive(true);
+    }
+
+    public void Deselecionar()
+    {
+        indicadorSelecao.SetActive(false);
     }
     public virtual void SetStatus() //Definir status da Unidade, usar mais tarde
     {

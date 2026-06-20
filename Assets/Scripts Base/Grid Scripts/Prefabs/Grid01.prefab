@@ -108,6 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   corBase: {r: 1, g: 1, b: 1, a: 1}
   corSecundaria: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
+  corSelecionada: {r: 0.6, g: 0.8980393, b: 0.3137255, a: 0}
   sp: {fileID: 3415244477202240341}
   preenchimento: {fileID: 7131452555887453320}
 --- !u!61 &2101013960867101007

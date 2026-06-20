@@ -3,12 +3,15 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    [SerializeField] private Color corBase, corSecundaria;
-    [SerializeField] private SpriteRenderer sp;
+    [SerializeField] public Color corBase, corSecundaria;
+    [SerializeField] public SpriteRenderer sp;
+    public bool EstaOcupada => UnidadeAtual != null;
+    public TileVisual tv;
     [SerializeField] private GameObject preenchimento;
+    public bool EstaDestacado { get; private set; }
     public Unidade UnidadeAtual { get; private set; }
     public Vector2Int GridPosition { get; private set; }
-    public bool EstaOcupada => UnidadeAtual != null;
+    
 
 
     public void Inicializar(bool ehOffset, Vector2Int pos)
@@ -26,13 +29,38 @@ public class Tile : MonoBehaviour
         UnidadeAtual = null;
     }
 
-    void OnMouseEnter()
+    public void MostrarMovimento()
     {
-        preenchimento.SetActive(true);
+        if (!EstaOcupada)
+        {
+            preenchimento.SetActive(true);
+        }
+        
+
+        
     }
-    void OnMouseExit()
+    public void LimparMovimento()
     {
-       preenchimento.SetActive(false); 
+        preenchimento.SetActive(false);
+    }
+
+    public void SetVisual(TileVisual tv)
+    {
+        switch (tv)
+        {
+            case TileVisual.Normal:
+                break;
+            case TileVisual.Ocupado:
+                break;
+            case TileVisual.Hover:
+                break;
+            case TileVisual.Movimento:
+                break;
+            case TileVisual.Ataque:
+                break;
+            case TileVisual.Caminho:
+                break;
+        }
     }
 
 
