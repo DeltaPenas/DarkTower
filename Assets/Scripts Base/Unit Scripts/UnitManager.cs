@@ -10,21 +10,29 @@ public class UnitManager : MonoBehaviour
     private List<Tile> tilesEmAlcance = new();
     public void Selecionar(Unidade unidade)
     {
+        if (unidade.Estado != EstadoUnidade.Disponivel)
+        {
+            Debug.Log("Unidade não disponivel");
+            return;
+        }
         
-        if (unidadeSelecionada == unidade)
+
+          if (unidadeSelecionada == unidade)
         {
             LimparSelecao();
             return;
         }
-
         LimparSelecao();
-
         // Seleciona a nova
         unidadeSelecionada = unidade;
         unidadeSelecionada.Selecionar();
-
         // Mostra o alcance
         MostrarMovimento();
+        
+        
+        
+        
+
     }
     public void LimparSelecao()
     {

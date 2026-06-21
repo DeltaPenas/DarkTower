@@ -1,7 +1,11 @@
+using System.Collections.Generic;
+using UnityEditor.Purchasing;
 using UnityEngine;
 
 public class SpawnerDeUnidades : MonoBehaviour
 {
+
+    public List<Unidade> todasUnidades = new();
     [SerializeField] private Unidade unitPrefab, inimigoPrefab;
     [SerializeField] private GridManager grid;
 
@@ -24,6 +28,7 @@ public class SpawnerDeUnidades : MonoBehaviour
         Unidade unidade = Instantiate(prefab);
 
         unidade.Spawn(tile);
+        todasUnidades.Add(unidade);
         if (unidade.Team == Team.Player)
         {
             tile.SetVisual(TileVisual.Ocupado);
