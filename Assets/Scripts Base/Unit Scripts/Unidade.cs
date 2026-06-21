@@ -8,7 +8,7 @@ public class Unidade : MonoBehaviour
     public int Ataque;
     public Team Team;
     public EstadoUnidade Estado;
-
+    public bool Bloqueando = false;
     public Tile TileAtual {get; private set;}
     public bool PodeMover => Estado == EstadoUnidade.Disponivel;
     public bool PodeAgir => Estado == EstadoUnidade.AguardandoAção;
@@ -68,6 +68,11 @@ public class Unidade : MonoBehaviour
         Debug.Log(Estado);
         
     }
+    public virtual void Bloquear()
+    {
+        Bloqueando = true;
+    }
+
 
     public void SetEstado(EstadoUnidade estado)
     {

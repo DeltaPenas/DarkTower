@@ -59,7 +59,7 @@ public class GridManager : MonoBehaviour
                 tiles[x, y] = spawnTile;
             }
         }
-        camPos.transform.position = new Vector3((float)largura/2 - 0.5f,(float)altura/2 - 0.5f, -10);
+        camPos.transform.position = new Vector3((float)largura/2 - 0.5f,(float)altura/2 - 1f, -10);
     }
 
     public Tile GetTilePos(Vector2Int pos)

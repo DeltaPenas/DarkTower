@@ -38,6 +38,11 @@ public class InputManager : MonoBehaviour
             unitManager.LimparSelecao();
 
         }
+        //temporario para debugs;
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            unitManager.Bloquear();
+        }
     }
 
 

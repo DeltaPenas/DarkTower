@@ -107,5 +107,29 @@ public class UnitManager : MonoBehaviour
         Debug.Log($"Abrindo Menu de ações da unidade: {unidade}");
     }
 
+    private void ExecutarAcão(AcaoUnidade acao)
+    {
+        switch (acao)
+        {
+            case AcaoUnidade.Atacar:
+                Debug.Log("Atacou");
+            break;
+            case AcaoUnidade.Bloquear:
+                Debug.Log("Bloqueou");
+                unidadeSelecionada.Bloquear();
+                unidadeSelecionada.SetEstado(EstadoUnidade.FinalizouTurno);
+            break;
+            case AcaoUnidade.Item:
+                Debug.Log("Usou um item");
+            break;
+        }
+    }
+
+    //Temporario Bloquear
+    public void Bloquear()
+    {
+        ExecutarAcão(AcaoUnidade.Bloquear);
+    }
+
     
 }

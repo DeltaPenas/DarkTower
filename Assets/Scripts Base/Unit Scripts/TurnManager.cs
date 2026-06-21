@@ -3,6 +3,7 @@ using UnityEngine;
 public class TurnManager : MonoBehaviour
 {
     public Turno turnoAtual {get ; private set;}
+    public bool MoveuNoTurno { get; private set; }
 
     public void Start()
     {
