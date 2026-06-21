@@ -9,45 +9,59 @@ public class UnitManager : MonoBehaviour
     [SerializeField] private GridManager gridManager;
     private List<Tile> tilesEmAlcance = new();
     public void Selecionar(Unidade unidade)
+{
+    switch (unidade.Estado)
     {
-        if (unidade.Estado != EstadoUnidade.Disponivel)
-        {
-            Debug.Log("Unidade não disponivel");
-            return;
-        }
-        
+        case EstadoUnidade.Disponivel:
 
-          if (unidadeSelecionada == unidade)
-        {
+            if (unidadeSelecionada == unidade)
+            {
+                LimparSelecao();
+                return;
+            }
+
             LimparSelecao();
-            return;
-        }
-        LimparSelecao();
-        // Seleciona a nova
-        unidadeSelecionada = unidade;
-        unidadeSelecionada.Selecionar();
-        // Mostra o alcance
-        MostrarMovimento();
-        
-        
-        
-        
 
+            unidadeSelecionada = unidade;
+
+            unidadeSelecionada.SetEstado(EstadoUnidade.Selecionada);
+            unidadeSelecionada.Selecionar();
+
+            MostrarMovimento();
+
+            break;
+
+        case EstadoUnidade.AguardandoAção:
+
+            AbrirMenuDeAcoes(unidade);
+
+            break;
+
+        case EstadoUnidade.FinalizouTurno:
+
+            Debug.Log("Essa unidade já terminou o turno.");
+
+            break;
     }
+}
     public void LimparSelecao()
     {
         if(unidadeSelecionada == null) return;
 
         unidadeSelecionada.Deselecionar();
         unidadeSelecionada = null;
-        foreach (Tile tiles in tilesEmAlcance)
+        LimparMovimento();
+        
+
+        
+    }
+    public void LimparMovimento()
+    {
+         foreach (Tile tiles in tilesEmAlcance)
         {
             tiles.LimparMovimento();
         }
         tilesEmAlcance.Clear();
-        
-
-        
     }
 
     private void MostrarMovimento()
@@ -77,22 +91,20 @@ public class UnitManager : MonoBehaviour
 
 
         unidadeSelecionada.Mover(tile);
-        if(unidadeSelecionada.Team == Team.Player)
-        {
-            tile.SetVisual(TileVisual.Ocupado);
-        }
-        else
-        {
-            tile.SetVisual(TileVisual.OcupadoInimigo);
-        }
-        
-        LimparSelecao();
-        
-        
-        
-       
 
-       
+        if (unidadeSelecionada.Team == Team.Player)
+            tile.SetVisual(TileVisual.Ocupado);
+        else
+            tile.SetVisual(TileVisual.OcupadoInimigo);
+
+        unidadeSelecionada.SetEstado(EstadoUnidade.AguardandoAção);
+
+        LimparMovimento();
+    }
+
+    private void AbrirMenuDeAcoes(Unidade unidade)
+    {
+        Debug.Log($"Abrindo Menu de ações da unidade: {unidade}");
     }
 
     

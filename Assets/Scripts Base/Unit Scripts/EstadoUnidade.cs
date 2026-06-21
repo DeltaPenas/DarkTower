@@ -2,6 +2,6 @@ public enum EstadoUnidade
 {
     Disponivel,
     Selecionada,
-    Moveu,
+    AguardandoAção,
     FinalizouTurno,
 }

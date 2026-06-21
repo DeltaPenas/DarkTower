@@ -10,6 +10,8 @@ public class Unidade : MonoBehaviour
     public EstadoUnidade Estado;
 
     public Tile TileAtual {get; private set;}
+    public bool PodeMover => Estado == EstadoUnidade.Disponivel;
+    public bool PodeAgir => Estado == EstadoUnidade.AguardandoAção;
     public Vector2Int GridPosition => TileAtual.GridPosition;
     
 
@@ -62,28 +64,14 @@ public class Unidade : MonoBehaviour
         destino.DefinirUnidade(this);
 
         transform.position = destino.transform.position;
-        SetEstado(EstadoUnidade.Moveu);
+        SetEstado(EstadoUnidade.AguardandoAção);
         Debug.Log(Estado);
         
     }
 
     public void SetEstado(EstadoUnidade estado)
     {
-        switch (estado)
-        {
-            case EstadoUnidade.Disponivel:
-                Estado = EstadoUnidade.Disponivel;
-            break;
-            case EstadoUnidade.FinalizouTurno:
-                Estado = EstadoUnidade.FinalizouTurno;
-            break;
-            case EstadoUnidade.Moveu:
-                Estado = EstadoUnidade.Moveu;
-            break;
-            case EstadoUnidade.Selecionada:
-                Estado = EstadoUnidade.Selecionada;
-            break;
-        }
+        Estado = estado;
     }
 
     public virtual void ReceberDano(int dano)
