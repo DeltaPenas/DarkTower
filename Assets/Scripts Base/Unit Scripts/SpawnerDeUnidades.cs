@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SpawnerDeUnidades : MonoBehaviour
 {
-    [SerializeField] private Unidade unitPrefab;
+    [SerializeField] private Unidade unitPrefab, inimigoPrefab;
     [SerializeField] private GridManager grid;
 
 
@@ -14,7 +14,7 @@ public class SpawnerDeUnidades : MonoBehaviour
         Spawn(unitPrefab, tile);
 
         Tile tile2 = grid.GetTilePos(new Vector2Int(1, 0));
-        Spawn(unitPrefab, tile2);
+        Spawn(inimigoPrefab, tile2);
 
 
 
@@ -24,7 +24,14 @@ public class SpawnerDeUnidades : MonoBehaviour
         Unidade unidade = Instantiate(prefab);
 
         unidade.Spawn(tile);
-        tile.SetVisual(TileVisual.Ocupado);
+        if (unidade.Team == Team.Player)
+        {
+            tile.SetVisual(TileVisual.Ocupado);
+        }else 
+        {
+           tile.SetVisual(TileVisual.OcupadoInimigo); 
+        }
+        
 
     }
 }

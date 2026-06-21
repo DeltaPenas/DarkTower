@@ -69,8 +69,22 @@ public class UnitManager : MonoBehaviour
 
 
         unidadeSelecionada.Mover(tile);
+        if(unidadeSelecionada.Team == Team.Player)
+        {
+            tile.SetVisual(TileVisual.Ocupado);
+        }
+        else
+        {
+            tile.SetVisual(TileVisual.OcupadoInimigo);
+        }
+        
         LimparSelecao();
-        tile.SetVisual(TileVisual.Ocupado);
+        
+        
+        
+       
+
+       
     }
 
     

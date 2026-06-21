@@ -275,6 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnerDeUnidades
   unitPrefab: {fileID: 1967543027099041983, guid: 8ed68fd7102886f41958c94a90260fae, type: 3}
+  inimigoPrefab: {fileID: 2412487235172424381, guid: 62c979c4d439ce64687492dd975d5936, type: 3}
   grid: {fileID: 782981026}
 --- !u!114 &782981029
 MonoBehaviour:

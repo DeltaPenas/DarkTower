@@ -38,7 +38,11 @@ public class Tile : MonoBehaviour
     }
     public void LimparMovimento()
     {
-        SetVisual(TileVisual.Normal);
+        if (!EstaOcupada)
+        {
+            SetVisual(TileVisual.Normal);  
+        }
+        
     
         EstaDestacado = false;
     }
@@ -64,6 +68,9 @@ public class Tile : MonoBehaviour
                 break;
             case TileVisual.Caminho:
                 sp.color = Color.blue;
+                break;
+            case TileVisual.OcupadoInimigo:
+                sp.color = Color.red;
                 break;
         }
     }

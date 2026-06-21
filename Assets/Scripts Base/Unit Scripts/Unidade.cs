@@ -17,6 +17,8 @@ public class Unidade : MonoBehaviour
         TileAtual = tile;
 
         tile.DefinirUnidade(this);
+        
+        
 
         transform.position = tile.transform.position;
 
