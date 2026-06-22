@@ -24,6 +24,23 @@ public class Tile : MonoBehaviour
     {
         UnidadeAtual = null;
     }
+    public void RestaurarVisual()
+    {
+       if(UnidadeAtual == null)
+        {
+            SetVisual(TileVisual.Normal);
+            return;
+        }
+
+        if (UnidadeAtual.Team == Team.Player)
+        {
+            SetVisual(TileVisual.Ocupado);
+        }else if (UnidadeAtual.Team == Team.Inimigos)
+        {
+           SetVisual(TileVisual.OcupadoInimigo); 
+        }
+    }
+
 
     public void SetVisual(TileVisual tv)
     {
@@ -39,10 +56,10 @@ public class Tile : MonoBehaviour
                 sp.color = Color.green;
                 break;
             case TileVisual.Movimento:
-                sp.color = Color.blue;
+                sp.color = Color.yellow;
                 break;
             case TileVisual.Ataque:
-                sp.color = Color.darkGreen;
+                sp.color = Color.blue;
                 break;
             case TileVisual.OcupadoInimigo:
                 sp.color = Color.red;

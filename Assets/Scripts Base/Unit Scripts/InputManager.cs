@@ -24,6 +24,12 @@ public class InputManager : MonoBehaviour
 
             if (unidade != null)
             {
+                if (unitManager.ModoAtual == UnitManager.ModoSelecao.Ataque)
+                {
+                    unitManager.ClicarTile(unidade.TileAtual);
+                    return;
+                }
+
                 unitManager.Selecionar(unidade);
                 return;
             }

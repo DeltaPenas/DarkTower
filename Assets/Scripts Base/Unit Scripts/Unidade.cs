@@ -65,8 +65,17 @@ public class Unidade : MonoBehaviour
         destino.DefinirUnidade(this);
 
         transform.position = destino.transform.position;
-        SetEstado(EstadoUnidade.AguardandoAção);
+        
         Debug.Log(Estado);
+        if (Team == Team.Player)
+        {
+           destino.SetVisual(TileVisual.Ocupado);
+        }
+        else
+        {
+            destino.SetVisual(TileVisual.OcupadoInimigo);
+        }
+        
         
     }
     public virtual void Bloquear()
@@ -82,7 +91,7 @@ public class Unidade : MonoBehaviour
 
     public virtual void ReceberDano(int dano)
     {
-        Debug.Log("A unidade Recebeu dano");
+        Debug.Log($"A unidade {this} Recebeu dano");
     }
 
 

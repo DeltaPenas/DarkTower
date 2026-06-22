@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class UnitManager : MonoBehaviour
 {
+    public ActionMenu actionMenuUI;
     public Unidade unidadeSelecionada {get; private set;}
    
     [SerializeField] private GridManager gridManager;
     public enum ModoSelecao{ Movimento, Ataque, Nenhum}
     public ModoSelecao ModoAtual { get; private set; } = ModoSelecao.Nenhum;
     private List<Tile> tilesDestacadas = new();
+
+    void Start()
+    {
+        actionMenuUI = FindAnyObjectByType<ActionMenu>();
+    }
+
+
+
     public void Selecionar(Unidade unidade)
 {
     switch (unidade.Estado)
@@ -29,9 +38,9 @@ public class UnitManager : MonoBehaviour
 
             unidadeSelecionada.SetEstado(EstadoUnidade.Selecionada);
             unidadeSelecionada.Selecionar();
+            ModoAtual = ModoSelecao.Nenhum;
+            actionMenuUI.MostrarMenuPrincipal();
 
-            MostrarMovimento();
-            ModoAtual = ModoSelecao.Movimento;
             Debug.Log(ModoAtual);
 
             break;
@@ -40,7 +49,6 @@ public class UnitManager : MonoBehaviour
             AbrirMenuDeAcoes(unidade);
 
             break;
-
         case EstadoUnidade.FinalizouTurno:
             Debug.Log("Essa unidade já terminou o turno.");
 
@@ -60,32 +68,41 @@ public class UnitManager : MonoBehaviour
     }
     public void LimparHighLight()
     {
-        foreach (Tile tiles in tilesDestacadas)
+        foreach (Tile tile in tilesDestacadas)
         {
-           MostrarTiles(tilesDestacadas, TileVisual.Normal);
+            tile.RestaurarVisual();
         }
+
         tilesDestacadas.Clear();
     }
 
     private void MostrarMovimento()
     {
-    tilesDestacadas = gridManager.GetTilesEmAlcance(
-        unidadeSelecionada.TileAtual,
-        unidadeSelecionada.Movimento
-    );
 
-        MostrarTiles(tilesDestacadas, TileVisual.Movimento);
+        tilesDestacadas = gridManager.GetTilesEmAlcance(unidadeSelecionada.TileAtual, unidadeSelecionada.Movimento);
+
+        foreach (Tile tile in tilesDestacadas)
+    {
+        if (!tile.EstaOcupada) tile.SetVisual(TileVisual.Movimento);
     }
+    }
+
+
+
 
     private void MostrarAtaque()
-    {
-        tilesDestacadas = gridManager.GetTilesEmAlcance(
-            unidadeSelecionada.TileAtual,
-            unidadeSelecionada.AlcanceAtaque
-        );
+{
+    tilesDestacadas = gridManager.GetTilesEmAlcance( unidadeSelecionada.TileAtual, unidadeSelecionada.AlcanceAtaque);
 
-        MostrarTiles(tilesDestacadas, TileVisual.Ataque);
+    foreach (Tile tile in tilesDestacadas)
+    {
+        if (tile.UnidadeAtual != null &&
+            tile.UnidadeAtual.Team != unidadeSelecionada.Team)
+        {
+            tile.SetVisual(TileVisual.Ataque);
+        }
     }
+}
 
 
     private void MostrarTiles(List<Tile> tiles, TileVisual visual)
@@ -100,43 +117,22 @@ public class UnitManager : MonoBehaviour
         }
     }
 
-    public void ClicarTile(Tile tile)
+public void ClicarTile(Tile tile)
 {
     if (unidadeSelecionada == null)
+        return;
+
+    if (!tile.EstaDestacado)
         return;
 
     switch (ModoAtual)
     {
         case ModoSelecao.Movimento:
-
-            if (!tile.EstaDestacado)
-                return;
-
-            unidadeSelecionada.Mover(tile);
-
-            unidadeSelecionada.SetEstado(EstadoUnidade.AguardandoAção);
-
-            ModoAtual = ModoSelecao.Nenhum;
-
-            LimparHighLight();
-
+            ExecutarMovimento(tile);
             break;
 
         case ModoSelecao.Ataque:
-
-            if (!tile.EstaDestacado)
-                return;
-
             ExecutarAtaque(tile);
-
-            ModoAtual = ModoSelecao.Nenhum;
-
-            LimparHighLight();
-
-            unidadeSelecionada.SetEstado(EstadoUnidade.FinalizouTurno);
-
-            LimparSelecao();
-
             break;
     }
 }
@@ -166,14 +162,26 @@ public class UnitManager : MonoBehaviour
 
     public void EntrarModoAtaque()
     {
+        Debug.Log("Entrou modo ataque");
         if(unidadeSelecionada == null) return;
-        if(unidadeSelecionada.Estado != EstadoUnidade.AguardandoAção) return;
+        if (unidadeSelecionada.Estado != EstadoUnidade.Selecionada && unidadeSelecionada.Estado != EstadoUnidade.AguardandoAção) return;
         LimparHighLight();
         ModoAtual = ModoSelecao.Ataque;
         MostrarAtaque();
 
 
     }
+    public void EntrarEmModoMovimento()
+    {
+        Debug.Log("Entrou modo ataque"); 
+        if(unidadeSelecionada == null) return;
+        if (unidadeSelecionada.Estado != EstadoUnidade.Selecionada && unidadeSelecionada.Estado != EstadoUnidade.AguardandoAção) return;
+        LimparHighLight();
+        ModoAtual = ModoSelecao.Movimento;
+        MostrarMovimento();
+    }
+
+
 
     //Temporario Bloquear
     public void Bloquear()
@@ -183,14 +191,37 @@ public class UnitManager : MonoBehaviour
 
     private void ExecutarAtaque(Tile tile)
     {
-         if (tile.UnidadeAtual == null)
-            return;
-        Unidade alvo = tile.UnidadeAtual;
+    if (tile.UnidadeAtual == null)
+        return;
 
-        if (alvo.Team == unidadeSelecionada.Team)
-            return;
-        alvo.ReceberDano(unidadeSelecionada.Ataque);
-        }
+    if (tile.UnidadeAtual.Team == unidadeSelecionada.Team)
+        return;
 
-    
+    tile.UnidadeAtual.ReceberDano(unidadeSelecionada.Ataque);
+
+    unidadeSelecionada.SetEstado(EstadoUnidade.FinalizouTurno);
+
+    LimparHighLight();
+
+    ModoAtual = ModoSelecao.Nenhum;
+
+    actionMenuUI.EsconderMenuPrincipal();
+
+    LimparSelecao();
+    }
+
+    private void ExecutarMovimento(Tile tile)
+{
+    unidadeSelecionada.Mover(tile);
+
+    LimparHighLight();
+
+    ModoAtual = ModoSelecao.Nenhum;
+
+    // volta para o menu
+    actionMenuUI.MostrarMenuPrincipal();
+}
+        
+        
+
 }
