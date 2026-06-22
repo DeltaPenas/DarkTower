@@ -43,6 +43,10 @@ public class InputManager : MonoBehaviour
         {
             unitManager.Bloquear();
         }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            unitManager.EntrarModoAtaque();
+        }
     }
 
 

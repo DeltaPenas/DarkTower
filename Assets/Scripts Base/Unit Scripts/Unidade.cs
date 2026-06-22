@@ -6,6 +6,7 @@ public class Unidade : MonoBehaviour
     public int Vida;
     public int Movimento;
     public int Ataque;
+    public int AlcanceAtaque = 1;
     public Team Team;
     public EstadoUnidade Estado;
     public bool Bloqueando = false;
@@ -81,7 +82,7 @@ public class Unidade : MonoBehaviour
 
     public virtual void ReceberDano(int dano)
     {
-
+        Debug.Log("A unidade Recebeu dano");
     }
 
 

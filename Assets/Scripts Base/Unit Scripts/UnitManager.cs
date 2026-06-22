@@ -7,12 +7,15 @@ public class UnitManager : MonoBehaviour
     public Unidade unidadeSelecionada {get; private set;}
    
     [SerializeField] private GridManager gridManager;
-    private List<Tile> tilesEmAlcance = new();
+    public enum ModoSelecao{ Movimento, Ataque, Nenhum}
+    public ModoSelecao ModoAtual { get; private set; } = ModoSelecao.Nenhum;
+    private List<Tile> tilesDestacadas = new();
     public void Selecionar(Unidade unidade)
 {
     switch (unidade.Estado)
     {
         case EstadoUnidade.Disponivel:
+            
 
             if (unidadeSelecionada == unidade)
             {
@@ -28,17 +31,17 @@ public class UnitManager : MonoBehaviour
             unidadeSelecionada.Selecionar();
 
             MostrarMovimento();
+            ModoAtual = ModoSelecao.Movimento;
+            Debug.Log(ModoAtual);
 
             break;
 
         case EstadoUnidade.AguardandoAção:
-
             AbrirMenuDeAcoes(unidade);
 
             break;
 
         case EstadoUnidade.FinalizouTurno:
-
             Debug.Log("Essa unidade já terminou o turno.");
 
             break;
@@ -50,57 +53,93 @@ public class UnitManager : MonoBehaviour
 
         unidadeSelecionada.Deselecionar();
         unidadeSelecionada = null;
-        LimparMovimento();
+        LimparHighLight();
         
 
         
     }
-    public void LimparMovimento()
+    public void LimparHighLight()
     {
-         foreach (Tile tiles in tilesEmAlcance)
+        foreach (Tile tiles in tilesDestacadas)
         {
-            tiles.LimparMovimento();
+           MostrarTiles(tilesDestacadas, TileVisual.Normal);
         }
-        tilesEmAlcance.Clear();
+        tilesDestacadas.Clear();
     }
 
     private void MostrarMovimento()
     {
-        tilesEmAlcance = gridManager.GetTilesEmAlcance(
+    tilesDestacadas = gridManager.GetTilesEmAlcance(
+        unidadeSelecionada.TileAtual,
+        unidadeSelecionada.Movimento
+    );
+
+        MostrarTiles(tilesDestacadas, TileVisual.Movimento);
+    }
+
+    private void MostrarAtaque()
+    {
+        tilesDestacadas = gridManager.GetTilesEmAlcance(
             unidadeSelecionada.TileAtual,
-            unidadeSelecionada.Movimento
+            unidadeSelecionada.AlcanceAtaque
         );
-         foreach (Tile tile in tilesEmAlcance)
+
+        MostrarTiles(tilesDestacadas, TileVisual.Ataque);
+    }
+
+
+    private void MostrarTiles(List<Tile> tiles, TileVisual visual)
+    {
+        foreach (Tile tile in tiles)
         {
-            tile.MostrarMovimento();
+            if (!tile.EstaOcupada)
+            {
+                tile.SetVisual(visual);
+            }
+            
         }
     }
 
     public void ClicarTile(Tile tile)
+{
+    if (unidadeSelecionada == null)
+        return;
+
+    switch (ModoAtual)
     {
-        if (unidadeSelecionada == null)
-        {
-           Debug.Log("Nenhuma Unidade selecionada!"); 
-           return; 
-        } 
-        if (!tile.EstaDestacado)
-        {
-          Debug.Log("Tile não esta destacada!");   
-          return;  
-        } 
+        case ModoSelecao.Movimento:
 
+            if (!tile.EstaDestacado)
+                return;
 
-        unidadeSelecionada.Mover(tile);
+            unidadeSelecionada.Mover(tile);
 
-        if (unidadeSelecionada.Team == Team.Player)
-            tile.SetVisual(TileVisual.Ocupado);
-        else
-            tile.SetVisual(TileVisual.OcupadoInimigo);
+            unidadeSelecionada.SetEstado(EstadoUnidade.AguardandoAção);
 
-        unidadeSelecionada.SetEstado(EstadoUnidade.AguardandoAção);
+            ModoAtual = ModoSelecao.Nenhum;
 
-        LimparMovimento();
+            LimparHighLight();
+
+            break;
+
+        case ModoSelecao.Ataque:
+
+            if (!tile.EstaDestacado)
+                return;
+
+            ExecutarAtaque(tile);
+
+            ModoAtual = ModoSelecao.Nenhum;
+
+            LimparHighLight();
+
+            unidadeSelecionada.SetEstado(EstadoUnidade.FinalizouTurno);
+
+            LimparSelecao();
+
+            break;
     }
+}
 
     private void AbrirMenuDeAcoes(Unidade unidade)
     {
@@ -125,11 +164,33 @@ public class UnitManager : MonoBehaviour
         }
     }
 
+    public void EntrarModoAtaque()
+    {
+        if(unidadeSelecionada == null) return;
+        if(unidadeSelecionada.Estado != EstadoUnidade.AguardandoAção) return;
+        LimparHighLight();
+        ModoAtual = ModoSelecao.Ataque;
+        MostrarAtaque();
+
+
+    }
+
     //Temporario Bloquear
     public void Bloquear()
     {
         ExecutarAcão(AcaoUnidade.Bloquear);
     }
+
+    private void ExecutarAtaque(Tile tile)
+    {
+         if (tile.UnidadeAtual == null)
+            return;
+        Unidade alvo = tile.UnidadeAtual;
+
+        if (alvo.Team == unidadeSelecionada.Team)
+            return;
+        alvo.ReceberDano(unidadeSelecionada.Ataque);
+        }
 
     
 }
