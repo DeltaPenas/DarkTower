@@ -1,6 +1,7 @@
 using System;
 using Unity.Android.Gradle.Manifest;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ActionMenu : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class ActionMenu : MonoBehaviour
     [SerializeField] private GameObject painelDeMovimento;
     [SerializeField] private GameObject PainelDeItens;
     [SerializeField] private UnitManager unitManager;
+    [SerializeField] private GameObject buttonMove;
+    [SerializeField] private Button efeitoButton;
     
 
 
@@ -17,7 +20,6 @@ public class ActionMenu : MonoBehaviour
     {
         unitManager = FindAnyObjectByType<UnitManager>();
         EsconderTudo();
-    
     }
 
     private void EsconderTudo()
@@ -30,6 +32,8 @@ public class ActionMenu : MonoBehaviour
     public void MostrarMenuPrincipal()
     {
         painelDeButõesDeAção.SetActive(true);
+       
+        
     }
     public void EsconderMenuPrincipal()
     {
@@ -109,6 +113,21 @@ public class ActionMenu : MonoBehaviour
         unitManager.Bloquear();
 
         EsconderTudo();
+    }
+
+    public void DesabilitarButtonMove(){
+        if (efeitoButton == null)
+        {
+          efeitoButton = buttonMove.GetComponent<Button>();  
+        }
+        efeitoButton.interactable = false;
+    }
+    public void HabilitarButtonMove(){
+        if (efeitoButton == null)
+        {
+          efeitoButton = buttonMove.GetComponent<Button>();  
+        }
+        efeitoButton.interactable = true;
     }
 
 

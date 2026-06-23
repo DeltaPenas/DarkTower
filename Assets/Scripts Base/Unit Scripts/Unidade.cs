@@ -3,18 +3,24 @@ using UnityEngine;
 public class Unidade : MonoBehaviour
 {
     [SerializeField] private GameObject indicadorSelecao;
-    public int Vida;
-    public int Movimento;
-    public int Ataque;
-    public int AlcanceAtaque = 1;
+    [SerializeField] private VidaUnidade vidaUnidade;
+    
+    public UnitStatus baseStatus;
+    public UnitStatus currentStatus;
     public Team Team;
     public EstadoUnidade Estado;
     public bool Bloqueando = false;
     public Tile TileAtual {get; private set;}
-    public bool PodeMover => Estado == EstadoUnidade.Disponivel;
-    public bool PodeAgir => Estado == EstadoUnidade.AguardandoAção;
+    public bool PodeMover = true;
+    public bool PodeAgir = true;
     public Vector2Int GridPosition => TileAtual.GridPosition;
-    
+
+
+    public void Awake()
+    {
+        vidaUnidade = GetComponent<VidaUnidade>();
+        currentStatus = baseStatus.Clone();
+    }
 
     public void Spawn(Tile tile)
     {
@@ -89,10 +95,12 @@ public class Unidade : MonoBehaviour
         Estado = estado;
     }
 
-    public virtual void ReceberDano(int dano)
+    public virtual void ReceberDano(float dano)
     {
-        Debug.Log($"A unidade {this} Recebeu dano");
+        vidaUnidade.ReceberDano(dano);
     }
+
+    
 
 
 

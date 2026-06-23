@@ -40,7 +40,8 @@ public class UnitManager : MonoBehaviour
             unidadeSelecionada.Selecionar();
             ModoAtual = ModoSelecao.Nenhum;
             actionMenuUI.MostrarMenuPrincipal();
-
+            
+            ValidarAcoes(unidadeSelecionada);
             Debug.Log(ModoAtual);
 
             break;
@@ -78,7 +79,7 @@ public class UnitManager : MonoBehaviour
     private void MostrarMovimento()
     {
 
-        tilesDestacadas = gridManager.GetTilesEmAlcance(unidadeSelecionada.TileAtual, unidadeSelecionada.Movimento);
+        tilesDestacadas = gridManager.GetTilesEmAlcance(unidadeSelecionada.TileAtual, unidadeSelecionada.currentStatus.movimento);
 
         foreach (Tile tile in tilesDestacadas)
     {
@@ -93,7 +94,7 @@ public class UnitManager : MonoBehaviour
     {
     tilesDestacadas = gridManager.GetTilesEmAlcance(
         unidadeSelecionada.TileAtual,
-        unidadeSelecionada.AlcanceAtaque
+        1 //Aquia vai ter que ser o alcance do ataque escolhido
     );
 
     foreach (Tile tile in tilesDestacadas)
@@ -208,7 +209,7 @@ public void ClicarTile(Tile tile)
     if (tile.UnidadeAtual.Team == unidadeSelecionada.Team)
         return;
 
-    tile.UnidadeAtual.ReceberDano(unidadeSelecionada.Ataque);
+    tile.UnidadeAtual.ReceberDano(unidadeSelecionada.currentStatus.ataque);
 
     unidadeSelecionada.SetEstado(EstadoUnidade.FinalizouTurno);
 
@@ -225,14 +226,27 @@ public void ClicarTile(Tile tile)
     private void ExecutarMovimento(Tile tile)
 {
     unidadeSelecionada.Mover(tile);
-
+    unidadeSelecionada.PodeMover = false;
     LimparHighLight();
 
     ModoAtual = ModoSelecao.Nenhum;
 
     actionMenuUI.FecharPainelDeMovimento();
     actionMenuUI.MostrarMenuPrincipal();
+    actionMenuUI.DesabilitarButtonMove();
 }
+
+    public void ValidarAcoes(Unidade unidade)
+    {
+        if (unidade.PodeMover)
+        {
+            actionMenuUI.HabilitarButtonMove();
+        }
+        else
+        {
+           actionMenuUI.DesabilitarButtonMove(); 
+        }
+    }
         
         
 

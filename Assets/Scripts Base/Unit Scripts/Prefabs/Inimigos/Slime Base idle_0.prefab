@@ -125,6 +125,8 @@ GameObject:
   - component: {fileID: 4011403296604200436}
   - component: {fileID: 5693639552750363855}
   - component: {fileID: 2412487235172424381}
+  - component: {fileID: 6982763092448197527}
+  - component: {fileID: 3547473079618260404}
   - component: {fileID: 1456895616989055565}
   - component: {fileID: 5474843881685773936}
   m_Layer: 0
@@ -222,10 +224,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InimigoUnidade
   indicadorSelecao: {fileID: 5472891236808261636}
-  Vida: 3
-  Movimento: 1
-  Ataque: 1
+  vidaUnidade: {fileID: 0}
+  baseStatus:
+    vida: 3
+    ataque: 1
+    movimento: 2
+    mana: 0
+    defesa: 0
+  currentStatus:
+    vida: 0
+    ataque: 0
+    movimento: 0
+    mana: 0
+    defesa: 0
   Team: 1
+  Estado: 0
+  Bloqueando: 0
+  PodeMover: 1
+  PodeAgir: 1
+--- !u!114 &6982763092448197527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7652920450841624080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69fb313e3400d8c4fadaf0a0b4b74233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VidaUnidade
+  unidade: {fileID: 0}
+  vidaMaxima: 0
+  vidaAtual: 0
+--- !u!114 &3547473079618260404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7652920450841624080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0ba92a7a0859994988d7384f1caaa1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RecursosUnidade
+  unidade: {fileID: 0}
+  manaMaxima: 0
+  manaAtual: 0
 --- !u!61 &1456895616989055565
 BoxCollider2D:
   m_ObjectHideFlags: 0
