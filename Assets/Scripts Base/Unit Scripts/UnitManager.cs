@@ -90,18 +90,24 @@ public class UnitManager : MonoBehaviour
 
 
     private void MostrarAtaque()
-{
-    tilesDestacadas = gridManager.GetTilesEmAlcance( unidadeSelecionada.TileAtual, unidadeSelecionada.AlcanceAtaque);
+    {
+    tilesDestacadas = gridManager.GetTilesEmAlcance(
+        unidadeSelecionada.TileAtual,
+        unidadeSelecionada.AlcanceAtaque
+    );
 
     foreach (Tile tile in tilesDestacadas)
     {
+        // Não destaca tiles ocupadas por aliados
         if (tile.UnidadeAtual != null &&
-            tile.UnidadeAtual.Team != unidadeSelecionada.Team)
+            tile.UnidadeAtual.Team == unidadeSelecionada.Team)
         {
-            tile.SetVisual(TileVisual.Ataque);
+            continue;
         }
+
+        tile.SetVisual(TileVisual.Ataque);
     }
-}
+    }
 
 
     private void MostrarTiles(List<Tile> tiles, TileVisual visual)
@@ -191,6 +197,7 @@ public void ClicarTile(Tile tile)
     public void Bloquear()
     {
         ExecutarAcão(AcaoUnidade.Bloquear);
+        LimparSelecao();
     }
 
     private void ExecutarAtaque(Tile tile)
@@ -210,6 +217,7 @@ public void ClicarTile(Tile tile)
     ModoAtual = ModoSelecao.Nenhum;
 
     actionMenuUI.EsconderMenuPrincipal();
+    actionMenuUI.FecharPainelDeAtaque();
 
     LimparSelecao();
     }
@@ -222,7 +230,7 @@ public void ClicarTile(Tile tile)
 
     ModoAtual = ModoSelecao.Nenhum;
 
-    // volta para o menu
+    actionMenuUI.FecharPainelDeMovimento();
     actionMenuUI.MostrarMenuPrincipal();
 }
         

@@ -6,6 +6,7 @@ public class ActionMenu : MonoBehaviour
 {
     [SerializeField] private GameObject painelDeButõesDeAção;
     [SerializeField] private GameObject painelDeButõesDeAtaques;
+    [SerializeField] private GameObject painelDeCancelarAtaque; //Apenas um botão que aparece na hora de finalizar o ataque.
     [SerializeField] private GameObject painelDeMovimento;
     [SerializeField] private GameObject PainelDeItens;
     [SerializeField] private UnitManager unitManager;
@@ -37,6 +38,8 @@ public class ActionMenu : MonoBehaviour
     public void MostrarMenuDeAtaques()
     {
         painelDeButõesDeAtaques.SetActive(true);
+        painelDeMovimento.SetActive(false);
+    
     }
     public void EsconderMenuDeAtaques()
     {
@@ -47,6 +50,7 @@ public class ActionMenu : MonoBehaviour
         unitManager.EntrarEmModoMovimento();
 
         painelDeButõesDeAção.SetActive(false);
+        painelDeMovimento.SetActive(true);
     }
 
     public void ButtonAtacar()
@@ -65,14 +69,30 @@ public class ActionMenu : MonoBehaviour
         EsconderTudo();
 
     }
-    public void ButtonCancelarAtaque()
+    public void ButtonVoltarMenuDeAções()
     {
         EsconderMenuDeAtaques();
         MostrarMenuPrincipal();
     }
-    public void ButtonCancelarMoviment()
+    public void ButtonCancelarAtaque()
     {
         unitManager.LimparModos();
+        painelDeButõesDeAtaques.SetActive(true);
+        painelDeCancelarAtaque.SetActive(false);
+    }
+    public void ButtonCancelarMovimento()
+    {
+        painelDeMovimento.SetActive(false);
+        unitManager.LimparModos();
+        painelDeButõesDeAção.SetActive(true);
+    }
+    public void FecharPainelDeMovimento()
+    {
+        painelDeMovimento.SetActive(false);
+    }
+    public void FecharPainelDeAtaque()
+    {
+        painelDeCancelarAtaque.SetActive(false);
     }
 
     public void ButtonEspadada()
@@ -80,6 +100,7 @@ public class ActionMenu : MonoBehaviour
         unitManager.EntrarModoAtaque();
 
         painelDeButõesDeAtaques.SetActive(false);
+        painelDeCancelarAtaque.SetActive(true);
     }
 
 
