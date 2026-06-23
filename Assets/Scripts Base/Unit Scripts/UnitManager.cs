@@ -46,7 +46,6 @@ public class UnitManager : MonoBehaviour
             break;
 
         case EstadoUnidade.AguardandoAção:
-            AbrirMenuDeAcoes(unidade);
 
             break;
         case EstadoUnidade.FinalizouTurno:
@@ -137,10 +136,7 @@ public void ClicarTile(Tile tile)
     }
 }
 
-    private void AbrirMenuDeAcoes(Unidade unidade)
-    {
-        Debug.Log($"Abrindo Menu de ações da unidade: {unidade}");
-    }
+   
 
     private void ExecutarAcão(AcaoUnidade acao)
     {
@@ -179,6 +175,14 @@ public void ClicarTile(Tile tile)
         LimparHighLight();
         ModoAtual = ModoSelecao.Movimento;
         MostrarMovimento();
+    }
+    public void LimparModos()
+    {
+        Debug.Log("Voltou ao modo base (Nenhum)");
+        if(unidadeSelecionada == null) return;
+        if (unidadeSelecionada.Estado != EstadoUnidade.Selecionada && unidadeSelecionada.Estado != EstadoUnidade.AguardandoAção) return;
+        LimparHighLight();
+        ModoAtual = ModoSelecao.Nenhum; 
     }
 
 

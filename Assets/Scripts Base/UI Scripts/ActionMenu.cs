@@ -1,12 +1,13 @@
 using System;
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
 public class ActionMenu : MonoBehaviour
 {
     [SerializeField] private GameObject painelDeButõesDeAção;
     [SerializeField] private GameObject painelDeButõesDeAtaques;
+    [SerializeField] private GameObject painelDeMovimento;
     [SerializeField] private GameObject PainelDeItens;
-
     [SerializeField] private UnitManager unitManager;
     
 
@@ -69,6 +70,11 @@ public class ActionMenu : MonoBehaviour
         EsconderMenuDeAtaques();
         MostrarMenuPrincipal();
     }
+    public void ButtonCancelarMoviment()
+    {
+        unitManager.LimparModos();
+    }
+
     public void ButtonEspadada()
     {
         unitManager.EntrarModoAtaque();
