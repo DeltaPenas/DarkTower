@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class RecursosUnidade: MonoBehaviour
@@ -21,11 +22,11 @@ public class RecursosUnidade: MonoBehaviour
 
     public void RecuperarMana(float cura)
     {
-        
+        manaAtual = MathF.Min(manaAtual + cura, manaMaxima);
     }
     public void PerderMana(float perda)
     {
-        
+        manaAtual -=perda;
     }
 
 
