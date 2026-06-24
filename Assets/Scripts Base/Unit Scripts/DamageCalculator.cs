@@ -15,7 +15,7 @@ public static class DamageCalculator
 
     dano -= defensor.currentStatus.defesa;
     
-    dano = Mathf.Max(1, dano);
+    dano = Mathf.Max(0.1f, dano);
     
     //verificação de imunidade
     if (defensor.imunidades.Contains(ataque.elemento))

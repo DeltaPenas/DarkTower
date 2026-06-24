@@ -5,6 +5,7 @@ public class Unidade : MonoBehaviour
 {
     [Header("Referencias")]
     [SerializeField] private GameObject indicadorSelecao;
+    [SerializeField] public GameObject indicadorDeBloqueio;
     [SerializeField] private VidaUnidade vidaUnidade;
 
     [Header("Status")]
@@ -96,6 +97,12 @@ public class Unidade : MonoBehaviour
     public virtual void Bloquear()
     {
         Bloqueando = true;
+        indicadorDeBloqueio.SetActive(true);
+    }
+    public virtual void Desbloquear()
+    {
+        Bloqueando = false;
+        indicadorDeBloqueio.SetActive(false);
     }
 
 
@@ -125,7 +132,7 @@ public class Unidade : MonoBehaviour
         Debug.Log("Novo turno");
         PodeAgir = true;
         PodeMover = true;
-        Bloqueando = false;
+        Desbloquear();
         Estado = EstadoUnidade.Disponivel;
     }
     

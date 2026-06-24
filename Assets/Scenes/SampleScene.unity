@@ -788,6 +788,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8713b0149050ab24396266b460026bae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TurnManager
+  TurnoAtual: 0
+  unidadesPlayer: []
+  unidadesInimigos: []
 --- !u!1 &746340667
 GameObject:
   m_ObjectHideFlags: 0
