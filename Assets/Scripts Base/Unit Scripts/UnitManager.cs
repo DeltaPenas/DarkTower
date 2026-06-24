@@ -11,6 +11,7 @@ public class UnitManager : MonoBehaviour
     public enum ModoSelecao{ Movimento, Ataque, Nenhum}
     public ModoSelecao ModoAtual { get; private set; } = ModoSelecao.Nenhum;
     private List<Tile> tilesDestacadas = new();
+    public AttackData ataqueTeste;
 
     void Start()
     {
@@ -209,7 +210,10 @@ public void ClicarTile(Tile tile)
     if (tile.UnidadeAtual.Team == unidadeSelecionada.Team)
         return;
 
-    tile.UnidadeAtual.ReceberDano(unidadeSelecionada.currentStatus.ataque);
+    float dano = DamageCalculator.Calcular(unidadeSelecionada, tile.UnidadeAtual, ataqueTeste);    ////AQUI, DOIDO
+
+    tile.UnidadeAtual.ReceberDano(dano);
+    Debug.Log("Dano recebido = " + dano);
 
     unidadeSelecionada.SetEstado(EstadoUnidade.FinalizouTurno);
 

@@ -237,6 +237,9 @@ MonoBehaviour:
     movimento: 0
     mana: 0
     defesa: 0
+  fraquezas: 06000000
+  resistenciais: 03000000
+  imunidades: 
   Team: 1
   Estado: 0
   Bloqueando: 0

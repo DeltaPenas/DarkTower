@@ -845,7 +845,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Atack
+  m_text: Attack
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1005,6 +1005,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnitManager
   actionMenuUI: {fileID: 0}
   gridManager: {fileID: 782981026}
+  ataqueTeste: {fileID: 11400000, guid: a46458f51d17482458a9f9bb843f06dd, type: 2}
 --- !u!1 &849843831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1745,7 +1746,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Atack
+  m_text: Attack
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

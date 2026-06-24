@@ -1,12 +1,21 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Unidade : MonoBehaviour
 {
+    [Header("Referencias")]
     [SerializeField] private GameObject indicadorSelecao;
     [SerializeField] private VidaUnidade vidaUnidade;
-    
+
+    [Header("Status")]
     public UnitStatus baseStatus;
     public UnitStatus currentStatus;
+    public List<Elemento> fraquezas = new();
+    public List<Elemento> resistenciais = new();
+    public List<Elemento> imunidades = new();
+
+    [Header("Infos")]
+
     public Team Team;
     public EstadoUnidade Estado;
     public bool Bloqueando = false;
@@ -99,6 +108,19 @@ public class Unidade : MonoBehaviour
     {
         vidaUnidade.ReceberDano(dano);
     }
+
+    public float ModificadorElemento(Elemento elemento)
+{
+    if (resistenciais.Contains(elemento))
+        return 0.5f;
+
+    if (fraquezas.Contains(elemento))
+        return 1.5f;
+
+    return 1f;
+}
+
+    
 
     
 

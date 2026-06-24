@@ -6,14 +6,15 @@ using UnityEngine;
 public class AttackData: ScriptableObject
 {
     [Header("informações")]
-    public float nome;
-    public float descrição;
+    public string nome;
+    public string descrição;
     public Sprite icone;
 
     [Header("Combate")]
     public int alcance;
     public float multiplicadorDeDano = 1f;
     public float custoMana = 0;
+    public bool finalizaTurno = true;
 
     [Header("Tipos")]
     public Tipo tipo;
@@ -33,6 +34,7 @@ public enum Elemento
     fisico,
     magico, //cura ou buffs
     fogo,
+    veneno,
     raio,
     gelo,
     vazio
