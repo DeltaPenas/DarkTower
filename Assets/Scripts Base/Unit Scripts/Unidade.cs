@@ -120,6 +120,14 @@ public class Unidade : MonoBehaviour
     return 1f;
 }
 
+    public void NovoTurno()
+    {
+        Debug.Log("Novo turno");
+        PodeAgir = true;
+        PodeMover = true;
+        Bloqueando = false;
+        Estado = EstadoUnidade.Disponivel;
+    }
     
 
     

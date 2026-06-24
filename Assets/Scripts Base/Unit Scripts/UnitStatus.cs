@@ -10,7 +10,7 @@ public class UnitStatus
     public float ataque; //as habilidades ofensivas vão ter um dano base que vai ser multiplicado pelo ataque da unidade.
     public int movimento; // quantidade de casas que uma unidade pode mover.
     public float mana; // recurso pra usar habilidades magicas.
-    public float defesa; //talvez uma % pra bloqueio de danos.
+    public float defesa; // bloqueio de danos.
 
 
     public  UnitStatus Clone()

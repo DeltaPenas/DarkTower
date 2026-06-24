@@ -64,6 +64,7 @@ public class UnitManager : MonoBehaviour
         unidadeSelecionada = null;
         LimparHighLight();
         
+        
 
         
     }
@@ -200,6 +201,7 @@ public void ClicarTile(Tile tile)
     {
         ExecutarAcão(AcaoUnidade.Bloquear);
         LimparSelecao();
+        TurnManager.Instance.VerificarFimDoTurno();
     }
 
     private void ExecutarAtaque(Tile tile)
@@ -225,6 +227,7 @@ public void ClicarTile(Tile tile)
     actionMenuUI.FecharPainelDeAtaque();
 
     LimparSelecao();
+    TurnManager.Instance.VerificarFimDoTurno();
     }
 
     private void ExecutarMovimento(Tile tile)
@@ -251,7 +254,8 @@ public void ClicarTile(Tile tile)
            actionMenuUI.DesabilitarButtonMove(); 
         }
     }
-        
+
+    
         
 
 }
