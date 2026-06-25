@@ -323,7 +323,7 @@ MonoBehaviour:
     ataque: 3
     movimento: 2
     mana: 2
-    defesa: 1
+    defesa: 0
   currentStatus:
     vida: 0
     ataque: 0
@@ -335,6 +335,7 @@ MonoBehaviour:
   imunidades: 
   Team: 0
   Estado: 0
+  classe: 2
   Bloqueando: 0
   PodeMover: 1
   PodeAgir: 1

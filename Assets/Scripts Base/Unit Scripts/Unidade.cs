@@ -19,6 +19,7 @@ public class Unidade : MonoBehaviour
 
     public Team Team;
     public EstadoUnidade Estado;
+    public Classe classe;
     public bool Bloqueando = false;
     public Tile TileAtual {get; private set;}
     public bool PodeMover = true;

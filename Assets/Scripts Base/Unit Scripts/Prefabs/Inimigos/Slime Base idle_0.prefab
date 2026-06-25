@@ -322,7 +322,7 @@ MonoBehaviour:
   baseStatus:
     vida: 5
     ataque: 3
-    movimento: 2
+    movimento: 1
     mana: 0
     defesa: 0
   currentStatus:
@@ -336,6 +336,7 @@ MonoBehaviour:
   imunidades: 
   Team: 1
   Estado: 0
+  classe: 2
   Bloqueando: 0
   PodeMover: 1
   PodeAgir: 1
@@ -449,3 +450,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145bc79d116b1a144946fb6c9e680f36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyIA
+  ataqueBasico: {fileID: 11400000, guid: 677254fb846172f47b3fd714dc96a65f, type: 2}
