@@ -4,7 +4,7 @@ using UnityEngine;
 public class Unidade : MonoBehaviour
 {
     [Header("Referencias")]
-    [SerializeField] private GameObject indicadorSelecao;
+    [SerializeField] public GameObject indicadorSelecao;
     [SerializeField] public GameObject indicadorDeBloqueio;
     [SerializeField] private VidaUnidade vidaUnidade;
 
@@ -134,6 +134,14 @@ public class Unidade : MonoBehaviour
         PodeMover = true;
         Desbloquear();
         Estado = EstadoUnidade.Disponivel;
+    }
+
+    public void Morrer()
+    {
+        TurnManager.Instance.RemoverUnidade(this);
+        TileAtual.RemoverUnidade();
+        TurnManager.Instance.VerificarFimDeJogo();
+        Destroy(gameObject);
     }
     
 

@@ -36,12 +36,13 @@ public class UnitManager : MonoBehaviour
             LimparSelecao();
 
             unidadeSelecionada = unidade;
-
-            unidadeSelecionada.SetEstado(EstadoUnidade.Selecionada);
-            unidadeSelecionada.Selecionar();
-            ModoAtual = ModoSelecao.Nenhum;
-            actionMenuUI.MostrarMenuPrincipal();
-            
+                if(unidadeSelecionada.Team == Team.Player)
+                {
+                    unidadeSelecionada.SetEstado(EstadoUnidade.Selecionada);
+                    unidadeSelecionada.Selecionar();
+                    ModoAtual = ModoSelecao.Nenhum;
+                    actionMenuUI.MostrarMenuPrincipal();
+                }
             ValidarAcoes(unidadeSelecionada);
             Debug.Log(ModoAtual);
 

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,21 +31,27 @@ public class TurnManager : MonoBehaviour
 
     public void IniciarTurnoDoPlayer()
     {
+        Debug.Log("Turno do player");
+        TurnoAtual = Turno.Player;
+
         foreach(Unidade unidade in unidadesPlayer)
         {
             unidade.NovoTurno();
         }
-        Debug.Log("Turno do player");
-        TurnoAtual = Turno.Player;
+        
     }
     public void IniciarTurnoDoInimigo()
     {
+        TurnoAtual = Turno.Inimigo;
+        Debug.Log("Turno do inimigo");
+
         foreach(Unidade unidade in unidadesInimigos)
         {
             unidade.NovoTurno();
         }
-        Debug.Log("Turno do inimigo");
-        TurnoAtual = Turno.Inimigo;
+        
+        StartCoroutine(ExecutarTurnoInimigo());
+
     }
 
 
@@ -75,7 +82,63 @@ public class TurnManager : MonoBehaviour
         }
     }
 
+    public void VerificarFimDeJogo()
+    {
+        if (unidadesPlayer.Count == 0)
+        {
+            Debug.Log("Derrota!");
+            return;
+        }
+
+        if (unidadesInimigos.Count == 0)
+        {
+            Debug.Log("Vitória!");
+            return;
+        }
+    }
+
+    public void RemoverUnidade(Unidade unidade)
+    {
+        if(unidade.Team == Team.Player)
+        {
+            unidadesPlayer.Remove(unidade);
+        }
+        else
+        {
+            unidadesInimigos.Remove(unidade);
+        }
+    }
+
+    private IEnumerator ExecutarTurnoInimigo()
+    {
+        foreach(Unidade unidade in unidadesInimigos)
+        {
+            EnemyIA ia = unidade.GetComponent<EnemyIA>();
+                if (ia !=null)
+                {
+                    yield return new WaitForSeconds(0.5f);
+
+
+                    unidade.indicadorSelecao.SetActive(true);
+
+
+                    yield return new WaitForSeconds(1f);
+                    ia.ExecutarTurno();
+
+                    
+                    yield return new WaitForSeconds(0.5f);
+                    unidade.indicadorSelecao.SetActive(false);
+                }
+            }
+
+            IniciarTurnoDoPlayer();
+    }
+        
+        
+       
+    }
+
     
+ 
 
 
-}

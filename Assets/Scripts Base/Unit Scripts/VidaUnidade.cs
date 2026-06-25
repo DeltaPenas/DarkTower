@@ -40,9 +40,7 @@ public class VidaUnidade : MonoBehaviour
     
     private void Morrer()
     {
-        Debug.Log($"A unidade {unidade} morreu");
-        unidade.TileAtual.RemoverUnidade();
-        Destroy(gameObject);
+        unidade.Morrer();
     }
 
 
