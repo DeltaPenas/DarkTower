@@ -1,18 +1,19 @@
-using System;
-using Unity.Android.Gradle.Manifest;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class ActionMenu : MonoBehaviour
 {
     [SerializeField] private GameObject painelDeButõesDeAção;
     [SerializeField] private GameObject painelDeButõesDeAtaques;
-    [SerializeField] private GameObject painelDeCancelarAtaque; //Apenas um botão que aparece na hora de finalizar o ataque.
+    [SerializeField] private GameObject painelDeCancelarAtaque; 
     [SerializeField] private GameObject painelDeMovimento;
     [SerializeField] private GameObject PainelDeItens;
     [SerializeField] private UnitManager unitManager;
     [SerializeField] private GameObject buttonMove;
     [SerializeField] private Button efeitoButton;
+    [SerializeField] private Button[] botoesAtaque;
     
 
 
@@ -43,6 +44,33 @@ public class ActionMenu : MonoBehaviour
     {
         painelDeButõesDeAtaques.SetActive(true);
         painelDeMovimento.SetActive(false);
+        var ataques = unitManager.unidadeSelecionada.Ataques; //armazena os ataques da unidade selecionada
+
+        for(int i =0; i < botoesAtaque.Length; i++)
+        {
+            if(i < ataques.Count)
+            {
+                botoesAtaque[i].gameObject.SetActive(true);
+                botoesAtaque[i].GetComponentInChildren<TMP_Text>().text = ataques[i].nome;
+
+                AttackData ataqueAtual = ataques[i];
+                botoesAtaque[i].onClick.RemoveAllListeners();
+                botoesAtaque[i].onClick.AddListener(() =>
+                {
+                    
+                unitManager.SelecionarAtaque(ataqueAtual);
+                painelDeButõesDeAtaques.SetActive(false);
+                EsconderMenuPrincipal();
+                painelDeCancelarAtaque.SetActive(true);
+            
+                });
+
+            }
+            else
+            {
+                botoesAtaque[i].gameObject.SetActive(false);
+            }
+        }
     
     }
     public void EsconderMenuDeAtaques()
@@ -94,20 +122,11 @@ public class ActionMenu : MonoBehaviour
     {
         painelDeMovimento.SetActive(false);
     }
+    
     public void FecharPainelDeAtaque()
     {
         painelDeCancelarAtaque.SetActive(false);
     }
-
-    public void ButtonEspadada()
-    {
-        unitManager.EntrarModoAtaque();
-
-        painelDeButõesDeAtaques.SetActive(false);
-        painelDeCancelarAtaque.SetActive(true);
-    }
-
-
     public void ButtonBloquear()
     {
         unitManager.Bloquear();

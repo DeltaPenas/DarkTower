@@ -6,6 +6,7 @@ public class UnitManager : MonoBehaviour
 {
     public ActionMenu actionMenuUI;
     public Unidade unidadeSelecionada {get; private set;}
+    private AttackData ataqueSelecionado;
    
     [SerializeField] private GridManager gridManager;
     public enum ModoSelecao{ Movimento, Ataque, Nenhum}
@@ -96,8 +97,7 @@ public class UnitManager : MonoBehaviour
     private void MostrarAtaque()
     {
     tilesDestacadas = gridManager.GetTilesEmAlcance(
-        unidadeSelecionada.TileAtual,
-        1 //Aquia vai ter que ser o alcance do ataque escolhido
+        unidadeSelecionada.TileAtual, ataqueSelecionado.alcance 
     );
 
     foreach (Tile tile in tilesDestacadas)
@@ -204,6 +204,11 @@ public void ClicarTile(Tile tile)
         LimparSelecao();
         TurnManager.Instance.VerificarFimDoTurno();
     }
+    public void SelecionarAtaque(AttackData ataque)
+    {
+        ataqueSelecionado = ataque;
+        EntrarModoAtaque();
+    }
 
     private void ExecutarAtaque(Tile tile)
     {
@@ -213,7 +218,7 @@ public void ClicarTile(Tile tile)
     if (tile.UnidadeAtual.Team == unidadeSelecionada.Team)
         return;
 
-    float dano = DamageCalculator.Calcular(unidadeSelecionada, tile.UnidadeAtual, ataqueTeste);    ////AQUI, DOIDO
+    float dano = DamageCalculator.Calcular(unidadeSelecionada, tile.UnidadeAtual, ataqueSelecionado);    ////AQUI, DOIDO
 
     tile.UnidadeAtual.ReceberDano(dano);
     Debug.Log("Dano recebido = " + dano);
@@ -232,17 +237,17 @@ public void ClicarTile(Tile tile)
     }
 
     private void ExecutarMovimento(Tile tile)
-{
-    unidadeSelecionada.Mover(tile);
-    unidadeSelecionada.PodeMover = false;
-    LimparHighLight();
+    {
+        unidadeSelecionada.Mover(tile);
+        unidadeSelecionada.PodeMover = false;
+        LimparHighLight();
 
-    ModoAtual = ModoSelecao.Nenhum;
+        ModoAtual = ModoSelecao.Nenhum;
 
-    actionMenuUI.FecharPainelDeMovimento();
-    actionMenuUI.MostrarMenuPrincipal();
-    actionMenuUI.DesabilitarButtonMove();
-}
+        actionMenuUI.FecharPainelDeMovimento();
+        actionMenuUI.MostrarMenuPrincipal();
+        actionMenuUI.DesabilitarButtonMove();
+    }
 
     public void ValidarAcoes(Unidade unidade)
     {

@@ -7,19 +7,25 @@ public class Unidade : MonoBehaviour
     [SerializeField] public GameObject indicadorSelecao;
     [SerializeField] public GameObject indicadorDeBloqueio;
     [SerializeField] private VidaUnidade vidaUnidade;
+    [SerializeField] private SpritePisca spritePisca;
 
     [Header("Status")]
     public UnitStatus baseStatus;
     public UnitStatus currentStatus;
+
+
     public List<Elemento> fraquezas = new();
     public List<Elemento> resistenciais = new();
     public List<Elemento> imunidades = new();
+    public Classe classe;
+    [Header("Ataques")]
+    [SerializeField] private List<AttackData> ataques = new();
+    public List<AttackData> Ataques => ataques; 
 
     [Header("Infos")]
 
     public Team Team;
     public EstadoUnidade Estado;
-    public Classe classe;
     public bool Bloqueando = false;
     public Tile TileAtual {get; private set;}
     public bool PodeMover = true;
@@ -29,6 +35,7 @@ public class Unidade : MonoBehaviour
 
     public void Awake()
     {
+        spritePisca = GetComponent<SpritePisca>();
         vidaUnidade = GetComponent<VidaUnidade>();
         currentStatus = baseStatus.Clone();
     }
@@ -61,11 +68,6 @@ public class Unidade : MonoBehaviour
         }
         
     }
-    public virtual void SetStatus() //Definir status da Unidade, usar mais tarde
-    {
-        
-    }
-
     public virtual void Mover(Tile destino)
     {
         if (destino == null)
@@ -115,6 +117,7 @@ public class Unidade : MonoBehaviour
     public virtual void ReceberDano(float dano)
     {
         vidaUnidade.ReceberDano(dano);
+        spritePisca.Piscar();
     }
 
     public float ModificadorElemento(Elemento elemento)

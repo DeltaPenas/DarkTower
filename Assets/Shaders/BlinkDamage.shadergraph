@@ -765,7 +765,7 @@
     "m_DefaultRefNameVersion": 1,
     "m_RefNameGeneratedByDisplayName": "BlinkFactor",
     "m_DefaultReferenceName": "_BlinkFactor",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "BlinkFactor",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
