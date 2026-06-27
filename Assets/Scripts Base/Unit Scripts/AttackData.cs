@@ -6,7 +6,7 @@ using UnityEngine;
 public class AttackData: ScriptableObject
 {
     [Header("informações")]
-    public string nome;
+    public string nomeDoAtaque;
     public string descrição;
     public Sprite icone;
 

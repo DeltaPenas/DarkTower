@@ -51,7 +51,8 @@ public class ActionMenu : MonoBehaviour
             if(i < ataques.Count)
             {
                 botoesAtaque[i].gameObject.SetActive(true);
-                botoesAtaque[i].GetComponentInChildren<TMP_Text>().text = ataques[i].nome;
+                ButtonInfos infos = botoesAtaque[i].GetComponentInChildren<ButtonInfos>();
+                infos.Inicializar(ataques[i]);
 
                 AttackData ataqueAtual = ataques[i];
                 botoesAtaque[i].onClick.RemoveAllListeners();

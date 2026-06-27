@@ -338,7 +338,7 @@ MonoBehaviour:
   classe: 2
   ataques:
   - {fileID: 11400000, guid: 677254fb846172f47b3fd714dc96a65f, type: 2}
-  - {fileID: 11400000, guid: a46458f51d17482458a9f9bb843f06dd, type: 2}
+  - {fileID: 11400000, guid: 5c4438ba0dc83ab49abff41e4b8c3409, type: 2}
   - {fileID: 11400000, guid: 677254fb846172f47b3fd714dc96a65f, type: 2}
   - {fileID: 11400000, guid: a46458f51d17482458a9f9bb843f06dd, type: 2}
   Team: 0
