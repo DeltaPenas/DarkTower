@@ -255,9 +255,9 @@ public void ClicarTile(Tile tile)
 
         ModoAtual = ModoSelecao.Nenhum;
 
-        actionMenuUI.FecharPainelDeMovimento();
-        actionMenuUI.MostrarMenuPrincipal();
-        actionMenuUI.DesabilitarButtonMove();
+        //actionMenuUI.FecharPainelDeMovimento();
+        //actionMenuUI.MostrarMenuPrincipal();
+        //actionMenuUI.DesabilitarButtonMove();
     }
 
     public void ValidarAcoes(Unidade unidade)

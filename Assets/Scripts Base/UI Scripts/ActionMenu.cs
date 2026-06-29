@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEditor;
+using Unity.VisualScripting;
 
 public class ActionMenu : MonoBehaviour
 {
@@ -12,21 +13,24 @@ public class ActionMenu : MonoBehaviour
     [SerializeField] private GameObject PainelDeItens;
     [SerializeField] private UnitManager unitManager;
     [SerializeField] private GameObject buttonMove;
-    [SerializeField] private Button efeitoButton;
     [SerializeField] private Button[] botoesAtaque;
+    [SerializeField] public static ActionMenu Instance;
     
 
 
     void Start()
     {
         unitManager = FindAnyObjectByType<UnitManager>();
+        Instance = this;
         EsconderTudo();
     }
 
-    private void EsconderTudo()
+    public void EsconderTudo()
     {
     painelDeButõesDeAção.SetActive(false);
     painelDeButõesDeAtaques.SetActive(false);
+    painelDeCancelarAtaque.SetActive(false);
+    painelDeMovimento.SetActive(false);
     PainelDeItens.SetActive(false);
     }
 
@@ -135,19 +139,15 @@ public class ActionMenu : MonoBehaviour
         EsconderTudo();
     }
 
-    public void DesabilitarButtonMove(){
-        if (efeitoButton == null)
-        {
-          efeitoButton = buttonMove.GetComponent<Button>();  
-        }
-        efeitoButton.interactable = false;
+    public void DesabilitarButtonMove()
+    {
+
+        buttonMove.SetActive(false);
     }
-    public void HabilitarButtonMove(){
-        if (efeitoButton == null)
-        {
-          efeitoButton = buttonMove.GetComponent<Button>();  
-        }
-        efeitoButton.interactable = true;
+    public void HabilitarButtonMove()
+    {
+
+        buttonMove.SetActive(true);
     }
 
 

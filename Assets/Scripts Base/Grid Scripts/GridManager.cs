@@ -10,7 +10,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Tile tilePrefab;
     [SerializeField] private Transform camPos;
     private Tile[,] tiles;
-     public static GridManager Instance;
+    public static GridManager Instance;
 
     private void Awake()
     {

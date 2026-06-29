@@ -70,7 +70,7 @@ public class Unidade : MonoBehaviour
     public IEnumerator MoverCoroutine(List<Tile> caminho)
     {
         EstaMovendo = true;
-
+        ActionMenu.Instance.EsconderTudo();
         
 
             foreach (Tile tile in caminho)
@@ -82,10 +82,14 @@ public class Unidade : MonoBehaviour
                 TileAtual.DefinirUnidade(this);
             }
 
-            
-
-        
         EstaMovendo = false;
+        if(unitData.Team == Team.Player)
+        {
+            ActionMenu.Instance.FecharPainelDeMovimento();
+            ActionMenu.Instance.MostrarMenuPrincipal();
+            ActionMenu.Instance.DesabilitarButtonMove();
+        }
+        
     }
 
     private IEnumerator MoverPara(Tile tile)
