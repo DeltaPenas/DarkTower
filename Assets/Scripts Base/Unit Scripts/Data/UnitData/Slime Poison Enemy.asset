@@ -17,15 +17,21 @@ MonoBehaviour:
   retrato: {fileID: 0}
   prefab: {fileID: 0}
   classe: 0
-  Team: 0
+  Team: 1
   statusBase:
-    vida: 0
-    ataque: 0
-    movimento: 0
+    vida: 3
+    ataque: 1.5
+    movimento: 2
     mana: 0
     defesa: 0
-  ataques: []
-  afinidade: []
-  fraquezas: []
-  resistencias: []
-  imunidades: []
+  ataques:
+  - {fileID: 11400000, guid: 677254fb846172f47b3fd714dc96a65f, type: 2}
+  afinidade:
+  - {fileID: 11400000, guid: ee6f38aed0e2b3946b32aec572028499, type: 2}
+  fraquezas:
+  - {fileID: 11400000, guid: 5c94826487142ab47b97d8e9a09392e9, type: 2}
+  - {fileID: 11400000, guid: 17c46a500e98d424bbf022748eb1e50c, type: 2}
+  resistencias:
+  - {fileID: 0}
+  imunidades:
+  - {fileID: 11400000, guid: ee6f38aed0e2b3946b32aec572028499, type: 2}

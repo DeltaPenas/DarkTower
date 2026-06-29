@@ -17,8 +17,7 @@ public class SpritePisca : MonoBehaviour
         sp = GetComponent<SpriteRenderer>();
         propertyBlock = new MaterialPropertyBlock();
 
-        Debug.Log(propertyBlock);
-        Debug.Log(BlinkFactorID);
+        
 
     }
 
@@ -43,7 +42,7 @@ public class SpritePisca : MonoBehaviour
     {
         blinkFactor = 1f;
         AplicarBlinkFactor();
-        Debug.Log("Piscou");
+       
     }
 
     private void AplicarBlinkFactor()
@@ -52,8 +51,7 @@ public class SpritePisca : MonoBehaviour
         propertyBlock.SetFloat(BlinkFactorID, blinkFactor);
         sp.SetPropertyBlock(propertyBlock);
 
-        Debug.Log("Blink aplicado: " + blinkFactor);
-        Debug.Log(sp.sharedMaterial.name);
+       
         
     }
 }

@@ -23,7 +23,7 @@ public static class DamageCalculator
         dano = 0f;
     }
 
-
+    Debug.Log("dano final =" + dano);
     return dano;
     }
 }

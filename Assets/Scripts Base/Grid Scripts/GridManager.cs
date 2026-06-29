@@ -109,6 +109,10 @@ public class GridManager : MonoBehaviour
 
         return resultado;
     }
+     public List<Tile> EncontrarCaminho(Tile inicio, Tile destino)
+    {
+        
+    }
 
     
         

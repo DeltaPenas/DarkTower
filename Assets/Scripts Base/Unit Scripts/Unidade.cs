@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,8 +21,10 @@ public class Unidade : MonoBehaviour
     public EstadoUnidade Estado;
     public bool Bloqueando = false;
     public Tile TileAtual {get; private set;}
+    public bool EstaMovendo { get; private set; }
     public bool PodeMover = true;
     public bool PodeAgir = true;
+    [SerializeField] private float velocidadeMovimento = 1f;
     public Vector2Int GridPosition => TileAtual.GridPosition;
 
 
@@ -77,7 +80,7 @@ public class Unidade : MonoBehaviour
 
         transform.position = destino.transform.position;
         
-        Debug.Log(Estado);
+        
         if (unitData.Team == Team.Player)
         {
            destino.SetVisual(TileVisual.Ocupado);
@@ -89,6 +92,45 @@ public class Unidade : MonoBehaviour
         
         
     }
+    public IEnumerator MoverCoroutine(List<Tile> caminho)
+    {
+        EstaMovendo = true;
+
+        TileAtual.RemoverUnidade();
+
+        foreach(Tile tile in caminho)
+        {
+            TileAtual.RemoverUnidade();
+
+            yield return MoverPara(tile);
+
+            TileAtual = tile;
+
+            TileAtual.DefinirUnidade(this);
+        }
+
+        
+        EstaMovendo = false;
+    }
+
+    private IEnumerator MoverPara(Tile tile)
+    {
+        Vector3 inicio = transform.position;
+        Vector3 fim = tile.transform.position;
+
+        float tempo = 0f;
+        
+        while(tempo < 1)
+        {
+            tempo += Time.deltaTime * velocidadeMovimento;
+            transform.position = Vector3.Lerp(inicio, fim, tempo);
+            yield return null;
+        }
+        transform.position = fim;
+    }
+
+
+
     public virtual void Bloquear()
     {
         Bloqueando = true;
