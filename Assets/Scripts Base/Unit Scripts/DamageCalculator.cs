@@ -18,7 +18,7 @@ public static class DamageCalculator
     dano = Mathf.Max(0.1f, dano);
     
     //verificação de imunidade
-    if (defensor.imunidades.Contains(ataque.elemento))
+    if (defensor.unitData.imunidades.Contains(ataque.elemento))
     {
         dano = 0f;
     }

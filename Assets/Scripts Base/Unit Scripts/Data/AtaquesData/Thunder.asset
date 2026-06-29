@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c7bb9a56fa3265429a23c2ef0f6cfa5, type: 3}
-  m_Name: Slam
+  m_Name: Thunder
   m_EditorClassIdentifier: Assembly-CSharp::AttackData
-  nomeDoAtaque: Slam
-  "descri\xE7\xE3o": A body slam
-  icone: {fileID: 21300000, guid: 976b6a84578e16b4bacaad6adc54c24c, type: 3}
-  alcance: 1
-  multiplicadorDeDano: 1
-  custoMana: 0
+  nomeDoAtaque: Thunder
+  "descri\xE7\xE3o": Thunder coming from the ceiling??
+  alcance: 5
+  multiplicadorDeDano: 2
+  custoMana: 10
   finalizaTurno: 1
-  tipo: 0
-  elemento: 0
+  tipo: 1
+  elemento: {fileID: 11400000, guid: 27935c6cc3bbf2d40b6bb9ac83139930, type: 2}

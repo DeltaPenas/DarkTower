@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c5c87a31302bea4ab2f423756288e09, type: 3}
+  m_Name: Veneno
+  m_EditorClassIdentifier: Assembly-CSharp::ElementData
+  nome: Poison
+  "descri\xE7\xE3o": A corrupt and corrosive substance
+  icone: {fileID: 21300000, guid: 3c64873ccbcadfe40a694911c3e1df2a, type: 3}
+  cor: {r: 0.35686275, g: 0, b: 0.2901961, a: 1}

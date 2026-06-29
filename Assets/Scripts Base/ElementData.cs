@@ -9,9 +9,8 @@ public class ElementData: ScriptableObject
     public string nome;
     public string descrição;
     public Sprite icone;
-    public Elemento referenciaElemento;
+    public Color cor;
 
-    
 }
 
 

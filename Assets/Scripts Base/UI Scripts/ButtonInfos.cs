@@ -16,38 +16,13 @@ public class ButtonInfos : MonoBehaviour
     {
         nomeDoAtaque.text = attackData.nomeDoAtaque;
         GastoMana.text = $"Mana: {attackData.custoMana.ToString()}.";
+        bg.GetComponent<UnityEngine.UI.Image>().color = attackData.elemento.cor;
+        icon.GetComponent<UnityEngine.UI.Image>().sprite = attackData.elemento.icone;
+        
 
-        switch(attackData.elemento)
-        {
-            case Elemento.fisico:
-                bg.GetComponent<UnityEngine.UI.Image>().color = Color.gray;
-                icon.GetComponent<UnityEngine.UI.Image>().sprite = attackData.icone;
-                break;
-            case Elemento.magico:
-                bg.GetComponent<UnityEngine.UI.Image>().color = Color.purple;
-                icon.GetComponent<UnityEngine.UI.Image>().sprite = attackData.icone;
-                break;
-            case Elemento.fogo:
-                bg.GetComponent<UnityEngine.UI.Image>().color = Color.orange;
-                icon.GetComponent<UnityEngine.UI.Image>().sprite = attackData.icone;
-                break;
-            case Elemento.veneno:
-                bg.GetComponent<UnityEngine.UI.Image>().color = Color.green;
-                icon.GetComponent<UnityEngine.UI.Image>().sprite = attackData.icone;
-                break;
-            case Elemento.raio:
-                bg.GetComponent<UnityEngine.UI.Image>().color = Color.yellow;
-                icon.GetComponent<UnityEngine.UI.Image>().sprite = attackData.icone;
-                break;
-            case Elemento.gelo:
-                bg.GetComponent<UnityEngine.UI.Image>().color = Color.cyan;
-                icon.GetComponent<UnityEngine.UI.Image>().sprite = attackData.icone;
-                break;
-            case Elemento.vazio:
-                bg.GetComponent<UnityEngine.UI.Image>().color = Color.rebeccaPurple;
-                icon.GetComponent<UnityEngine.UI.Image>().sprite = attackData.icone;
-                break;
-        }
+
+
+
     }
      
     

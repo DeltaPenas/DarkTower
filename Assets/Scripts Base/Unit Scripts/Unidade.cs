@@ -8,23 +8,15 @@ public class Unidade : MonoBehaviour
     [SerializeField] public GameObject indicadorDeBloqueio;
     [SerializeField] private VidaUnidade vidaUnidade;
     [SerializeField] private SpritePisca spritePisca;
+    public UnitData unitData;
 
     [Header("Status")]
-    public UnitStatus baseStatus;
     public UnitStatus currentStatus;
-
-
-    public List<Elemento> fraquezas = new();
-    public List<Elemento> resistenciais = new();
-    public List<Elemento> imunidades = new();
-    public Classe classe;
     [Header("Ataques")]
-    [SerializeField] private List<AttackData> ataques = new();
-    public List<AttackData> Ataques => ataques; 
+    public List<AttackData> Ataques => unitData.ataques; 
 
     [Header("Infos")]
 
-    public Team Team;
     public EstadoUnidade Estado;
     public bool Bloqueando = false;
     public Tile TileAtual {get; private set;}
@@ -37,7 +29,7 @@ public class Unidade : MonoBehaviour
     {
         spritePisca = GetComponent<SpritePisca>();
         vidaUnidade = GetComponent<VidaUnidade>();
-        currentStatus = baseStatus.Clone();
+        currentStatus = unitData.statusBase.Clone();
     }
 
     public void Spawn(Tile tile)
@@ -86,7 +78,7 @@ public class Unidade : MonoBehaviour
         transform.position = destino.transform.position;
         
         Debug.Log(Estado);
-        if (Team == Team.Player)
+        if (unitData.Team == Team.Player)
         {
            destino.SetVisual(TileVisual.Ocupado);
         }
@@ -119,13 +111,14 @@ public class Unidade : MonoBehaviour
         vidaUnidade.ReceberDano(dano);
         spritePisca.Piscar();
     }
+    
 
-    public float ModificadorElemento(Elemento elemento)
+    public float ModificadorElemento(ElementData elemento)
 {
-    if (resistenciais.Contains(elemento))
+    if (unitData.resistencias.Contains(elemento))
         return 0.5f;
 
-    if (fraquezas.Contains(elemento))
+    if (unitData.fraquezas.Contains(elemento))
         return 1.5f;
 
     return 1f;
@@ -145,7 +138,7 @@ public class Unidade : MonoBehaviour
         TurnManager.Instance.RemoverUnidade(this);
         TileAtual.RemoverUnidade();
         TurnManager.Instance.VerificarFimDeJogo();
-        Destroy(gameObject);
+        Destroy(gameObject, 0.5f);
     }
     
 

@@ -32,10 +32,10 @@ public class Tile : MonoBehaviour
             return;
         }
 
-        if (UnidadeAtual.Team == Team.Player)
+        if (UnidadeAtual.unitData.Team == Team.Player)
         {
             SetVisual(TileVisual.Ocupado);
-        }else if (UnidadeAtual.Team == Team.Inimigos)
+        }else if (UnidadeAtual.unitData.Team == Team.Inimigos)
         {
            SetVisual(TileVisual.OcupadoInimigo); 
         }

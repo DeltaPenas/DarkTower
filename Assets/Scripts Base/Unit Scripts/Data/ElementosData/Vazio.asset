@@ -9,15 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c7bb9a56fa3265429a23c2ef0f6cfa5, type: 3}
-  m_Name: Black Hole
-  m_EditorClassIdentifier: Assembly-CSharp::AttackData
-  nomeDoAtaque: Black Hole
-  "descri\xE7\xE3o": Black hole Sun Won't you come?
+  m_Script: {fileID: 11500000, guid: 3c5c87a31302bea4ab2f423756288e09, type: 3}
+  m_Name: Vazio
+  m_EditorClassIdentifier: Assembly-CSharp::ElementData
+  nome: Void
+  "descri\xE7\xE3o": An unknown power from the depths of reality
   icone: {fileID: 21300000, guid: 4ca204a8158215d40ba2220c854870ab, type: 3}
-  alcance: 20
-  multiplicadorDeDano: 10
-  custoMana: 20
-  finalizaTurno: 1
-  tipo: 1
-  elemento: 6
+  cor: {r: 0.21304755, g: 0.08664116, b: 0.31132078, a: 1}

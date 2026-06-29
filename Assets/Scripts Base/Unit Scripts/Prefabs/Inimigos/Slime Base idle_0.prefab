@@ -321,24 +321,14 @@ MonoBehaviour:
   indicadorDeBloqueio: {fileID: 4326754892116245145}
   vidaUnidade: {fileID: 0}
   spritePisca: {fileID: 0}
-  baseStatus:
-    vida: 5
-    ataque: 3
-    movimento: 1
-    mana: 0
-    defesa: 0
+  unitData: {fileID: 11400000, guid: f9183ab87ff823645af9301d85d7fe64, type: 2}
   currentStatus:
     vida: 0
     ataque: 0
     movimento: 0
     mana: 0
     defesa: 0
-  fraquezas: 06000000
-  resistenciais: 03000000
-  imunidades: 
-  Team: 1
   Estado: 0
-  classe: 2
   Bloqueando: 0
   PodeMover: 1
   PodeAgir: 1

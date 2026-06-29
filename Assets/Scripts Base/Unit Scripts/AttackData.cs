@@ -8,8 +8,7 @@ public class AttackData: ScriptableObject
     [Header("informações")]
     public string nomeDoAtaque;
     public string descrição;
-    public Sprite icone;
-
+    
     [Header("Combate")]
     public int alcance;
     public float multiplicadorDeDano = 1f;
@@ -18,7 +17,7 @@ public class AttackData: ScriptableObject
 
     [Header("Tipos")]
     public Tipo tipo;
-    public Elemento elemento;
+    public ElementData elemento;
     
 }
 
@@ -28,14 +27,4 @@ public enum Tipo
     fisico,
     magico,
     suporte
-}
-public enum Elemento
-{
-    fisico,
-    magico, //cura ou buffs
-    fogo,
-    veneno,
-    raio,
-    gelo,
-    vazio
 }

@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 371ef7b485eb01e45b3061a5b5e71440, type: 3}
+  m_Name: Guard Ally
+  m_EditorClassIdentifier: Assembly-CSharp::UnitData
+  nome: Guard
+  icone: {fileID: -3874676691083721698, guid: b9995071da3a81942b7a51ad8ad65276, type: 3}
+  retrato: {fileID: -3874676691083721698, guid: b9995071da3a81942b7a51ad8ad65276, type: 3}
+  prefab: {fileID: 8447236105561348024, guid: 8ed68fd7102886f41958c94a90260fae, type: 3}
+  classe: 2
+  Team: 0
+  statusBase:
+    vida: 5
+    ataque: 1.5
+    movimento: 3
+    mana: 25
+    defesa: 0
+  ataques:
+  - {fileID: 11400000, guid: a46458f51d17482458a9f9bb843f06dd, type: 2}
+  - {fileID: 11400000, guid: 4203d54829e09eb42be5a8b0800fbdc2, type: 2}
+  - {fileID: 11400000, guid: 5c4438ba0dc83ab49abff41e4b8c3409, type: 2}
+  - {fileID: 11400000, guid: 60eb48bba2e96a143abc01d8e09755f3, type: 2}
+  afinidade:
+  - {fileID: 11400000, guid: 03df307c3c996f647b11b8a419e0b79c, type: 2}
+  fraquezas:
+  - {fileID: 11400000, guid: 5c94826487142ab47b97d8e9a09392e9, type: 2}
+  - {fileID: 11400000, guid: aeefac3ef2733f44abefe9da4e2bf154, type: 2}
+  resistencias:
+  - {fileID: 11400000, guid: 03df307c3c996f647b11b8a419e0b79c, type: 2}
+  imunidades: []

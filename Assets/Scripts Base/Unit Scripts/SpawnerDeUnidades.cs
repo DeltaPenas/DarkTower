@@ -30,7 +30,7 @@ public class SpawnerDeUnidades : MonoBehaviour
         unidade.Spawn(tile);
         todasUnidades.Add(unidade);
         TurnManager.Instance.RegistrarUnidade(unidade);
-        if (unidade.Team == Team.Player)
+        if (unidade.unitData.Team == Team.Player)
         {
             tile.SetVisual(TileVisual.Ocupado);
         }else 

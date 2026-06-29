@@ -19,7 +19,7 @@ public class TurnManager : MonoBehaviour
 
     public void RegistrarUnidade(Unidade unidade)
     {
-        if (unidade.Team == Team.Player)
+        if (unidade.unitData.Team == Team.Player)
         {
             unidadesPlayer.Add(unidade);
         }
@@ -99,7 +99,7 @@ public class TurnManager : MonoBehaviour
 
     public void RemoverUnidade(Unidade unidade)
     {
-        if(unidade.Team == Team.Player)
+        if(unidade.unitData.Team == Team.Player)
         {
             unidadesPlayer.Remove(unidade);
         }

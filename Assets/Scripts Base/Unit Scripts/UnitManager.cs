@@ -37,7 +37,7 @@ public class UnitManager : MonoBehaviour
             LimparSelecao();
 
             unidadeSelecionada = unidade;
-                if(unidadeSelecionada.Team == Team.Player)
+                if(unidadeSelecionada.unitData.Team == Team.Player)
                 {
                     unidadeSelecionada.SetEstado(EstadoUnidade.Selecionada);
                     unidadeSelecionada.Selecionar();
@@ -104,7 +104,7 @@ public class UnitManager : MonoBehaviour
     {
         // Não destaca tiles ocupadas por aliados
         if (tile.UnidadeAtual != null &&
-            tile.UnidadeAtual.Team == unidadeSelecionada.Team)
+            tile.UnidadeAtual.unitData.Team == unidadeSelecionada.unitData.Team)
         {
             continue;
         }
@@ -215,7 +215,7 @@ public void ClicarTile(Tile tile)
     if (tile.UnidadeAtual == null)
         return;
 
-    if (tile.UnidadeAtual.Team == unidadeSelecionada.Team)
+    if (tile.UnidadeAtual.unitData.Team == unidadeSelecionada.unitData.Team)
         return;
 
     float dano = DamageCalculator.Calcular(unidadeSelecionada, tile.UnidadeAtual, ataqueSelecionado);    ////AQUI, DOIDO
