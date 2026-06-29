@@ -22,7 +22,7 @@ MonoBehaviour:
     vida: 3
     ataque: 1.5
     movimento: 2
-    mana: 0
+    mana: 25
     defesa: 0
   ataques:
   - {fileID: 11400000, guid: 677254fb846172f47b3fd714dc96a65f, type: 2}

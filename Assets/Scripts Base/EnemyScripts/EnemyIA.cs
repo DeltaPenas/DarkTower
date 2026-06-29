@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,40 +12,25 @@ public class EnemyIA : MonoBehaviour
         unidade = GetComponent<Unidade>();
     }
 
-    public void ExecutarTurno()
+    public IEnumerator ExecutarTurno()
     {
         Unidade alvo = EncontrarAlvoMaisProximo();
 
-        if(alvo == null) return; // n tem alvo > termina ação
-
-        Debug.Log($"Alvo encontrado: {alvo.name}");
+        if (alvo == null)
+            yield break;
 
         if (EstaEmAlcance(alvo, 1))
         {
-            Debug.Log("Alvo em alcance antes de mover");
             Atacar(alvo);
-            Debug.Log("Sem alvo");
-            return; // atacou o alvo > termina a ação
+            yield break;
         }
 
-        Debug.Log("Movendo");
-        MoverEmDirecao(alvo); //se não está no range, move em direçao a ele
+        yield return MoverEmDirecao(alvo);
 
-        Debug.Log($"Posição após mover: {unidade.GridPosition}");
-        Debug.Log($"Posição alvo: {alvo.GridPosition}");
-
-        if (EstaEmAlcance(alvo, 1)) //agora se está no range, ataca
+        if (EstaEmAlcance(alvo, ataqueBasico.alcance))
         {
             Atacar(alvo);
         }
-        else
-        {
-            Debug.Log("Ainda fora de alcance");
-        }
-
-        
-
-
     }
 
     public Unidade EncontrarAlvoMaisProximo()
@@ -87,49 +74,25 @@ public class EnemyIA : MonoBehaviour
     unidade.SetEstado(EstadoUnidade.FinalizouTurno);
     }
 
-    private void MoverEmDirecao(Unidade alvo)
+    private IEnumerator MoverEmDirecao(Unidade alvo)
     {
-        Vector2Int posAtual = unidade.GridPosition;
+    List<Tile> caminho = GridManager.Instance.EncontrarCaminho(
+        unidade.TileAtual,
+        alvo.TileAtual);
 
-        for(int i = 0; i < unidade.currentStatus.movimento; i++)
-        {
-            Vector2Int proximoPasso = EscolherProximoPasso(posAtual, alvo.GridPosition);
+    if (caminho.Count <= 1)
+    yield break;
 
-            Tile tile = GridManager.Instance.GetTilePos(proximoPasso);
+    caminho.RemoveAt(caminho.Count - 1);
 
-            if(tile == null || tile.EstaOcupada)
-                break;
-
-            posAtual = proximoPasso;
-        }
-
-        Tile destinoFinal = GridManager.Instance.GetTilePos(posAtual);
-
-        if(destinoFinal != null &&
-        destinoFinal != unidade.TileAtual)
-        {
-            unidade.Mover(destinoFinal);
-        }
+    if (caminho.Count > unidade.currentStatus.movimento)
+    {
+        caminho = caminho.GetRange(
+            0,
+            unidade.currentStatus.movimento);
     }
 
-    private Vector2Int EscolherProximoPasso( Vector2Int atual, Vector2Int alvo)
-    {
-        int deltaX = alvo.x - atual.x;
-        int deltaY = alvo.y - atual.y;
-
-        if (Mathf.Abs(deltaX) > Mathf.Abs(deltaY))
-        {
-            return atual + new Vector2Int( deltaX > 0 ? 1 : -1, 0);
-        }
-
-        if (deltaY != 0)
-        {
-            return atual + new Vector2Int(0, deltaY > 0 ? 1 : -1);
-        }
-
-        return atual;
+    yield return unidade.MoverCoroutine(caminho);
     }
-
-
 
 }

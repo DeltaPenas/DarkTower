@@ -24,7 +24,7 @@ public class Unidade : MonoBehaviour
     public bool EstaMovendo { get; private set; }
     public bool PodeMover = true;
     public bool PodeAgir = true;
-    [SerializeField] private float velocidadeMovimento = 1f;
+    [SerializeField] private float velocidadeMovimento = 4f;
     public Vector2Int GridPosition => TileAtual.GridPosition;
 
 
@@ -63,51 +63,26 @@ public class Unidade : MonoBehaviour
         }
         
     }
-    public virtual void Mover(Tile destino)
+    public void Mover(List<Tile> caminho)
     {
-        if (destino == null)
-            return;
-
-        if (destino.EstaOcupada)
-            return;
-
-        TileAtual.RemoverUnidade();
-        TileAtual.SetVisual(TileVisual.Normal);
-
-        TileAtual = destino;
-
-        destino.DefinirUnidade(this);
-
-        transform.position = destino.transform.position;
-        
-        
-        if (unitData.Team == Team.Player)
-        {
-           destino.SetVisual(TileVisual.Ocupado);
-        }
-        else
-        {
-            destino.SetVisual(TileVisual.OcupadoInimigo);
-        }
-        
-        
+        StartCoroutine(MoverCoroutine(caminho));
     }
     public IEnumerator MoverCoroutine(List<Tile> caminho)
     {
         EstaMovendo = true;
 
-        TileAtual.RemoverUnidade();
+        
 
-        foreach(Tile tile in caminho)
-        {
-            TileAtual.RemoverUnidade();
+            foreach (Tile tile in caminho)
+            {
+                TileAtual.RemoverUnidade();
+                yield return MoverPara(tile);
 
-            yield return MoverPara(tile);
+                TileAtual = tile;
+                TileAtual.DefinirUnidade(this);
+            }
 
-            TileAtual = tile;
-
-            TileAtual.DefinirUnidade(this);
-        }
+            
 
         
         EstaMovendo = false;

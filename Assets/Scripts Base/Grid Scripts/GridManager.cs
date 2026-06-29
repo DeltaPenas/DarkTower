@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -109,11 +110,51 @@ public class GridManager : MonoBehaviour
 
         return resultado;
     }
-     public List<Tile> EncontrarCaminho(Tile inicio, Tile destino)
+    public List<Tile> EncontrarCaminho(Tile inicio, Tile destino)
     {
-        
-    }
+        Queue<Tile> fila = new();
+        HashSet<Tile> visitados = new();
+        Dictionary<Tile, Tile> veioDe = new();
+        List<Tile> caminho = new();
 
-    
+        fila.Enqueue(inicio);
+        visitados.Add(inicio);
+        
+        while(fila.Count > 0)
+        {
+            Tile Atual = fila.Dequeue();
+            if(Atual == destino) break;
+
+
+            foreach(Tile vizinho in GetVizinhos(Atual))
+            {
+                if(visitados.Contains(vizinho)) continue;
+                if (vizinho.EstaOcupada && vizinho != destino)continue;
+
+                veioDe[vizinho] = Atual;
+
+                visitados.Add(vizinho);
+                fila.Enqueue(vizinho);
+
+            }
+
+        }
+         if (!veioDe.ContainsKey(destino))
+        {
+            Debug.Log($"Não encontrou caminho de {inicio.GridPosition} até {destino.GridPosition}");
+            return new List<Tile>();
+        }
+
+        Tile atual = destino;
+        while(atual != inicio)
+        {
+            caminho.Add(atual);
+            atual = veioDe[atual];
+        }
+
+        caminho.Reverse();
+        return caminho;
+           
+    }
         
 }

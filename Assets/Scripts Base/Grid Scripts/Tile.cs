@@ -18,11 +18,19 @@ public class Tile : MonoBehaviour
     public void DefinirUnidade(Unidade unidade)
     {
         UnidadeAtual = unidade;
+        if (unidade.unitData.Team == Team.Player)
+        {
+            SetVisual(TileVisual.Ocupado);
+        }else if (unidade.unitData.Team == Team.Inimigos)
+        {
+           SetVisual(TileVisual.OcupadoInimigo); 
+        }
     }
 
     public void RemoverUnidade()
     {
         UnidadeAtual = null;
+        RestaurarVisual();
     }
     public void RestaurarVisual()
     {

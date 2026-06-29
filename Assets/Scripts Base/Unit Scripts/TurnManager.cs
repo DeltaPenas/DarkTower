@@ -111,27 +111,28 @@ public class TurnManager : MonoBehaviour
 
     private IEnumerator ExecutarTurnoInimigo()
     {
-        foreach(Unidade unidade in unidadesInimigos)
+        foreach (Unidade unidade in unidadesInimigos)
         {
             EnemyIA ia = unidade.GetComponent<EnemyIA>();
-                if (ia !=null)
-                {
-                    yield return new WaitForSeconds(0.5f);
 
+            if (ia != null)
+            {
+                yield return new WaitForSeconds(0.5f);
 
-                    unidade.indicadorSelecao.SetActive(true);
+                unidade.indicadorSelecao.SetActive(true);
 
+                yield return new WaitForSeconds(1f);
 
-                    yield return new WaitForSeconds(1f);
-                    ia.ExecutarTurno();
+                // Espera a IA terminar o turno
+                yield return ia.ExecutarTurno();
 
-                    
-                    yield return new WaitForSeconds(0.5f);
-                    unidade.indicadorSelecao.SetActive(false);
-                }
+                yield return new WaitForSeconds(0.5f);
+
+                unidade.indicadorSelecao.SetActive(false);
             }
+        }
 
-            IniciarTurnoDoPlayer();
+        IniciarTurnoDoPlayer();
     }
         
         

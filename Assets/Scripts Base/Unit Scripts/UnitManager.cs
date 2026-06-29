@@ -238,8 +238,19 @@ public void ClicarTile(Tile tile)
 
     private void ExecutarMovimento(Tile tile)
     {
-        unidadeSelecionada.Mover(tile);
+        List<Tile> caminho =
+            GridManager.Instance.EncontrarCaminho(
+                unidadeSelecionada.TileAtual,
+                tile);
+
+        // Se não existe caminho, não faz nada
+        if (caminho.Count == 0)
+            return;
+
+        unidadeSelecionada.Mover(caminho);
+
         unidadeSelecionada.PodeMover = false;
+
         LimparHighLight();
 
         ModoAtual = ModoSelecao.Nenhum;
