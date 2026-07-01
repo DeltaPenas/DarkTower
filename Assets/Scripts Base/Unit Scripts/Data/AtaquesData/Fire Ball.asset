@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c7bb9a56fa3265429a23c2ef0f6cfa5, type: 3}
-  m_Name: Thunder
+  m_Name: Fire Ball
   m_EditorClassIdentifier: Assembly-CSharp::AttackData
-  nomeDoAtaque: Thunder
-  "descri\xE7\xE3o": Thunder coming from the ceiling??
-  alcance: 5
-  area: 2
-  multiplicadorDeDano: 2
+  nomeDoAtaque: Fire Ball
+  "descri\xE7\xE3o": The ultimate solution to 99% of an adventurer's problems.
+  alcance: 9
+  area: 3
+  multiplicadorDeDano: 1.3
   custoMana: 10
   finalizaTurno: 1
   tipo: 1
-  elemento: {fileID: 11400000, guid: 27935c6cc3bbf2d40b6bb9ac83139930, type: 2}
+  elemento: {fileID: 11400000, guid: 17c46a500e98d424bbf022748eb1e50c, type: 2}

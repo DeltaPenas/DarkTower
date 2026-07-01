@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 371ef7b485eb01e45b3061a5b5e71440, type: 3}
+  m_Name: Cat Mage Ally
+  m_EditorClassIdentifier: Assembly-CSharp::UnitData
+  nome: Mage Grey Cat
+  icone: {fileID: -2497998103283919466, guid: eac77012caa6f1a468f341a6a9bc4d68, type: 3}
+  retrato: {fileID: -2497998103283919466, guid: eac77012caa6f1a468f341a6a9bc4d68, type: 3}
+  prefab: {fileID: 4348963875395971345, guid: f2412a9dc410d874d9c5541b4065e349, type: 3}
+  classe: 0
+  Team: 0
+  statusBase:
+    vida: 5
+    ataque: 1.8
+    movimento: 2
+    mana: 50
+    defesa: 0.3
+  ataques:
+  - {fileID: 11400000, guid: 4203d54829e09eb42be5a8b0800fbdc2, type: 2}
+  - {fileID: 11400000, guid: 406c3082313432a499a664eb9f7da81d, type: 2}
+  - {fileID: 11400000, guid: 2723bf1cdd0df66439d5cf98fce132f0, type: 2}
+  - {fileID: 11400000, guid: 99fd7216fbda4c04681a8749d468239f, type: 2}
+  afinidade:
+  - {fileID: 11400000, guid: aeefac3ef2733f44abefe9da4e2bf154, type: 2}
+  fraquezas:
+  - {fileID: 11400000, guid: 5c94826487142ab47b97d8e9a09392e9, type: 2}
+  - {fileID: 11400000, guid: 03df307c3c996f647b11b8a419e0b79c, type: 2}
+  resistencias:
+  - {fileID: 11400000, guid: aeefac3ef2733f44abefe9da4e2bf154, type: 2}
+  - {fileID: 11400000, guid: 27935c6cc3bbf2d40b6bb9ac83139930, type: 2}
+  imunidades: []

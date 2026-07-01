@@ -2825,7 +2825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnerDeUnidades
   todasUnidades: []
-  unitPrefab: {fileID: 1967543027099041983, guid: 8ed68fd7102886f41958c94a90260fae, type: 3}
+  unitPrefab: {fileID: 4292570814440950878, guid: f2412a9dc410d874d9c5541b4065e349, type: 3}
   inimigoPrefab: {fileID: 2412487235172424381, guid: 62c979c4d439ce64687492dd975d5936, type: 3}
   grid: {fileID: 782981026}
 --- !u!114 &782981029
@@ -3009,6 +3009,67 @@ RectTransform:
   m_AnchoredPosition: {x: 880.6475, y: -91.75805}
   m_SizeDelta: {x: 392.259, y: 183.5161}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &786805815
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8447236105561348024, guid: 8ed68fd7102886f41958c94a90260fae, type: 3}
+      propertyPath: m_Name
+      value: Dog Guard Unit
+      objectReference: {fileID: 0}
+    - target: {fileID: 8447236105561348024, guid: 8ed68fd7102886f41958c94a90260fae, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616041563160768651, guid: 8ed68fd7102886f41958c94a90260fae, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.5180883
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616041563160768651, guid: 8ed68fd7102886f41958c94a90260fae, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.5076174
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616041563160768651, guid: 8ed68fd7102886f41958c94a90260fae, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616041563160768651, guid: 8ed68fd7102886f41958c94a90260fae, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616041563160768651, guid: 8ed68fd7102886f41958c94a90260fae, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616041563160768651, guid: 8ed68fd7102886f41958c94a90260fae, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616041563160768651, guid: 8ed68fd7102886f41958c94a90260fae, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616041563160768651, guid: 8ed68fd7102886f41958c94a90260fae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616041563160768651, guid: 8ed68fd7102886f41958c94a90260fae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616041563160768651, guid: 8ed68fd7102886f41958c94a90260fae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8ed68fd7102886f41958c94a90260fae, type: 3}
 --- !u!1 &793069226
 GameObject:
   m_ObjectHideFlags: 0
@@ -5822,7 +5883,6 @@ MonoBehaviour:
   PainelDeItens: {fileID: 1472510502}
   unitManager: {fileID: 0}
   buttonMove: {fileID: 959263034}
-  efeitoButton: {fileID: 0}
   botoesAtaque:
   - {fileID: 610234924}
   - {fileID: 25709099}
@@ -7056,3 +7116,4 @@ SceneRoots:
   - {fileID: 1698310594}
   - {fileID: 1392606312}
   - {fileID: 1156450684}
+  - {fileID: 786805815}

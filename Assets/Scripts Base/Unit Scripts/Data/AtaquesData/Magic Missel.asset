@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c7bb9a56fa3265429a23c2ef0f6cfa5, type: 3}
-  m_Name: Thunder
+  m_Name: Magic Missel
   m_EditorClassIdentifier: Assembly-CSharp::AttackData
-  nomeDoAtaque: Thunder
-  "descri\xE7\xE3o": Thunder coming from the ceiling??
-  alcance: 5
-  area: 2
-  multiplicadorDeDano: 2
-  custoMana: 10
+  nomeDoAtaque: Magic Missile
+  "descri\xE7\xE3o": Glowing Missile of pure magical power
+  alcance: 8
+  area: 1
+  multiplicadorDeDano: 1.2
+  custoMana: 6
   finalizaTurno: 1
   tipo: 1
-  elemento: {fileID: 11400000, guid: 27935c6cc3bbf2d40b6bb9ac83139930, type: 2}
+  elemento: {fileID: 11400000, guid: aeefac3ef2733f44abefe9da4e2bf154, type: 2}

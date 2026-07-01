@@ -15,6 +15,7 @@ MonoBehaviour:
   nomeDoAtaque: Slam
   "descri\xE7\xE3o": A body slam
   alcance: 1
+  area: 1
   multiplicadorDeDano: 1
   custoMana: 0
   finalizaTurno: 1

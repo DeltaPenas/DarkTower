@@ -15,6 +15,7 @@ MonoBehaviour:
   nomeDoAtaque: Black Hole
   "descri\xE7\xE3o": Black hole Sun Won't you come?
   alcance: 20
+  area: 20
   multiplicadorDeDano: 10
   custoMana: 20
   finalizaTurno: 1

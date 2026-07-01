@@ -15,6 +15,7 @@ MonoBehaviour:
   nomeDoAtaque: Sludge Bomb
   "descri\xE7\xE3o": A huge poison bomb
   alcance: 2
+  area: 2
   multiplicadorDeDano: 1.5
   custoMana: 3
   finalizaTurno: 1

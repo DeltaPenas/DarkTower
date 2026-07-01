@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 371ef7b485eb01e45b3061a5b5e71440, type: 3}
-  m_Name: Guard Ally
+  m_Name: Dog Guard Ally
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
   nome: Guard
   icone: {fileID: -3874676691083721698, guid: b9995071da3a81942b7a51ad8ad65276, type: 3}
@@ -19,11 +19,11 @@ MonoBehaviour:
   classe: 2
   Team: 0
   statusBase:
-    vida: 5
+    vida: 8
     ataque: 1.5
     movimento: 3
     mana: 25
-    defesa: 0
+    defesa: 0.5
   ataques:
   - {fileID: 11400000, guid: a46458f51d17482458a9f9bb843f06dd, type: 2}
   - {fileID: 11400000, guid: 4203d54829e09eb42be5a8b0800fbdc2, type: 2}

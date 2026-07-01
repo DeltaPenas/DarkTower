@@ -11,6 +11,7 @@ public class AttackData: ScriptableObject
     
     [Header("Combate")]
     public int alcance;
+    public int area;
     public float multiplicadorDeDano = 1f;
     public float custoMana = 0;
     public bool finalizaTurno = true;

@@ -15,6 +15,7 @@ MonoBehaviour:
   nomeDoAtaque: Slash
   "descri\xE7\xE3o": A cut with your blade
   alcance: 1
+  area: 1
   multiplicadorDeDano: 1
   custoMana: 0
   finalizaTurno: 1
