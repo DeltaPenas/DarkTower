@@ -8,6 +8,7 @@ public class AttackData: ScriptableObject
     [Header("informações")]
     public string nomeDoAtaque;
     public string descrição;
+    public AreaAtaque areaAtaque;
     
     [Header("Combate")]
     public int alcance;
@@ -28,4 +29,11 @@ public enum Tipo
     fisico,
     magico,
     suporte
+}
+
+public enum AreaAtaque
+{
+    Single,
+    Cruz,
+    Quadrado
 }

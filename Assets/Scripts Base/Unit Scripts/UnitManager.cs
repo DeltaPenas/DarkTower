@@ -218,10 +218,17 @@ public void ClicarTile(Tile tile)
     if (tile.UnidadeAtual.unitData.Team == unidadeSelecionada.unitData.Team)
         return;
 
-    float dano = DamageCalculator.Calcular(unidadeSelecionada, tile.UnidadeAtual, ataqueSelecionado);    ////AQUI, DOIDO
+    float dano = DamageCalculator.Calcular(unidadeSelecionada, tile.UnidadeAtual, ataqueSelecionado);
 
-    tile.UnidadeAtual.ReceberDano(dano);
-    Debug.Log("Dano recebido = " + dano);
+    List<Unidade> alvos = GridManager.Instance.EncontrarAlvos(tile);
+
+    foreach (Unidade alvo in alvos)
+    {
+        alvo.ReceberDano(dano);
+    }
+
+    //tile.UnidadeAtual.ReceberDano(dano);
+    //Debug.Log("Dano recebido = " + dano);
 
     unidadeSelecionada.SetEstado(EstadoUnidade.FinalizouTurno);
 
@@ -271,6 +278,8 @@ public void ClicarTile(Tile tile)
            actionMenuUI.DesabilitarButtonMove(); 
         }
     }
+
+
 
     
         

@@ -154,7 +154,18 @@ public class GridManager : MonoBehaviour
 
         caminho.Reverse();
         return caminho;
-           
+    }
+
+    public List<Unidade> EncontrarAlvos(Tile tileSelecionada)
+    {
+        List<Unidade> alvos = new();
+
+        if(tileSelecionada.UnidadeAtual != null)
+        {
+            alvos.Add(tileSelecionada.UnidadeAtual);
+        }
+
+        return alvos;
     }
         
 }
