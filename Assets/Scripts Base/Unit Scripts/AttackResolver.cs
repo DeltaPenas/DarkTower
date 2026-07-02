@@ -26,22 +26,49 @@ public class AttackResolver : MonoBehaviour
 
     }
 
-    public List<Unidade> EncontrarAlvos(Unidade atacantes, AttackData ataqueSelecionado, Tile tileAlvo)
+    public List<Unidade> EncontrarAlvos(Unidade unidadeAtacante, AttackData ataqueSelecionado, Tile tileAlvo)
     {
         List<Unidade> alvos = new();
+        List<Tile> tiles = EncontrarTilesAfetadas(tileAlvo, ataqueSelecionado);
+        foreach(Tile tile in tiles)
+        {
+            if(tile.UnidadeAtual != null)
+            {
+                if (tile.UnidadeAtual.unitData.Team != unidadeAtacante.unitData.Team)
+                {
+                    alvos.Add(tileAlvo.UnidadeAtual);
+                } 
+            }
+            
+        }
+       
 
-        if(tileAlvo.UnidadeAtual == null) return alvos;
-
-        alvos.Add(tileAlvo.UnidadeAtual);
-        
 
         return alvos;
     }
 
     public List<Tile> EncontrarTilesAfetadas(Tile centro, AttackData ataque)
     {
-        List<Unidade> EncontrarAlvos()
+        switch (ataque.areaAtaque)
+        {
+            case AreaAtaque.Single:
+                return ObterAreaSingle(centro);
+            case AreaAtaque.Cruz:
+                return null; //ObterAreaCruz();
+            case AreaAtaque.Quadrado:
+                return null;  //ObterAreaQuadrado();
+            default:
+                return new List<Tile>();
+        }
         
+    }
+
+    private List<Tile> ObterAreaSingle(Tile centro)
+    {
+        return new List<Tile>()
+        {
+            centro
+        };
     }
 
 

@@ -7,8 +7,10 @@ public class UnitManager : MonoBehaviour
     public ActionMenu actionMenuUI;
     public Unidade unidadeSelecionada {get; private set;}
     private AttackData ataqueSelecionado;
+    
    
     [SerializeField] private GridManager gridManager;
+    [SerializeField] private AttackResolver attackResolver;
     public enum ModoSelecao{ Movimento, Ataque, Nenhum}
     public ModoSelecao ModoAtual { get; private set; } = ModoSelecao.Nenhum;
     private List<Tile> tilesDestacadas = new();
@@ -16,6 +18,7 @@ public class UnitManager : MonoBehaviour
 
     void Start()
     {
+        attackResolver = GetComponent<AttackResolver>();
         actionMenuUI = FindAnyObjectByType<ActionMenu>();
     }
 
@@ -212,35 +215,29 @@ public void ClicarTile(Tile tile)
 
     private void ExecutarAtaque(Tile tile)
     {
-    if (tile.UnidadeAtual == null)
-        return;
+        if (tile.UnidadeAtual == null)
+            return;
 
-    if (tile.UnidadeAtual.unitData.Team == unidadeSelecionada.unitData.Team)
-        return;
+        if (tile.UnidadeAtual.unitData.Team == unidadeSelecionada.unitData.Team)
+            return;
 
-    float dano = DamageCalculator.Calcular(unidadeSelecionada, tile.UnidadeAtual, ataqueSelecionado);
+        attackResolver.ExecutarAtaque(
+            unidadeSelecionada,
+            ataqueSelecionado,
+            tile);
 
-    List<Unidade> alvos = GridManager.Instance.EncontrarAlvos(tile);
+        unidadeSelecionada.SetEstado(EstadoUnidade.FinalizouTurno);
 
-    foreach (Unidade alvo in alvos)
-    {
-        alvo.ReceberDano(dano);
-    }
+        LimparHighLight();
 
-    //tile.UnidadeAtual.ReceberDano(dano);
-    //Debug.Log("Dano recebido = " + dano);
+        ModoAtual = ModoSelecao.Nenhum;
 
-    unidadeSelecionada.SetEstado(EstadoUnidade.FinalizouTurno);
+        actionMenuUI.EsconderMenuPrincipal();
+        actionMenuUI.FecharPainelDeAtaque();
 
-    LimparHighLight();
+        LimparSelecao();
 
-    ModoAtual = ModoSelecao.Nenhum;
-
-    actionMenuUI.EsconderMenuPrincipal();
-    actionMenuUI.FecharPainelDeAtaque();
-
-    LimparSelecao();
-    TurnManager.Instance.VerificarFimDoTurno();
+        TurnManager.Instance.VerificarFimDoTurno();
     }
 
     private void ExecutarMovimento(Tile tile)
