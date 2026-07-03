@@ -99,21 +99,13 @@ public class UnitManager : MonoBehaviour
 
     private void MostrarAtaque()
     {
-    tilesDestacadas = gridManager.GetTilesEmAlcance(
-        unidadeSelecionada.TileAtual, ataqueSelecionado.alcance 
-    );
 
-    foreach (Tile tile in tilesDestacadas)
-    {
-        // Não destaca tiles ocupadas por aliados
-        if (tile.UnidadeAtual != null &&
-            tile.UnidadeAtual.unitData.Team == unidadeSelecionada.unitData.Team)
+        tilesDestacadas = gridManager.GetTilesEmAlcance( unidadeSelecionada.TileAtual, ataqueSelecionado.alcance);
+
+        foreach (Tile tile in tilesDestacadas)
         {
-            continue;
+            tile.SetVisual(TileVisual.Ataque);
         }
-
-        tile.SetVisual(TileVisual.Ataque);
-    }
     }
 
 
@@ -217,9 +209,8 @@ public void ClicarTile(Tile tile)
     {
         if (tile.UnidadeAtual == null)
             return;
-
-        if (tile.UnidadeAtual.unitData.Team == unidadeSelecionada.unitData.Team)
-            return;
+        
+        if(!attackResolver.ValidarAlvo(unidadeSelecionada, tile.UnidadeAtual, ataqueSelecionado)) return;
 
         attackResolver.ExecutarAtaque(
             unidadeSelecionada,

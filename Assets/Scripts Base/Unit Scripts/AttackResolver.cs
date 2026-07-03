@@ -30,16 +30,13 @@ public class AttackResolver : MonoBehaviour
         List<Tile> tiles = EncontrarTilesAfetadas(tileAlvo, ataqueSelecionado);
         foreach(Tile tile in tiles)
         {
-            if(tile.UnidadeAtual != null)
-            {
-                if (tile.UnidadeAtual.unitData.Team == unidadeAtacante.unitData.Team)
-                {
-                  continue;
-                } 
+            if(tile.UnidadeAtual == null)
+                continue;
 
-                alvos.Add(tile.UnidadeAtual);
-            }
-            
+            if(!ValidarAlvo(unidadeAtacante, tile.UnidadeAtual, ataqueSelecionado))
+                continue;
+
+            alvos.Add(tile.UnidadeAtual);
         }
        
 
@@ -106,14 +103,32 @@ public class AttackResolver : MonoBehaviour
 
                 if (tile != null)
                     tiles.Add(tile);
-                    foreach(Tile tileDoAtaque in tiles)
-                {
-                    tileDoAtaque.SetVisual(TileVisual.AreaDoAtaque);
-                }
             }
         }
 
         return tiles;
+    }
+    public bool ValidarAlvo(Unidade atacante, Unidade alvo, AttackData ataque)
+    {
+        switch (ataque.tipoDoAlvo)
+        {
+            case TipoAlvo.Inimigos:
+                return atacante.unitData.Team != alvo.unitData.Team;
+                
+            case TipoAlvo.Aliados:
+                return atacante.unitData.Team == alvo.unitData.Team;
+
+            case TipoAlvo.Todos:
+                return true;
+
+            case TipoAlvo.Eu:
+                return atacante == alvo;
+
+        }
+
+
+        return false;
+
     }
 
 

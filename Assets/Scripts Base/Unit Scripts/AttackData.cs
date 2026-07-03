@@ -9,6 +9,8 @@ public class AttackData: ScriptableObject
     public string nomeDoAtaque;
     public string descrição;
     public AreaAtaque areaAtaque;
+    public TipoAlvo tipoDoAlvo;
+    public EfeitoAtaque Efeito;
     
     [Header("Combate")]
     public int alcance;
@@ -43,4 +45,11 @@ public enum TipoAlvo
     Aliados,
     Todos,
     Eu
+}
+public enum EfeitoAtaque
+{
+    Dano,
+    Cura,
+    Buff,
+    Debuff
 }
