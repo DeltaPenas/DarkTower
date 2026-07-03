@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackData
   nomeDoAtaque: Sludge Bomb
   "descri\xE7\xE3o": A huge poison bomb
+  areaAtaque: 1
   alcance: 2
   area: 2
   multiplicadorDeDano: 1.5

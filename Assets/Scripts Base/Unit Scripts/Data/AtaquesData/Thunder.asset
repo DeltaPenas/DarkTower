@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackData
   nomeDoAtaque: Thunder
   "descri\xE7\xE3o": Thunder coming from the ceiling??
-  alcance: 5
+  areaAtaque: 2
+  alcance: 4
   area: 2
   multiplicadorDeDano: 2
   custoMana: 10

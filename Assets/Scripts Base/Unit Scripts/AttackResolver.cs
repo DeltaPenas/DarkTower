@@ -5,8 +5,6 @@ using UnityEngine;
 public class AttackResolver : MonoBehaviour
 {
 
-    
-
     public void ExecutarAtaque(Unidade atacante, AttackData ataque, Tile tileAlvo)
     {
         List<Unidade> alvos = EncontrarAlvos(atacante, ataque, tileAlvo);
@@ -34,16 +32,18 @@ public class AttackResolver : MonoBehaviour
         {
             if(tile.UnidadeAtual != null)
             {
-                if (tile.UnidadeAtual.unitData.Team != unidadeAtacante.unitData.Team)
+                if (tile.UnidadeAtual.unitData.Team == unidadeAtacante.unitData.Team)
                 {
-                    alvos.Add(tileAlvo.UnidadeAtual);
+                  continue;
                 } 
+
+                alvos.Add(tile.UnidadeAtual);
             }
             
         }
        
 
-
+        Debug.Log("Alvos:" + alvos);
         return alvos;
     }
 
@@ -56,12 +56,34 @@ public class AttackResolver : MonoBehaviour
             case AreaAtaque.Cruz:
                 return null; //ObterAreaCruz();
             case AreaAtaque.Quadrado:
-                return null;  //ObterAreaQuadrado();
+                return ObterAreaQuadrado(centro, ataque.area);
             default:
                 return new List<Tile>();
         }
         
     }
+    private List<Tile> ObterTilesPorOffsets(Tile centro, Vector2Int[] offsets)
+{
+    List<Tile> tiles = new();
+
+    foreach (Vector2Int offset in offsets)
+    {
+        Vector2Int posicao = centro.GridPosition + offset;
+
+        Tile tile = GridManager.Instance.GetTilePos(posicao);
+
+        if (tile != null)
+        {
+            tiles.Add(tile);
+        }
+    }
+
+    return tiles;
+}
+
+        
+    
+   
 
     private List<Tile> ObterAreaSingle(Tile centro)
     {
@@ -70,6 +92,31 @@ public class AttackResolver : MonoBehaviour
             centro
         };
     }
+
+    private List<Tile> ObterAreaQuadrado(Tile centro, int raio) 
+    {
+        List<Tile> tiles = new();
+
+        for (int x = -raio; x <= raio; x++)
+        {
+            for (int y = -raio; y <= raio; y++)
+            {
+                Tile tile = GridManager.Instance.GetTilePos(
+                    centro.GridPosition + new Vector2Int(x, y));
+
+                if (tile != null)
+                    tiles.Add(tile);
+                    foreach(Tile tileDoAtaque in tiles)
+                {
+                    tileDoAtaque.SetVisual(TileVisual.AreaDoAtaque);
+                }
+            }
+        }
+
+        return tiles;
+    }
+
+
 
 
 

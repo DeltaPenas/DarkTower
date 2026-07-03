@@ -4,5 +4,6 @@ public enum TileVisual
     Ocupado,
     OcupadoInimigo,
     Movimento,
-    Ataque
+    Ataque,
+    AreaDoAtaque
 }

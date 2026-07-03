@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackData
   nomeDoAtaque: Black Hole
   "descri\xE7\xE3o": Black hole Sun Won't you come?
+  areaAtaque: 2
   alcance: 20
   area: 20
   multiplicadorDeDano: 10

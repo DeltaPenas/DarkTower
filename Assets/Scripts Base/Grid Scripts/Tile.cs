@@ -72,6 +72,9 @@ public class Tile : MonoBehaviour
             case TileVisual.OcupadoInimigo:
                 sp.color = Color.red;
                 break;
+            case TileVisual.AreaDoAtaque:
+                sp.color = Color.darkBlue;
+                break;
         }
     }
 

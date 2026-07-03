@@ -2774,6 +2774,7 @@ GameObject:
   - component: {fileID: 782981026}
   - component: {fileID: 782981028}
   - component: {fileID: 782981029}
+  - component: {fileID: 782981030}
   m_Layer: 0
   m_Name: GridManager
   m_TagString: Untagged
@@ -2842,7 +2843,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnitManager
   actionMenuUI: {fileID: 0}
   gridManager: {fileID: 782981026}
+  attackResolver: {fileID: 0}
   ataqueTeste: {fileID: 11400000, guid: a46458f51d17482458a9f9bb843f06dd, type: 2}
+--- !u!114 &782981030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782981025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b70efcf48f9192946a7b6597e3f8074c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackResolver
 --- !u!1 &785441042
 GameObject:
   m_ObjectHideFlags: 0
