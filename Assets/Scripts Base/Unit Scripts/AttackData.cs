@@ -37,3 +37,10 @@ public enum AreaAtaque
     Cruz,
     Quadrado
 }
+public enum TipoAlvo
+{
+    Inimigos,
+    Aliados,
+    Todos,
+    Eu
+}

@@ -16,7 +16,7 @@ MonoBehaviour:
   "descri\xE7\xE3o": Thunder coming from the ceiling??
   areaAtaque: 2
   alcance: 4
-  area: 2
+  area: 1
   multiplicadorDeDano: 2
   custoMana: 10
   finalizaTurno: 1

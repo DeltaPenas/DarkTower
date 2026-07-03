@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackData
   nomeDoAtaque: Fire Ball
   "descri\xE7\xE3o": The ultimate solution to 99% of an adventurer's problems.
-  areaAtaque: 1
+  areaAtaque: 2
   alcance: 4
-  area: 3
+  area: 1
   multiplicadorDeDano: 1.3
   custoMana: 10
   finalizaTurno: 1
