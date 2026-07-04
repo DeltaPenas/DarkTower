@@ -11,7 +11,23 @@ public class AttackResolver : MonoBehaviour
 
         foreach(Unidade alvo in alvos)
         {
-            AplicarAtaque(atacante, alvo, ataque);
+            switch (ataque.Efeito)
+            {
+                case EfeitoAtaque.Dano:
+                    AplicarAtaque(atacante, alvo, ataque);
+                    break;
+                case EfeitoAtaque.Cura:
+                    AplicarCura(atacante, alvo, ataque);
+                    break;
+                case EfeitoAtaque.Buff:
+                    AplicarBuff(atacante, alvo, ataque);
+                    break;
+                case EfeitoAtaque.Debuff:
+                    AplicarDebuff(atacante, alvo, ataque);
+                    break;
+
+            }
+            
         }
 
     }
@@ -23,6 +39,21 @@ public class AttackResolver : MonoBehaviour
         alvo.ReceberDano(dano);
 
     }
+    private void AplicarCura(Unidade healer, Unidade alvo, AttackData attackData)
+    {
+        float cura = DamageCalculator.CalcularCura(healer, attackData);
+
+        alvo.ReceberCura(cura);
+    }
+    private void AplicarBuff(Unidade buffer, Unidade alvo, AttackData attackData)
+    {
+        Debug.Log($"A unidade {buffer} buffou o {alvo} com o ataque {attackData}");
+    }
+    private void AplicarDebuff(Unidade debuffer, Unidade alvo, AttackData attackData)
+    {
+        Debug.Log($"A unidade {debuffer} debuffou o {alvo} com o ataque {attackData}");
+    }
+
 
     public List<Unidade> EncontrarAlvos(Unidade unidadeAtacante, AttackData ataqueSelecionado, Tile tileAlvo)
     {

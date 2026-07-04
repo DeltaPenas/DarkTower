@@ -132,6 +132,10 @@ public class Unidade : MonoBehaviour
         vidaUnidade.ReceberDano(dano);
         spritePisca.Piscar();
     }
+    public virtual void ReceberCura(float cura)
+    {
+        vidaUnidade.Curar(cura);
+    }
     
 
     public float ModificadorElemento(ElementData elemento)

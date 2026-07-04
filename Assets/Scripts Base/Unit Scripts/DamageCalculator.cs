@@ -26,4 +26,12 @@ public static class DamageCalculator
     Debug.Log("dano final =" + dano);
     return dano;
     }
+
+    public static float CalcularCura(Unidade healer, AttackData attackData)
+    {
+        float cura = healer.currentStatus.vida * attackData.multiplicadorDeDano;
+
+
+        return cura;
+    }
 }
