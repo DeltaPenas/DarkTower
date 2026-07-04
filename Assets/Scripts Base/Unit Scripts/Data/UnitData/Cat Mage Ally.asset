@@ -27,7 +27,7 @@ MonoBehaviour:
   ataques:
   - {fileID: 11400000, guid: 4203d54829e09eb42be5a8b0800fbdc2, type: 2}
   - {fileID: 11400000, guid: 406c3082313432a499a664eb9f7da81d, type: 2}
-  - {fileID: 11400000, guid: 2723bf1cdd0df66439d5cf98fce132f0, type: 2}
+  - {fileID: 11400000, guid: d8ec0e1497773264da901678edbe3312, type: 2}
   - {fileID: 11400000, guid: 99fd7216fbda4c04681a8749d468239f, type: 2}
   afinidade:
   - {fileID: 11400000, guid: aeefac3ef2733f44abefe9da4e2bf154, type: 2}

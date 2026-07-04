@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c7bb9a56fa3265429a23c2ef0f6cfa5, type: 3}
   m_Name: Magical Heal
   m_EditorClassIdentifier: Assembly-CSharp::AttackData
-  nomeDoAtaque: 
-  "descri\xE7\xE3o": 
+  nomeDoAtaque: Magical Heal
+  "descri\xE7\xE3o": 'A healing light '
   areaAtaque: 0
-  tipoDoAlvo: 0
-  Efeito: 0
-  alcance: 0
+  tipoDoAlvo: 1
+  Efeito: 1
+  alcance: 20
   area: 0
   multiplicadorDeDano: 1
-  custoMana: 0
+  custoMana: 7
   finalizaTurno: 1
-  tipo: 0
-  elemento: {fileID: 0}
+  tipo: 1
+  elemento: {fileID: 11400000, guid: aeefac3ef2733f44abefe9da4e2bf154, type: 2}

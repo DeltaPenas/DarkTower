@@ -19,6 +19,7 @@ public class Unidade : MonoBehaviour
     [Header("Infos")]
 
     public EstadoUnidade Estado;
+    public List<StatusModifier> modificadores = new();
     public bool Bloqueando = false;
     public Tile TileAtual {get; private set;}
     public bool EstaMovendo { get; private set; }
