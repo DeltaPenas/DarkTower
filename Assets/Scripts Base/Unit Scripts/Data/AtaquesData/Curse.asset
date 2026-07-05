@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c7bb9a56fa3265429a23c2ef0f6cfa5, type: 3}
-  m_Name: Bless
+  m_Name: Curse
   m_EditorClassIdentifier: Assembly-CSharp::AttackData
-  nomeDoAtaque: Magical Bless
-  "descri\xE7\xE3o": A magical Bless, based in unit base attack.
+  nomeDoAtaque: 
+  "descri\xE7\xE3o": 
   areaAtaque: 0
-  tipoDoAlvo: 1
-  Efeito: 2
-  alcance: 20
-  area: 1
+  tipoDoAlvo: 0
+  Efeito: 0
+  alcance: 0
+  area: 0
   multiplicadorDeDano: 1
-  custoMana: 9
-  finalizaTurno: 0
-  duracao: 3
-  valor: 0.5
-  tipoModificador: 1
-  atributo: 1
-  tipo: 1
-  elemento: {fileID: 11400000, guid: aeefac3ef2733f44abefe9da4e2bf154, type: 2}
+  custoMana: 0
+  finalizaTurno: 1
+  duracao: 0
+  valor: 0
+  tipoModificador: 0
+  atributo: 0
+  tipo: 0
+  elemento: {fileID: 0}
