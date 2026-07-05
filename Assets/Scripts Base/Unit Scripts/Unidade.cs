@@ -48,6 +48,33 @@ public class Unidade : MonoBehaviour
 
     }
 
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            Buffar();
+            VerificarStatusAtual();
+        }
+    }
+
+    void Buffar()
+    {
+       StatusModifier mod = new StatusModifier();
+
+        mod.atributo = UnitStatus.StatsType.ataque;
+        mod.valor = 1;
+        mod.tipoModificador = TipoModificador.flat;
+        mod.duracao = 2;
+
+        AdicionarModificação(mod);
+        Debug.Log($"Buffou a unidade {this}");
+    }
+    void VerificarStatusAtual()
+    {
+        Debug.Log("Status atual: " + GetAtaqueAtual() +  " Status Base: " +  currentStatus.ataque);
+    }
+
     public void Selecionar()
     {
         indicadorSelecao.SetActive(true);
@@ -165,6 +192,162 @@ public class Unidade : MonoBehaviour
         TileAtual.RemoverUnidade();
         TurnManager.Instance.VerificarFimDeJogo();
         Destroy(gameObject, 0.5f);
+    }
+
+
+    //Toda Parte De Modificadores
+
+    public float GetAtaqueAtual()
+{
+    float ataqueAtual = currentStatus.ataque;
+
+    foreach(StatusModifier modificador in modificadores)
+    {
+        // Verifica o tipo do atributo do modificador
+        if(modificador.atributo != UnitStatus.StatsType.ataque)continue;
+
+        // Como ele altera flat (um inteiro) ou %
+        switch(modificador.tipoModificador)
+        {
+            case TipoModificador.flat:
+                ataqueAtual += modificador.valor;
+                break;
+
+            case TipoModificador.porcentagem:
+                ataqueAtual *= 1 + modificador.valor;
+                break;
+        }
+    }
+
+    return ataqueAtual;
+}
+
+    public float GetDefesaAtual()
+    {
+        float defesaAtual = currentStatus.defesa;
+
+        foreach (StatusModifier modificador in modificadores)
+        {
+            if(modificador.atributo != UnitStatus.StatsType.defesa) continue;
+
+            switch(modificador.tipoModificador)
+            {
+                case TipoModificador.flat:
+                    defesaAtual += modificador.valor;
+                    break;
+
+                case TipoModificador.porcentagem:
+                    defesaAtual *= 1 + modificador.valor;
+                    break;
+            }
+        }
+
+        return defesaAtual;
+        
+    }
+    public float GetVidaMaximaAtual()
+    {
+       float vidaMaximaAtual = currentStatus.vida;
+
+       foreach (StatusModifier modificador in modificadores)
+        {
+            if(modificador.atributo != UnitStatus.StatsType.vida) continue;
+
+            switch(modificador.tipoModificador)
+            {
+                case TipoModificador.flat:
+                    vidaMaximaAtual += modificador.valor;
+                    break;
+
+                case TipoModificador.porcentagem:
+                    vidaMaximaAtual *= 1 + modificador.valor;
+                    break;
+            }
+        }
+
+       return vidaMaximaAtual; 
+    }
+
+    public float GetManaAtual()
+    {
+       float manaMaximaAtual = currentStatus.mana;
+
+       foreach (StatusModifier modificador in modificadores)
+        {
+            if(modificador.atributo != UnitStatus.StatsType.mana) continue;
+
+            switch(modificador.tipoModificador)
+            {
+                case TipoModificador.flat:
+                    manaMaximaAtual += modificador.valor;
+                    break;
+
+                case TipoModificador.porcentagem:
+                    manaMaximaAtual *= 1 + modificador.valor;
+                    break;
+            }
+        }
+
+       return manaMaximaAtual;
+    }
+    public int GetMovimentoAtual()
+    {
+        int movimentoAtual = currentStatus.movimento;
+        foreach (StatusModifier modificador in modificadores)
+        {
+            if(modificador.atributo != UnitStatus.StatsType.movimento) continue;
+
+            switch(modificador.tipoModificador)
+            {
+                case TipoModificador.flat:
+                    movimentoAtual += (int)modificador.valor;
+                    break;
+
+                case TipoModificador.porcentagem:
+                    movimentoAtual *= (int)(1 + modificador.valor);
+                    break;
+            }
+        }
+
+        return movimentoAtual;
+    }
+
+
+    public void AdicionarModificação(StatusModifier mod)
+    {
+        modificadores.Add(mod);
+    }
+    private void RemoverModificacao(int indice)
+    {
+        Debug.Log($"A modificação {modificadores[indice]} acabou");
+        modificadores.RemoveAt(indice);
+    }
+
+    public void AtualizarModificações()
+    {
+        for (int i = modificadores.Count - 1; i >= 0; i--)
+        {
+            modificadores[i].duracao--;
+
+            if (modificadores[i].duracao <= 0)
+            {
+                RemoverModificacao(i);
+            }
+        }
+    }
+
+    public string GetTextoModificadores()
+    {
+        if(modificadores.Count == 0) return "nenhum";
+
+        string texto = "";
+
+        foreach (StatusModifier mod in modificadores)
+        {
+            texto += mod.nome + ", ";
+        }
+        return texto;
+        
     }
     
 

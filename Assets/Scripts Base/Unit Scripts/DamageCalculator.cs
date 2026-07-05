@@ -6,14 +6,14 @@ public static class DamageCalculator
         Unidade defensor,
         AttackData ataque)
     {
-        float dano = atacante.currentStatus.ataque * ataque.multiplicadorDeDano;
+        float dano = atacante.GetAtaqueAtual() * ataque.multiplicadorDeDano;
 
     dano *= defensor.ModificadorElemento(ataque.elemento);
 
     if (defensor.Bloqueando)
         dano *= 0.6f;
 
-    dano -= defensor.currentStatus.defesa;
+    dano -= defensor.GetDefesaAtual();
     
     dano = Mathf.Max(0.1f, dano);
     

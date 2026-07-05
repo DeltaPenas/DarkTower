@@ -47,11 +47,32 @@ public class AttackResolver : MonoBehaviour
     }
     private void AplicarBuff(Unidade buffer, Unidade alvo, AttackData attackData)
     {
-        Debug.Log($"A unidade {buffer} buffou o {alvo} com o ataque {attackData}");
+        StatusModifier mod = new StatusModifier();
+
+        mod.nome = attackData.nomeDoAtaque;
+        mod.atributo = attackData.atributo;
+        mod.valor = attackData.valor;
+        mod.tipoModificador = attackData.tipoModificador;
+        mod.duracao = attackData.duracao;
+
+        alvo.AdicionarModificação(mod);
+        Debug.Log($"Unidade {alvo} foi buffada com {mod.nome}");
+
     }
     private void AplicarDebuff(Unidade debuffer, Unidade alvo, AttackData attackData)
     {
-        Debug.Log($"A unidade {debuffer} debuffou o {alvo} com o ataque {attackData}");
+        StatusModifier mod = new StatusModifier();
+
+        mod.nome = attackData.nomeDoAtaque;
+        mod.atributo = attackData.atributo;
+        mod.valor = attackData.valor;
+        mod.tipoModificador = attackData.tipoModificador;
+        mod.duracao = attackData.duracao;
+
+        alvo.AdicionarModificação(mod);
+        Debug.Log($"Unidade {alvo} foi debuffada com {mod.nome}");
+
+
     }
 
 
@@ -160,14 +181,5 @@ public class AttackResolver : MonoBehaviour
 
         return false;
 
-    }
-
-
-
-
-
-
-
-    
-    
+    }    
 }

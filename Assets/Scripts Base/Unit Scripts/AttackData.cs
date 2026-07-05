@@ -19,6 +19,14 @@ public class AttackData: ScriptableObject
     public float custoMana = 0;
     public bool finalizaTurno = true;
 
+    [Header("Buffs e Debuffs")]
+    public int duracao;
+    public float valor;
+    public TipoModificador tipoModificador;
+    public UnitStatus.StatsType atributo;
+
+
+
     [Header("Tipos")]
     public Tipo tipo;
     public ElementData elemento;

@@ -22,6 +22,7 @@ public class UnitManager : MonoBehaviour
         actionMenuUI = FindAnyObjectByType<ActionMenu>();
     }
 
+   
 
 
     public void Selecionar(Unidade unidade)
@@ -48,6 +49,8 @@ public class UnitManager : MonoBehaviour
                     actionMenuUI.MostrarMenuPrincipal();
                 }
             ValidarAcoes(unidadeSelecionada);
+            ActionMenu.Instance.MostrarInforButton();
+            ActionMenu.Instance.ConfigurarMenuDeInformaçõesDasUnidades(unidadeSelecionada);
             Debug.Log(ModoAtual);
 
             break;
@@ -57,6 +60,7 @@ public class UnitManager : MonoBehaviour
             break;
         case EstadoUnidade.FinalizouTurno:
             Debug.Log("Essa unidade já terminou o turno.");
+            ActionMenu.Instance.FecharInfoButton();
 
             break;
     }
@@ -66,7 +70,9 @@ public class UnitManager : MonoBehaviour
         if(unidadeSelecionada == null) return;
 
         unidadeSelecionada.Deselecionar();
+        ActionMenu.Instance.FecharInfoButton();
         unidadeSelecionada = null;
+        
         LimparHighLight();
         
         
@@ -86,7 +92,7 @@ public class UnitManager : MonoBehaviour
     private void MostrarMovimento()
     {
 
-        tilesDestacadas = gridManager.GetTilesEmAlcance(unidadeSelecionada.TileAtual, unidadeSelecionada.currentStatus.movimento);
+        tilesDestacadas = gridManager.GetTilesEmAlcance(unidadeSelecionada.TileAtual, unidadeSelecionada.GetMovimentoAtual());
 
         foreach (Tile tile in tilesDestacadas)
     {
@@ -250,9 +256,6 @@ public void ClicarTile(Tile tile)
 
         ModoAtual = ModoSelecao.Nenhum;
 
-        //actionMenuUI.FecharPainelDeMovimento();
-        //actionMenuUI.MostrarMenuPrincipal();
-        //actionMenuUI.DesabilitarButtonMove();
     }
 
     public void ValidarAcoes(Unidade unidade)

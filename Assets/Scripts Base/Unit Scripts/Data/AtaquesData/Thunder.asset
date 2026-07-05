@@ -19,7 +19,7 @@ MonoBehaviour:
   Efeito: 0
   alcance: 4
   area: 1
-  multiplicadorDeDano: 2
+  multiplicadorDeDano: 1
   custoMana: 10
   finalizaTurno: 1
   tipo: 1
