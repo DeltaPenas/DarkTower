@@ -20,6 +20,7 @@ public class Unidade : MonoBehaviour
 
     public EstadoUnidade Estado;
     public List<StatusModifier> modificadores = new();
+    public List<BattleConditions> condicoes = new();
     public bool Bloqueando = false;
     public Tile TileAtual {get; private set;}
     public bool EstaMovendo { get; private set; }
@@ -317,6 +318,12 @@ public class Unidade : MonoBehaviour
     {
         modificadores.Add(mod);
     }
+    public void AdicionarCondição(BattleConditions cond)
+    {
+        condicoes.Add(cond);
+    }
+
+
     private void RemoverModificacao(int indice)
     {
         Debug.Log($"A modificação {modificadores[indice]} acabou");

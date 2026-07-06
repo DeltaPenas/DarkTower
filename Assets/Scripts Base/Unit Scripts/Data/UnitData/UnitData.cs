@@ -16,7 +16,7 @@ public class UnitData : ScriptableObject
     public Team Team;
 
     [Header("Status")]
-    public UnitStatus statusBase; // Feito
+    public UnitStatus statusBase; 
 
     [Header("Ataques")]
     public List<AttackData> ataques;

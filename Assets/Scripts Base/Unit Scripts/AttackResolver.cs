@@ -25,6 +25,9 @@ public class AttackResolver : MonoBehaviour
                 case EfeitoAtaque.Debuff:
                     AplicarDebuff(atacante, alvo, ataque);
                     break;
+                case EfeitoAtaque.Condicionar:
+                    AplicarCondição(atacante, alvo, ataque);
+                    break;
 
             }
             
@@ -74,6 +77,15 @@ public class AttackResolver : MonoBehaviour
 
 
     }
+
+    private void AplicarCondição(Unidade unidadeAtacante, Unidade alvo, AttackData attackData)
+    {
+        BattleConditions cond = new BattleConditions();
+        
+    }
+
+
+
 
 
     public List<Unidade> EncontrarAlvos(Unidade unidadeAtacante, AttackData ataqueSelecionado, Tile tileAlvo)

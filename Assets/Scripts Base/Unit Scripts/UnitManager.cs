@@ -6,6 +6,7 @@ public class UnitManager : MonoBehaviour
 {
     public ActionMenu actionMenuUI;
     public Unidade unidadeSelecionada {get; private set;}
+    public Unidade unidadeEmFoco { get; private set; }
     private AttackData ataqueSelecionado;
     
    
@@ -22,62 +23,73 @@ public class UnitManager : MonoBehaviour
         actionMenuUI = FindAnyObjectByType<ActionMenu>();
     }
 
-   
+    public void MostrarInformações(Unidade unidade)
+    {
+        unidadeEmFoco = unidade;
+
+        ActionMenu.Instance.MostrarInforButton();
+        actionMenuUI.ConfigurarMenuDeInformaçõesDasUnidades(unidade);
+
+    }
+    public void FecharInformaçãoes()
+    {
+        unidadeEmFoco = null;
+        actionMenuUI.FecharInfoButton();
+    }
 
 
     public void Selecionar(Unidade unidade)
-{
-    switch (unidade.Estado)
     {
-        case EstadoUnidade.Disponivel:
-            
+        if (ModoAtual == ModoSelecao.Ataque) return;
+        if (ModoAtual == ModoSelecao.Movimento) return;
 
-            if (unidadeSelecionada == unidade)
-            {
-                LimparSelecao();
-                return;
-            }
-
+        if (unidadeSelecionada == unidade)
+        {
             LimparSelecao();
+            return;
+        }
 
-            unidadeSelecionada = unidade;
-                if(unidadeSelecionada.unitData.Team == Team.Player)
-                {
-                    unidadeSelecionada.SetEstado(EstadoUnidade.Selecionada);
-                    unidadeSelecionada.Selecionar();
-                    ModoAtual = ModoSelecao.Nenhum;
-                    actionMenuUI.MostrarMenuPrincipal();
-                }
-            ValidarAcoes(unidadeSelecionada);
-            ActionMenu.Instance.MostrarInforButton();
-            ActionMenu.Instance.ConfigurarMenuDeInformaçõesDasUnidades(unidadeSelecionada);
-            Debug.Log(ModoAtual);
+        LimparSelecao();
 
-            break;
+        MostrarInformações(unidade);
 
-        case EstadoUnidade.AguardandoAção:
+        if (unidade.unitData.Team != Team.Player)
+            return;
 
-            break;
-        case EstadoUnidade.FinalizouTurno:
-            Debug.Log("Essa unidade já terminou o turno.");
-            ActionMenu.Instance.FecharInfoButton();
+        switch (unidade.Estado)
+        {
+            case EstadoUnidade.Disponivel:
 
-            break;
+                unidadeSelecionada = unidade;
+
+                unidadeSelecionada.SetEstado(EstadoUnidade.Selecionada);
+                unidadeSelecionada.Selecionar();
+
+                ModoAtual = ModoSelecao.Nenhum;
+
+                actionMenuUI.MostrarMenuPrincipal();
+
+                ValidarAcoes(unidadeSelecionada);
+
+                break;
+
+            case EstadoUnidade.FinalizouTurno:
+                Debug.Log("Essa unidade já terminou o turno.");
+                break;
+        }
     }
-}
+
     public void LimparSelecao()
     {
-        if(unidadeSelecionada == null) return;
+        if (unidadeSelecionada != null)
+        {
+            unidadeSelecionada.Deselecionar();
+            unidadeSelecionada = null;
+        }
 
-        unidadeSelecionada.Deselecionar();
-        ActionMenu.Instance.FecharInfoButton();
-        unidadeSelecionada = null;
-        
+        FecharInformaçãoes();
+
         LimparHighLight();
-        
-        
-
-        
     }
     public void LimparHighLight()
     {

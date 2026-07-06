@@ -19,10 +19,6 @@ public class ButtonInfos : MonoBehaviour
         bg.GetComponent<UnityEngine.UI.Image>().color = attackData.elemento.cor;
         icon.GetComponent<UnityEngine.UI.Image>().sprite = attackData.elemento.icone;
         
-
-
-
-
     }
      
     

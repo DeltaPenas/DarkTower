@@ -17,6 +17,7 @@ public class AttackData: ScriptableObject
     public int area;
     public float multiplicadorDeDano = 1f;
     public float custoMana = 0;
+    public Condicao condicao;
     public bool finalizaTurno = true;
 
     [Header("Buffs e Debuffs")]
@@ -59,5 +60,17 @@ public enum EfeitoAtaque
     Dano,
     Cura,
     Buff,
-    Debuff
+    Debuff,
+    Condicionar
+}
+
+public enum Condicao
+{
+    Sangramento,
+    Queimadura,
+    Congelamento,
+    Paralisia,
+    Maldição,
+    Colapso
+
 }
