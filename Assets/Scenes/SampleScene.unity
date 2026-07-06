@@ -3374,7 +3374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnerDeUnidades
   todasUnidades: []
-  unitPrefab: {fileID: 4292570814440950878, guid: f2412a9dc410d874d9c5541b4065e349, type: 3}
+  unitPrefab: {fileID: 7511086609440051412, guid: fb6a6f18a54807343ac3797eec266250, type: 3}
   inimigoPrefab: {fileID: 2412487235172424381, guid: 62c979c4d439ce64687492dd975d5936, type: 3}
   grid: {fileID: 782981026}
 --- !u!114 &782981029
@@ -6652,8 +6652,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.1205625, y: 0.22885187}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -115.5, y: -8}
-  m_SizeDelta: {x: 231, y: 247}
+  m_AnchoredPosition: {x: -125.16821, y: -38.302}
+  m_SizeDelta: {x: 1212.4062, y: 460.95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1516772065
 MonoBehaviour:
@@ -6669,7 +6669,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

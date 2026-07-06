@@ -81,6 +81,29 @@ public class AttackResolver : MonoBehaviour
     private void AplicarCondição(Unidade unidadeAtacante, Unidade alvo, AttackData attackData)
     {
         BattleConditions cond = new BattleConditions();
+
+        switch (attackData.condicao)
+        {
+            case Condicao.Sangramento:
+                //AplicarSangramento(cond);
+            break;
+            case Condicao.Queimadura:
+                //AplicarQueimadura(cond);
+            break;
+            case Condicao.Congelamento:
+                //AplicarCongelamento(cond);
+            break;
+            case Condicao.Paralisia:
+                //AplicarParalisia(cond);
+            break;
+            case Condicao.Maldição:
+                //AplicarMaldição(cond);
+            break;
+            case Condicao.Colapso:
+                //AplicarColapso(cond);
+            break;
+            
+        }
         
     }
 

@@ -12,19 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c7bb9a56fa3265429a23c2ef0f6cfa5, type: 3}
   m_Name: Curse
   m_EditorClassIdentifier: Assembly-CSharp::AttackData
-  nomeDoAtaque: 
-  "descri\xE7\xE3o": 
+  nomeDoAtaque: Curse
+  "descri\xE7\xE3o": 'A curse from de sky, reduces the target''s strength. '
   areaAtaque: 0
   tipoDoAlvo: 0
-  Efeito: 0
-  alcance: 0
-  area: 0
+  Efeito: 3
+  alcance: 10
+  area: 1
   multiplicadorDeDano: 1
-  custoMana: 0
+  custoMana: 9
+  condicao: 0
   finalizaTurno: 1
-  duracao: 0
-  valor: 0
-  tipoModificador: 0
-  atributo: 0
-  tipo: 0
-  elemento: {fileID: 0}
+  duracao: 3
+  valor: -1.5
+  tipoModificador: 1
+  atributo: 1
+  tipo: 2
+  elemento: {fileID: 11400000, guid: 5c94826487142ab47b97d8e9a09392e9, type: 2}

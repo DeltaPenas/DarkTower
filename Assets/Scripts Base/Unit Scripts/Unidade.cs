@@ -7,7 +7,7 @@ public class Unidade : MonoBehaviour
     [Header("Referencias")]
     [SerializeField] public GameObject indicadorSelecao;
     [SerializeField] public GameObject indicadorDeBloqueio;
-    [SerializeField] private VidaUnidade vidaUnidade;
+    [SerializeField] public VidaUnidade vidaUnidade;
     [SerializeField] private SpritePisca spritePisca;
     public UnitData unitData;
 

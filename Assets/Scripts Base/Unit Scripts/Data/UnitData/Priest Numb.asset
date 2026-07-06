@@ -12,20 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 371ef7b485eb01e45b3061a5b5e71440, type: 3}
   m_Name: Priest Numb
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
-  nome: 
-  icone: {fileID: 0}
-  retrato: {fileID: 0}
-  prefab: {fileID: 0}
-  classe: 0
+  nome: The Priest
+  icone: {fileID: 5153606001443104181, guid: 1846898169434124b9f031a6ff78115b, type: 3}
+  retrato: {fileID: 5153606001443104181, guid: 1846898169434124b9f031a6ff78115b, type: 3}
+  prefab: {fileID: 8046496189748362834, guid: fb6a6f18a54807343ac3797eec266250, type: 3}
+  classe: 1
   Team: 0
   statusBase:
-    vida: 0
-    ataque: 0
-    movimento: 0
-    mana: 0
+    vida: 12
+    ataque: 0.5
+    movimento: 4
+    mana: 50
     defesa: 0
-  ataques: []
-  afinidade: []
-  fraquezas: []
-  resistencias: []
-  imunidades: []
+  ataques:
+  - {fileID: 11400000, guid: 99fd7216fbda4c04681a8749d468239f, type: 2}
+  - {fileID: 11400000, guid: d8ec0e1497773264da901678edbe3312, type: 2}
+  - {fileID: 11400000, guid: 6a4cc8f904fe88f408123871b8a95fbe, type: 2}
+  - {fileID: 11400000, guid: 2723bf1cdd0df66439d5cf98fce132f0, type: 2}
+  afinidade:
+  - {fileID: 11400000, guid: aeefac3ef2733f44abefe9da4e2bf154, type: 2}
+  fraquezas:
+  - {fileID: 11400000, guid: 5c94826487142ab47b97d8e9a09392e9, type: 2}
+  - {fileID: 11400000, guid: ee6f38aed0e2b3946b32aec572028499, type: 2}
+  resistencias:
+  - {fileID: 11400000, guid: aeefac3ef2733f44abefe9da4e2bf154, type: 2}
+  imunidades:
+  - {fileID: 0}

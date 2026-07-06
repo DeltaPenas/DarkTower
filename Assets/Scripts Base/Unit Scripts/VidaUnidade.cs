@@ -33,6 +33,19 @@ public class VidaUnidade : MonoBehaviour
             Morrer();
         }
     }
+    public void Colapsar(float dano)
+    {
+        vidaMaxima -=dano;
+        vidaAtual -=dano;
+
+        if (vidaAtual <= 0 || vidaMaxima <= 0)
+        {
+            Morrer();
+        }
+
+    }
+
+
     public void Curar(float cura)
     {
         vidaAtual = MathF.Min(vidaAtual + cura, vidaMaxima);

@@ -19,8 +19,13 @@ MonoBehaviour:
   Efeito: 1
   alcance: 20
   area: 0
-  multiplicadorDeDano: 1
+  multiplicadorDeDano: 0.5
   custoMana: 7
+  condicao: 0
   finalizaTurno: 1
+  duracao: 0
+  valor: 0
+  tipoModificador: 0
+  atributo: 0
   tipo: 1
   elemento: {fileID: 11400000, guid: aeefac3ef2733f44abefe9da4e2bf154, type: 2}

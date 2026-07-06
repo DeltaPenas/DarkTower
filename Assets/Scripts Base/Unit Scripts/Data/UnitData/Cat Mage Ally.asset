@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 371ef7b485eb01e45b3061a5b5e71440, type: 3}
   m_Name: Cat Mage Ally
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
-  nome: Mage Grey Cat
+  nome: The Mage
   icone: {fileID: -2497998103283919466, guid: eac77012caa6f1a468f341a6a9bc4d68, type: 3}
   retrato: {fileID: -2497998103283919466, guid: eac77012caa6f1a468f341a6a9bc4d68, type: 3}
   prefab: {fileID: 4348963875395971345, guid: f2412a9dc410d874d9c5541b4065e349, type: 3}
