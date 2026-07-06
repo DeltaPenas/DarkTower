@@ -27,6 +27,7 @@ public class ActionMenu : MonoBehaviour
     [SerializeField] public TextMeshProUGUI defesaUnidade;
     [SerializeField] public TextMeshProUGUI movimentoUnidade;
     [SerializeField] public TextMeshProUGUI modificadores;
+    [SerializeField] public TextMeshProUGUI condições;
 
 
     void Start()
@@ -74,6 +75,7 @@ public class ActionMenu : MonoBehaviour
         defesaUnidade.text = "Defesa: " + unidade.GetDefesaAtual().ToString();
         movimentoUnidade.text = "Movimento: " + unidade.GetMovimentoAtual().ToString();
         modificadores.text = "Modificadores: " + unidade.GetTextoModificadores();
+        condições.text = "Condições: " + unidade.GetTextoCondições();
     }
 
     public void MostrarMenuPrincipal()

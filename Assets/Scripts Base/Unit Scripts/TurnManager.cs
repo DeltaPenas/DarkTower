@@ -37,7 +37,7 @@ public class TurnManager : MonoBehaviour
         foreach(Unidade unidade in unidadesPlayer)
         {
             unidade.NovoTurno();
-            unidade.AtualizarModificações();
+           
         }
         
     }
@@ -49,7 +49,7 @@ public class TurnManager : MonoBehaviour
         foreach(Unidade unidade in unidadesInimigos)
         {
             unidade.NovoTurno();
-            unidade.AtualizarModificações();
+           
         }
         
         StartCoroutine(ExecutarTurnoInimigo());

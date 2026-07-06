@@ -15,6 +15,7 @@ public class AttackResolver : MonoBehaviour
             {
                 case EfeitoAtaque.Dano:
                     AplicarAtaque(atacante, alvo, ataque);
+                    AplicarCondição(atacante, alvo, ataque);
                     break;
                 case EfeitoAtaque.Cura:
                     AplicarCura(atacante, alvo, ataque);
@@ -25,10 +26,6 @@ public class AttackResolver : MonoBehaviour
                 case EfeitoAtaque.Debuff:
                     AplicarDebuff(atacante, alvo, ataque);
                     break;
-                case EfeitoAtaque.Condicionar:
-                    AplicarCondição(atacante, alvo, ataque);
-                    break;
-
             }
             
         }
@@ -38,6 +35,7 @@ public class AttackResolver : MonoBehaviour
     private void AplicarAtaque(Unidade atacante, Unidade alvo, AttackData attackData )
     {
         float dano = DamageCalculator.Calcular(atacante, alvo, attackData);
+        
 
         alvo.ReceberDano(dano);
 
@@ -78,33 +76,58 @@ public class AttackResolver : MonoBehaviour
 
     }
 
-    private void AplicarCondição(Unidade unidadeAtacante, Unidade alvo, AttackData attackData)
+    private void AplicarCondição(Unidade atacante, Unidade alvo, AttackData ataque)
     {
-        BattleConditions cond = new BattleConditions();
+        if (ataque.condicao == Condicao.Nenhuma)
+            return;
 
-        switch (attackData.condicao)
-        {
-            case Condicao.Sangramento:
-                //AplicarSangramento(cond);
-            break;
-            case Condicao.Queimadura:
-                //AplicarQueimadura(cond);
-            break;
-            case Condicao.Congelamento:
-                //AplicarCongelamento(cond);
-            break;
-            case Condicao.Paralisia:
-                //AplicarParalisia(cond);
-            break;
-            case Condicao.Maldição:
-                //AplicarMaldição(cond);
-            break;
-            case Condicao.Colapso:
-                //AplicarColapso(cond);
-            break;
-            
-        }
+        if (!RolarChance(ataque.chanceDeCondição))
+            return;
+
+        BattleConditions condicao = CriarCondicao(ataque.condicao);
+
+        condicao.duração = ataque.duracaoDaCondição;
+        condicao.nome = ataque.condicao.ToString();
+        condicao.valorEfeito = ataque.valorEfeito;
         
+
+        if (condicao != null)
+        {
+            alvo.AdicionarCondição(condicao);
+        }
+    }
+    private bool RolarChance(float chance)
+    {
+        return Random.value <= chance;
+    }
+
+    private BattleConditions CriarCondicao(Condicao tipo)
+    {
+        switch (tipo)
+        {
+            case Condicao.Queimadura:
+                return new ConditionQueimadura();
+
+            case Condicao.Sangramento:
+                return new ConditionSangramento();
+
+            case Condicao.Congelamento:
+                return new ConditionCongelamento();
+
+            case Condicao.Paralisia:
+                return new ConditionParalisado();
+
+            case Condicao.Maldição:
+                return new ConditionMaldição();
+            case Condicao.Envenenamento:
+                return new ConditionEnvenenamento();
+
+            case Condicao.Colapso:
+                return new ConditionColapso();
+
+            default:
+                return null;
+        }
     }
 
 

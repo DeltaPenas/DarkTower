@@ -15,10 +15,16 @@ public class AttackData: ScriptableObject
     [Header("Combate")]
     public int alcance;
     public int area;
-    public float multiplicadorDeDano = 1f;
-    public float custoMana = 0;
-    public Condicao condicao;
+    public float multiplicadorDeDano = 1f; //Uso tanto pra multiplicar o dano quanto pra aplicar buffs/debuffs, acho que tenho q mudar esse nome
     public bool finalizaTurno = true;
+    public float custoMana = 0;
+
+    [Header("Condições")]
+    public Condicao condicao;
+    public float chanceDeCondição; 
+    public int duracaoDaCondição;
+    public float valorEfeito;
+    
 
     [Header("Buffs e Debuffs")]
     public int duracao;
@@ -61,15 +67,16 @@ public enum EfeitoAtaque
     Cura,
     Buff,
     Debuff,
-    Condicionar
 }
 
 public enum Condicao
 {
+    Nenhuma,
     Sangramento,
     Queimadura,
     Congelamento,
     Paralisia,
+    Envenenamento,
     Maldição,
     Colapso
 

@@ -26,6 +26,7 @@ public class Unidade : MonoBehaviour
     public bool EstaMovendo { get; private set; }
     public bool PodeMover = true;
     public bool PodeAgir = true;
+    public bool PodeCurar = true;
     [SerializeField] private float velocidadeMovimento = 4f;
     public Vector2Int GridPosition => TileAtual.GridPosition;
 
@@ -49,28 +50,6 @@ public class Unidade : MonoBehaviour
 
     }
 
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            Buffar();
-            VerificarStatusAtual();
-        }
-    }
-
-    void Buffar()
-    {
-       StatusModifier mod = new StatusModifier();
-
-        mod.atributo = UnitStatus.StatsType.ataque;
-        mod.valor = 1;
-        mod.tipoModificador = TipoModificador.flat;
-        mod.duracao = 2;
-
-        AdicionarModificação(mod);
-        Debug.Log($"Buffou a unidade {this}");
-    }
     void VerificarStatusAtual()
     {
         Debug.Log("Status atual: " + GetAtaqueAtual() +  " Status Base: " +  currentStatus.ataque);
@@ -180,10 +159,22 @@ public class Unidade : MonoBehaviour
 
     public void NovoTurno()
     {
+    
         Debug.Log("Novo turno");
+
+        // Estado base da unidade
         PodeAgir = true;
         PodeMover = true;
+        PodeCurar = true;
+
         Desbloquear();
+
+        
+        AtualizarCondicoes();
+
+        
+        AtualizarModificações();
+
         Estado = EstadoUnidade.Disponivel;
     }
 
@@ -342,6 +333,18 @@ public class Unidade : MonoBehaviour
             }
         }
     }
+    public void AtualizarCondicoes()
+    {
+        foreach (BattleConditions condicao in condicoes)
+        {
+            condicao.InicioDoTurno(this);
+
+            condicao.duração--;
+        }
+
+        condicoes.RemoveAll(c => c.duração <= 0);
+    }
+
 
     public string GetTextoModificadores()
     {
@@ -351,7 +354,21 @@ public class Unidade : MonoBehaviour
 
         foreach (StatusModifier mod in modificadores)
         {
-            texto += mod.nome + ", ";
+            texto += $"Mod:{ mod.nome} turnos:{mod.duracao} -  ";
+        }
+        return texto;
+        
+    }
+
+    public string GetTextoCondições()
+    {
+        if(condicoes.Count == 0) return "nenhum";
+
+        string texto = "";
+
+        foreach (BattleConditions cond in condicoes)
+        {
+            texto += $"Mod:{ cond.nome} turnos:{cond.duração} -  ";
         }
         return texto;
         
