@@ -9,6 +9,8 @@ public abstract class BattleConditions
     public virtual void AoAplicar(Unidade unidade){}
     public virtual void InicioDoTurno(Unidade unidade) { }
     public virtual void AoRemover(Unidade unidade) {}
+    public virtual void AplicarVisual(Unidade unidade){}
+    
 
     
 

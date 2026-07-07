@@ -75,7 +75,7 @@ public enum Condicao
     Sangramento,
     Queimadura,
     Congelamento,
-    Paralisia,
+    Estatica,
     Envenenamento,
     Maldição,
     Colapso

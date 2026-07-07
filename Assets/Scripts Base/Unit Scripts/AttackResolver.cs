@@ -114,8 +114,8 @@ public class AttackResolver : MonoBehaviour
             case Condicao.Congelamento:
                 return new ConditionCongelamento();
 
-            case Condicao.Paralisia:
-                return new ConditionParalisado();
+            case Condicao.Estatica:
+                return new ConditionEstatica();
 
             case Condicao.Maldição:
                 return new ConditionMaldição();

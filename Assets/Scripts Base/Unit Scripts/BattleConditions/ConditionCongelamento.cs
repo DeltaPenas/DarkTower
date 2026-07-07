@@ -6,7 +6,6 @@ public class ConditionCongelamento : BattleConditions
 
     public override void AoAplicar(Unidade unidade) //inicio
     {
-        AplicarVisual();
         Debug.Log("Unidade congelada");
         
         
@@ -30,10 +29,7 @@ public class ConditionCongelamento : BattleConditions
   
 
 
-    public void AplicarVisual()
-    {
-        
-    }
+    
     
 
 }

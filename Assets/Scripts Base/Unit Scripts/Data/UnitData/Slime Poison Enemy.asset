@@ -16,7 +16,7 @@ MonoBehaviour:
   icone: {fileID: 0}
   retrato: {fileID: 0}
   prefab: {fileID: 0}
-  classe: 0
+  classe: 2
   Team: 1
   statusBase:
     vida: 3

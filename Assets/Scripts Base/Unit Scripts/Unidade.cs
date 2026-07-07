@@ -10,6 +10,8 @@ public class Unidade : MonoBehaviour
     [SerializeField] public VidaUnidade vidaUnidade;
     [SerializeField] private SpritePisca spritePisca;
     public UnitData unitData;
+    public HealthBarUi barraDeVida;
+    
 
     [Header("Status")]
     public UnitStatus currentStatus;
@@ -36,6 +38,8 @@ public class Unidade : MonoBehaviour
         spritePisca = GetComponent<SpritePisca>();
         vidaUnidade = GetComponent<VidaUnidade>();
         currentStatus = unitData.statusBase.Clone();
+        barraDeVida.AtivarBarraDeVida();
+
     }
 
     public void Spawn(Tile tile)
@@ -138,11 +142,13 @@ public class Unidade : MonoBehaviour
     public virtual void ReceberDano(float dano)
     {
         vidaUnidade.ReceberDano(dano);
+        barraDeVida.AtualizarVida(vidaUnidade.vidaAtual, vidaUnidade.vidaMaxima);
         spritePisca.Piscar();
     }
     public virtual void ReceberCura(float cura)
     {
         vidaUnidade.Curar(cura);
+        barraDeVida.AtualizarVida(vidaUnidade.vidaAtual, vidaUnidade.vidaMaxima);
     }
     
 

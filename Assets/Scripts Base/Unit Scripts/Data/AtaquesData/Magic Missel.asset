@@ -22,8 +22,8 @@ MonoBehaviour:
   multiplicadorDeDano: 1.2
   finalizaTurno: 1
   custoMana: 6
-  condicao: 2
-  "chanceDeCondi\xE7\xE3o": 1
+  condicao: 6
+  "chanceDeCondi\xE7\xE3o": 0.1
   "duracaoDaCondi\xE7\xE3o": 3
   valorEfeito: 0
   duracao: 0
