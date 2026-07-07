@@ -15,10 +15,20 @@ MonoBehaviour:
   nomeDoAtaque: Fire Ball
   "descri\xE7\xE3o": The ultimate solution to 99% of an adventurer's problems.
   areaAtaque: 2
+  tipoDoAlvo: 0
+  Efeito: 0
   alcance: 4
   area: 1
   multiplicadorDeDano: 1.3
-  custoMana: 10
   finalizaTurno: 1
+  custoMana: 10
+  condicao: 2
+  "chanceDeCondi\xE7\xE3o": 0.25
+  "duracaoDaCondi\xE7\xE3o": 3
+  valorEfeito: 1.3
+  duracao: 0
+  valor: 0
+  tipoModificador: 0
+  atributo: 0
   tipo: 1
   elemento: {fileID: 11400000, guid: 17c46a500e98d424bbf022748eb1e50c, type: 2}

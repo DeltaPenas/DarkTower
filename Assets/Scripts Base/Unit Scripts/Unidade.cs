@@ -312,6 +312,7 @@ public class Unidade : MonoBehaviour
     public void AdicionarCondição(BattleConditions cond)
     {
         condicoes.Add(cond);
+        cond.AoAplicar(this);
     }
 
 
@@ -319,6 +320,12 @@ public class Unidade : MonoBehaviour
     {
         Debug.Log($"A modificação {modificadores[indice]} acabou");
         modificadores.RemoveAt(indice);
+    }
+    private void RemoverCondição(int indice)
+    {
+        Debug.Log($"Condição {condicoes[indice]}a acabou");
+        condicoes[indice].AoRemover(this);
+        condicoes.RemoveAt(indice);
     }
 
     public void AtualizarModificações()
@@ -335,14 +342,16 @@ public class Unidade : MonoBehaviour
     }
     public void AtualizarCondicoes()
     {
-        foreach (BattleConditions condicao in condicoes)
+        for(int i = condicoes.Count -1; i >= 0; i--)
         {
-            condicao.InicioDoTurno(this);
+            condicoes[i].duração--;
+            condicoes[i].InicioDoTurno(this);
 
-            condicao.duração--;
+            if(condicoes[i].duração <= 0)
+            {
+                RemoverCondição(i);
+            }
         }
-
-        condicoes.RemoveAll(c => c.duração <= 0);
     }
 
 

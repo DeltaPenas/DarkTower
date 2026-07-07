@@ -14,10 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackData
   nomeDoAtaque: Slash
   "descri\xE7\xE3o": A cut with your blade
+  areaAtaque: 0
+  tipoDoAlvo: 0
+  Efeito: 0
   alcance: 1
   area: 1
   multiplicadorDeDano: 1
-  custoMana: 0
   finalizaTurno: 1
+  custoMana: 0
+  condicao: 1
+  "chanceDeCondi\xE7\xE3o": 0.3
+  "duracaoDaCondi\xE7\xE3o": 3
+  valorEfeito: 1
+  duracao: 0
+  valor: 0
+  tipoModificador: 0
+  atributo: 0
   tipo: 0
   elemento: {fileID: 11400000, guid: 03df307c3c996f647b11b8a419e0b79c, type: 2}

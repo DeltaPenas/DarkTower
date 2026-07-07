@@ -15,10 +15,20 @@ MonoBehaviour:
   nomeDoAtaque: Black Hole
   "descri\xE7\xE3o": Black hole Sun Won't you come?
   areaAtaque: 2
+  tipoDoAlvo: 0
+  Efeito: 0
   alcance: 20
   area: 20
   multiplicadorDeDano: 10
-  custoMana: 20
   finalizaTurno: 1
+  custoMana: 20
+  condicao: 7
+  "chanceDeCondi\xE7\xE3o": 1
+  "duracaoDaCondi\xE7\xE3o": 99
+  valorEfeito: 5
+  duracao: 0
+  valor: 0
+  tipoModificador: 0
+  atributo: 0
   tipo: 1
   elemento: {fileID: 11400000, guid: 5c94826487142ab47b97d8e9a09392e9, type: 2}

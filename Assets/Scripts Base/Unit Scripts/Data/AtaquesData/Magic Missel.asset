@@ -14,10 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackData
   nomeDoAtaque: Magic Missile
   "descri\xE7\xE3o": Glowing Missile of pure magical power
+  areaAtaque: 0
+  tipoDoAlvo: 1
+  Efeito: 0
   alcance: 8
   area: 1
   multiplicadorDeDano: 1.2
-  custoMana: 6
   finalizaTurno: 1
+  custoMana: 6
+  condicao: 2
+  "chanceDeCondi\xE7\xE3o": 1
+  "duracaoDaCondi\xE7\xE3o": 3
+  valorEfeito: 0
+  duracao: 0
+  valor: 0
+  tipoModificador: 0
+  atributo: 0
   tipo: 1
   elemento: {fileID: 11400000, guid: aeefac3ef2733f44abefe9da4e2bf154, type: 2}

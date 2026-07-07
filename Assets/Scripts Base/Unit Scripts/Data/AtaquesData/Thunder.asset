@@ -20,7 +20,15 @@ MonoBehaviour:
   alcance: 4
   area: 1
   multiplicadorDeDano: 1
-  custoMana: 10
   finalizaTurno: 1
+  custoMana: 10
+  condicao: 4
+  "chanceDeCondi\xE7\xE3o": 0.2
+  "duracaoDaCondi\xE7\xE3o": 1
+  valorEfeito: 1
+  duracao: 0
+  valor: 0
+  tipoModificador: 0
+  atributo: 0
   tipo: 1
   elemento: {fileID: 11400000, guid: 27935c6cc3bbf2d40b6bb9ac83139930, type: 2}

@@ -15,10 +15,20 @@ MonoBehaviour:
   nomeDoAtaque: Sludge Bomb
   "descri\xE7\xE3o": A huge poison bomb
   areaAtaque: 1
+  tipoDoAlvo: 0
+  Efeito: 0
   alcance: 2
   area: 2
   multiplicadorDeDano: 1.5
-  custoMana: 3
   finalizaTurno: 1
+  custoMana: 3
+  condicao: 5
+  "chanceDeCondi\xE7\xE3o": 0.5
+  "duracaoDaCondi\xE7\xE3o": 3
+  valorEfeito: 1.5
+  duracao: 0
+  valor: 0
+  tipoModificador: 0
+  atributo: 0
   tipo: 1
   elemento: {fileID: 11400000, guid: ee6f38aed0e2b3946b32aec572028499, type: 2}

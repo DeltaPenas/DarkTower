@@ -9,17 +9,6 @@ public class ConditionColapso : BattleConditions
     {
         unidade.vidaUnidade.Colapsar(valorEfeito);
     }
-    public override bool PodeCurar(Unidade unidade)
-    {
-        return false;
-    }
-    public override bool RecebeMaisDano(Unidade unidade)
-    {
-        return true;
-    }
-    public override bool Colapsando(Unidade unidade)
-    {
-        return true;
-    }
+   
     
 }
