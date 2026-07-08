@@ -8,9 +8,8 @@ public class Unidade : MonoBehaviour
     [SerializeField] public GameObject indicadorSelecao;
     [SerializeField] public GameObject indicadorDeBloqueio;
     [SerializeField] public VidaUnidade vidaUnidade;
-    [SerializeField] private SpritePisca spritePisca;
+    [SerializeField] public SpritePisca spritePisca;
     public UnitData unitData;
-    public HealthBarUi barraDeVida;
     
 
     [Header("Status")]
@@ -38,7 +37,7 @@ public class Unidade : MonoBehaviour
         spritePisca = GetComponent<SpritePisca>();
         vidaUnidade = GetComponent<VidaUnidade>();
         currentStatus = unitData.statusBase.Clone();
-        barraDeVida.AtivarBarraDeVida();
+        
 
     }
 
@@ -141,14 +140,10 @@ public class Unidade : MonoBehaviour
 
     public virtual void ReceberDano(float dano)
     {
-        vidaUnidade.ReceberDano(dano);
-        barraDeVida.AtualizarVida(vidaUnidade.vidaAtual, vidaUnidade.vidaMaxima);
-        spritePisca.Piscar();
+      
     }
     public virtual void ReceberCura(float cura)
     {
-        vidaUnidade.Curar(cura);
-        barraDeVida.AtualizarVida(vidaUnidade.vidaAtual, vidaUnidade.vidaMaxima);
     }
     
 

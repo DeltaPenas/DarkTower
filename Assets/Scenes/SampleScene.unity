@@ -3512,7 +3512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnerDeUnidades
   todasUnidades: []
   unitPrefab: {fileID: 7511086609440051412, guid: fb6a6f18a54807343ac3797eec266250, type: 3}
-  inimigoPrefab: {fileID: 2412487235172424381, guid: 62c979c4d439ce64687492dd975d5936, type: 3}
+  inimigoPrefab: {fileID: 3296546943767006039, guid: 887fd71e10864244aacc1608c51615d9, type: 3}
   grid: {fileID: 782981026}
 --- !u!114 &782981029
 MonoBehaviour:
