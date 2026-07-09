@@ -146,6 +146,16 @@ public class Unidade : MonoBehaviour
     }
     public virtual void ReceberCura(float cura)
     {
+        
+    }
+
+    public virtual void PerderMana(float dano)
+    {
+      
+    }
+    public virtual void GanharMana(float cura)
+    {
+        
     }
     
 

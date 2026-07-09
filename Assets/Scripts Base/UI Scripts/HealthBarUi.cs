@@ -8,7 +8,7 @@ public class HealthBarUi : MonoBehaviour
     [SerializeField] private Image barraDano;
 
     [SerializeField] private float delay = 0.5f;
-    [SerializeField] private float velocidadeDescida = 1.5f;
+    [SerializeField] private float velocidadeDescida = 3f;
     private Coroutine animacaoDano;
 
 
@@ -44,7 +44,7 @@ public class HealthBarUi : MonoBehaviour
             barraDano.fillAmount = Mathf.Lerp(
             barraDano.fillAmount,
             barraVida.fillAmount,
-            Time.deltaTime * 5f
+            Time.deltaTime * velocidadeDescida
             );
 
             yield return null;

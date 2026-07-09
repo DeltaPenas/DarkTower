@@ -10,6 +10,9 @@ public class UnitFrameUi : MonoBehaviour
 
     [SerializeField] private Image unitIcon;
     [SerializeField] private TextMeshProUGUI nomeDaUnidade;
+    [SerializeField] private TextMeshProUGUI textoVida;
+    [SerializeField] private TextMeshProUGUI textoMana;
+
     [SerializeField] private Image barraVida;
     [SerializeField] private Image barraDano;
 
@@ -18,7 +21,7 @@ public class UnitFrameUi : MonoBehaviour
 
 
     [SerializeField] private float delay = 0.5f;
-    [SerializeField] private float velocidadeDescida = 1.5f;
+    [SerializeField] private float velocidadeDescida = 3f;
     private Coroutine animacaoVida;
     private Coroutine animacaoMana;
 
@@ -32,6 +35,12 @@ public class UnitFrameUi : MonoBehaviour
         
     }
 
+    void Start()
+    {
+        AtualizarTextoMana(unidadeAtual);
+        AtualizarTextoVidas(unidadeAtual);
+    }
+
 
 
     public void AtivarBarras()
@@ -43,13 +52,21 @@ public class UnitFrameUi : MonoBehaviour
         barraMana.fillAmount = 1;
         barraGasto.fillAmount = 1;
     }
+    public void AtualizarTextoVidas(Unidade unidade)
+    {
+       textoVida.text = $"HP {(int)unidade.vidaUnidade.vidaAtual}/{(int)unidade.vidaUnidade.vidaMaxima}"; 
+    }
+    public void AtualizarTextoMana(Unidade unidade)
+    {
+       textoMana.text = $"MP {(int)unidade.recursosUnidade.manaAtual}/{(int)unidade.recursosUnidade.manaMaxima}"; 
+    }
 
 
     public void AtualizarVida(float vidaAtual, float vidaMaxima)
     {
         float porcentagem = vidaMaxima > 0 ? vidaAtual / vidaMaxima : 0;
+        AtualizarTextoVidas(unidadeAtual);
 
-    
         barraVida.fillAmount = porcentagem;
 
         
@@ -62,6 +79,7 @@ public class UnitFrameUi : MonoBehaviour
     public void AtualizarMana(float manaAtual, float manaMaxima)
     {
         float porcentagem = manaMaxima > 0 ? manaAtual / manaMaxima : 0;
+        AtualizarTextoMana(unidadeAtual);
 
         barraMana.fillAmount = porcentagem;
 

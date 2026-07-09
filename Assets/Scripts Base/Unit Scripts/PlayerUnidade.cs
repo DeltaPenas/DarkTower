@@ -16,4 +16,15 @@ public class PlayerUnit : Unidade
         UnitUi.Instance.AtualizarVida();
         
     }
+
+    public override void PerderMana(float dano)
+    {
+        recursosUnidade.PerderMana(dano);
+        UnitUi.Instance.AtualizarMana();
+    }
+    public override void GanharMana(float cura)
+    {
+        recursosUnidade.RecuperarMana(cura);
+        UnitUi.Instance.AtualizarMana();
+    }
 }

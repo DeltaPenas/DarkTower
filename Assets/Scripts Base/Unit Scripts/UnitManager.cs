@@ -223,12 +223,29 @@ public void ClicarTile(Tile tile)
         EntrarModoAtaque();
     }
 
+    private bool ValidarMana(Unidade unidade, AttackData attackData)
+    {
+        if(unidade.recursosUnidade.manaAtual >= attackData.custoMana)
+        {
+            return  true;
+        }
+        else
+        {
+            Debug.Log("Mana Insuficiente");
+            return false;
+        }
+
+    }
+
     private void ExecutarAtaque(Tile tile)
     {
         if (tile.UnidadeAtual == null)
             return;
         
         if(!attackResolver.ValidarAlvo(unidadeSelecionada, tile.UnidadeAtual, ataqueSelecionado)) return;
+
+        if(!ValidarMana(unidadeSelecionada, ataqueSelecionado)) return;
+        unidadeSelecionada.PerderMana(ataqueSelecionado.custoMana);
 
         attackResolver.ExecutarAtaque(
             unidadeSelecionada,
