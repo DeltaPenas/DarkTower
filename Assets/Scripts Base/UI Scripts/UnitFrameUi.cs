@@ -47,7 +47,7 @@ public class UnitFrameUi : MonoBehaviour
 
     public void AtualizarVida(float vidaAtual, float vidaMaxima)
     {
-        float porcentagem = vidaAtual / vidaMaxima;
+        float porcentagem = vidaMaxima > 0 ? vidaAtual / vidaMaxima : 0;
 
     
         barraVida.fillAmount = porcentagem;
@@ -61,7 +61,7 @@ public class UnitFrameUi : MonoBehaviour
 
     public void AtualizarMana(float manaAtual, float manaMaxima)
     {
-        float porcentagem = manaAtual/ manaMaxima;
+        float porcentagem = manaMaxima > 0 ? manaAtual / manaMaxima : 0;
 
         barraMana.fillAmount = porcentagem;
 
@@ -76,16 +76,18 @@ public class UnitFrameUi : MonoBehaviour
         yield return new WaitForSeconds(delay);
         Debug.Log("atualizando barra de vida");
 
-        while (barraDeFundo.fillAmount > barraBase.fillAmount)
+        while (Mathf.Abs(barraDeFundo.fillAmount - barraBase.fillAmount) > 0.001f)
         {
             barraDeFundo.fillAmount = Mathf.Lerp(
             barraDeFundo.fillAmount,
             barraBase.fillAmount,
-            Time.deltaTime * 5f
+            Time.deltaTime * velocidadeDescida
             );
 
             yield return null;
         }
+
+        barraDeFundo.fillAmount = barraBase.fillAmount;
     }
 
 

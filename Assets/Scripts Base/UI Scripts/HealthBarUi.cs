@@ -39,7 +39,7 @@ public class HealthBarUi : MonoBehaviour
         yield return new WaitForSeconds(delay);
         Debug.Log("atualizando barra de vida");
 
-        while (barraDano.fillAmount > barraVida.fillAmount)
+        while (Mathf.Abs(barraDano.fillAmount - barraVida.fillAmount) > 0.001f)
         {
             barraDano.fillAmount = Mathf.Lerp(
             barraDano.fillAmount,
@@ -49,5 +49,7 @@ public class HealthBarUi : MonoBehaviour
 
             yield return null;
         }
+
+        barraDano.fillAmount = barraVida.fillAmount;
     }
 }
