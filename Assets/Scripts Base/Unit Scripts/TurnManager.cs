@@ -5,6 +5,7 @@ using UnityEngine;
 public class TurnManager : MonoBehaviour
 {
     public static TurnManager Instance;
+    public UnitUi unitUi;
     public Turno TurnoAtual;
 
     public List<Unidade> unidadesPlayer = new();
@@ -14,6 +15,12 @@ public class TurnManager : MonoBehaviour
     {
         Instance = this;
         IniciarTurnoDoPlayer();
+        unitUi = FindAnyObjectByType<UnitUi>();
+    }
+
+    public void CarregarUiDeUnidades()
+    {
+      unitUi.Inicializar(unidadesPlayer);  
     }
 
 

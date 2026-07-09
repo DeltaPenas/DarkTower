@@ -8,6 +8,7 @@ public class Unidade : MonoBehaviour
     [SerializeField] public GameObject indicadorSelecao;
     [SerializeField] public GameObject indicadorDeBloqueio;
     [SerializeField] public VidaUnidade vidaUnidade;
+    [SerializeField] public RecursosUnidade recursosUnidade;
     [SerializeField] public SpritePisca spritePisca;
     public UnitData unitData;
     
@@ -36,6 +37,7 @@ public class Unidade : MonoBehaviour
     {
         spritePisca = GetComponent<SpritePisca>();
         vidaUnidade = GetComponent<VidaUnidade>();
+        recursosUnidade = GetComponent<RecursosUnidade>();
         currentStatus = unitData.statusBase.Clone();
         
 

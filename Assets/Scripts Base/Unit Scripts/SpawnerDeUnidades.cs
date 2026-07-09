@@ -25,6 +25,9 @@ public class SpawnerDeUnidades : MonoBehaviour
         Spawn(inimigoPrefab, tile3);
 
 
+        TurnManager.Instance.CarregarUiDeUnidades();
+
+
 
     }
     public void Spawn(Unidade prefab, Tile tile)

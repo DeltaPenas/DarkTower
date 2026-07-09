@@ -8,10 +8,12 @@ public class PlayerUnit : Unidade
         vidaUnidade.ReceberDano(dano);
         
         spritePisca.Piscar();
+        UnitUi.Instance.AtualizarUi();
     }
     public override void ReceberCura(float cura)
     {
         vidaUnidade.Curar(cura);
+        UnitUi.Instance.AtualizarUi();
         
     }
 }

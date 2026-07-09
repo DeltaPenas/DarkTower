@@ -4,8 +4,8 @@ using UnityEngine;
 public class RecursosUnidade: MonoBehaviour
 {
     [SerializeField] private Unidade unidade;
-    [SerializeField] private float manaMaxima;
-    [SerializeField] private float manaAtual;
+    [SerializeField] public float manaMaxima;
+    [SerializeField] public float manaAtual;
 
     void Start()
     {

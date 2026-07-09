@@ -15,7 +15,7 @@ MonoBehaviour:
   nomeDoAtaque: Magic Missile
   "descri\xE7\xE3o": Glowing Missile of pure magical power
   areaAtaque: 0
-  tipoDoAlvo: 1
+  tipoDoAlvo: 0
   Efeito: 0
   alcance: 8
   area: 1
