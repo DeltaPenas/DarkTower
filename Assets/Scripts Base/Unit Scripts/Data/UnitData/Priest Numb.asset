@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Priest Numb
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
   nome: The Priest
-  icone: {fileID: 5153606001443104181, guid: 1846898169434124b9f031a6ff78115b, type: 3}
+  icone: {fileID: -2947257521352470914, guid: 52e3820b59b130343a70e8ce5f5ec238, type: 3}
   retrato: {fileID: 5153606001443104181, guid: 1846898169434124b9f031a6ff78115b, type: 3}
   prefab: {fileID: 8046496189748362834, guid: fb6a6f18a54807343ac3797eec266250, type: 3}
   classe: 1

@@ -32,11 +32,19 @@ public class UnitUi : MonoBehaviour
             frames.Add(frame);
         }
     }
-    public void AtualizarUi()
+    public void AtualizarVida()
     {
         foreach (UnitFrameUi frame in frames)
         {
-            frame.Atualizar();
+            frame.AtualizarVida(frame.unidadeAtual.vidaUnidade.vidaAtual,frame.unidadeAtual.vidaUnidade.vidaMaxima );
         }
+    }
+    public void AtualizarMana()
+    {
+        foreach (UnitFrameUi frame in frames)
+        {
+            frame.AtualizarMana(frame.unidadeAtual.recursosUnidade.manaAtual, frame.unidadeAtual.recursosUnidade.manaMaxima);
+        }
+        
     }
 }

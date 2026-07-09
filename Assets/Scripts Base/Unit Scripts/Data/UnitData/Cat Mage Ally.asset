@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cat Mage Ally
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
   nome: The Mage
-  icone: {fileID: -2497998103283919466, guid: eac77012caa6f1a468f341a6a9bc4d68, type: 3}
+  icone: {fileID: 3709949130059494524, guid: 0f3d1df6c27ccc647a0c93508386a45e, type: 3}
   retrato: {fileID: -2497998103283919466, guid: eac77012caa6f1a468f341a6a9bc4d68, type: 3}
   prefab: {fileID: 4348963875395971345, guid: f2412a9dc410d874d9c5541b4065e349, type: 3}
   classe: 0

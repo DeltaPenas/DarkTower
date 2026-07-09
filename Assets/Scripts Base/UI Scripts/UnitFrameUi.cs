@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class UnitFrameUi : MonoBehaviour
 {
     public Unidade unidadeAtual;
-    private bool estáVivo = true;
 
     [SerializeField] private Image unitIcon;
     [SerializeField] private TextMeshProUGUI nomeDaUnidade;
@@ -20,7 +19,8 @@ public class UnitFrameUi : MonoBehaviour
 
     [SerializeField] private float delay = 0.5f;
     [SerializeField] private float velocidadeDescida = 1.5f;
-    private Coroutine animacaoDano;
+    private Coroutine animacaoVida;
+    private Coroutine animacaoMana;
 
     public void Inicializar(Unidade unidade)
     {
@@ -28,7 +28,8 @@ public class UnitFrameUi : MonoBehaviour
 
         nomeDaUnidade.text = unidade.unitData.nome;
         unitIcon.sprite = unidade.unitData.icone;   
-        Atualizar();
+        AtivarBarras();
+        
     }
 
 
@@ -39,16 +40,10 @@ public class UnitFrameUi : MonoBehaviour
         barraVida.fillAmount = 1;
         barraDano.fillAmount = 1;
         //Barra De Mana
-        barraMana.fillAmount =1;
-        barraGasto.fillAmount =1;
+        barraMana.fillAmount = 1;
+        barraGasto.fillAmount = 1;
     }
 
-
-    public void Atualizar()
-    {
-        AtualizarVida(unidadeAtual.vidaUnidade.vidaAtual, unidadeAtual.vidaUnidade.vidaMaxima);
-        AtualizarMana(unidadeAtual.recursosUnidade.manaAtual, unidadeAtual.recursosUnidade.manaMaxima);
-    }
 
     public void AtualizarVida(float vidaAtual, float vidaMaxima)
     {
@@ -58,10 +53,10 @@ public class UnitFrameUi : MonoBehaviour
         barraVida.fillAmount = porcentagem;
 
         
-        if (animacaoDano != null)
-            StopCoroutine(animacaoDano);
+        if (animacaoVida != null)
+            StopCoroutine(animacaoVida);
 
-        animacaoDano = StartCoroutine(AnimarBarraDano(barraVida, barraDano));
+        animacaoVida = StartCoroutine(AnimarBarraDano(barraVida, barraDano));
     }
 
     public void AtualizarMana(float manaAtual, float manaMaxima)
@@ -70,9 +65,9 @@ public class UnitFrameUi : MonoBehaviour
 
         barraMana.fillAmount = porcentagem;
 
-        if(animacaoDano != null) StopCoroutine(animacaoDano);
+        if(animacaoMana != null) StopCoroutine(animacaoMana);
 
-        animacaoDano = StartCoroutine(AnimarBarraDano(barraMana, barraGasto));
+        animacaoMana = StartCoroutine(AnimarBarraDano(barraMana, barraGasto));
 
     }
 

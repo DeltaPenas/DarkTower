@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dog Guard Ally
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
   nome: The Guard
-  icone: {fileID: -3874676691083721698, guid: b9995071da3a81942b7a51ad8ad65276, type: 3}
+  icone: {fileID: -1510168445028712422, guid: fa0fe19ee561e8841825d8c0a1bc6ac6, type: 3}
   retrato: {fileID: -3874676691083721698, guid: b9995071da3a81942b7a51ad8ad65276, type: 3}
   prefab: {fileID: 8447236105561348024, guid: 8ed68fd7102886f41958c94a90260fae, type: 3}
   classe: 2
