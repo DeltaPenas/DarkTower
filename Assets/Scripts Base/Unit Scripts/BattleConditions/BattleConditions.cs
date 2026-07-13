@@ -1,14 +1,10 @@
-using UnityEngine;
-
-
 public abstract class BattleConditions
 {
-    [Header("infos")]
-    public string nome;
     public int duração;
-    public float valorEfeito;
     public ConditionData data;
 
+    public string Nome => data.nome;
+    public float ValorEfeito => data.valorEfeito;
 
     public BattleConditions(ConditionData data)
     {
@@ -16,14 +12,8 @@ public abstract class BattleConditions
         duração = data.duracaoBase;
     }
 
-
-
-    public virtual void AoAplicar(Unidade unidade){}
-    public virtual void InicioDoTurno(Unidade unidade) { }
+    public virtual void AoAplicar(Unidade unidade) {}
+    public virtual void InicioDoTurno(Unidade unidade) {}
     public virtual void AoRemover(Unidade unidade) {}
-    public virtual void AplicarVisual(Unidade unidade){}
-    
-
-    
-
+    public virtual void AplicarVisual(Unidade unidade) {}
 }

@@ -9,7 +9,7 @@ public class ConditionMaldição : BattleConditions
 
     public override void InicioDoTurno(Unidade unidade)
     {
-        unidade.PerderMana(valorEfeito);
+        unidade.PerderMana(ValorEfeito);
     }
 
     

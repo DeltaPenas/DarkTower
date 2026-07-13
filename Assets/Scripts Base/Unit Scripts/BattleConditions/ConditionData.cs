@@ -15,5 +15,6 @@ public class ConditionData : ScriptableObject
     public string descrição;
 
     public int duracaoBase;
+    public float valorEfeito;
 
 }

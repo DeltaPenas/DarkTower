@@ -20,7 +20,7 @@ public class AttackData: ScriptableObject
     public float custoMana = 0;
 
     [Header("Condições")]
-    public Condicao condicao;
+    public ConditionData condicao;
     public float chanceDeCondição; 
     public int duracaoDaCondição;
     public float valorEfeito;

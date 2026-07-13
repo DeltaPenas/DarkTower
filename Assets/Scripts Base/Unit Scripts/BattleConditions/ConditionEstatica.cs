@@ -21,7 +21,7 @@ public class ConditionEstatica : BattleConditions
 
         if(valor == 1)
         {   
-            unidade.ReceberDano(valorEfeito);
+            unidade.ReceberDano(ValorEfeito);
             unidade.PodeMover = false;
             Debug.Log("Unidade Sofreu Estatica"); 
         }

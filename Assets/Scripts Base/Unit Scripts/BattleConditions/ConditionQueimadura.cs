@@ -9,7 +9,7 @@ public class ConditionQueimadura : BattleConditions
 
     public override void InicioDoTurno(Unidade unidade)
     {
-        unidade.ReceberDano(valorEfeito);
+        unidade.ReceberDano(ValorEfeito);
     }
 
 

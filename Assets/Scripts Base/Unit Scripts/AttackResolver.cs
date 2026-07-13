@@ -90,27 +90,22 @@ public class AttackResolver : MonoBehaviour
 
     }
 
-    private void AplicarCondição(Unidade atacante, Unidade alvo, AttackData ataque)
+   private void AplicarCondição(Unidade atacante, Unidade alvo, AttackData ataque)
     {
-        if (ataque.condicao == Condicao.Nenhuma)
+        if (ataque.condicao == null)
             return;
 
         if (!RolarChance(ataque.chanceDeCondição))
             return;
 
-        BattleConditions cond = CriarCondicao(ataque.condicao);
+        BattleConditions condicao = CriarCondicao(ataque.condicao);
+
+        if (condicao == null)
+            return;
 
         condicao.duração = ataque.duracaoDaCondição;
-        condicao.nome = ataque.condicao.ToString();
-        condicao.valorEfeito = ataque.valorEfeito;
-        
 
-        if (condicao != null)
-        {
-            alvo.AdicionarCondição(condicao);
-            AplicarVisualCondição(alvo, freezePrefab);
-
-        }
+        alvo.AdicionarCondição(condicao);
     }
     private bool RolarChance(float chance)
     {
@@ -119,7 +114,7 @@ public class AttackResolver : MonoBehaviour
 
     private BattleConditions CriarCondicao(ConditionData data)
     {
-        switch (tipo)
+        switch (data.tipo)
         {
             case Condicao.Queimadura:
                 return new ConditionQueimadura(data);
