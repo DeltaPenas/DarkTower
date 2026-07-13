@@ -6,11 +6,7 @@ public class VidaUnidade : MonoBehaviour
     [SerializeField] private Unidade unidade;
     [SerializeField] public float vidaMaxima;
     [SerializeField] public float vidaAtual;
-    public event Action<float> OnDamage;
-    public event Action OnDeath;
-    public event Action<float> OnHeal;
-
-
+    
     void Start()
     {
         unidade = GetComponent<Unidade>();

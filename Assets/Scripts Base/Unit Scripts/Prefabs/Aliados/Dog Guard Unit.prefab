@@ -193,7 +193,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 101
+  m_SortingOrder: 999
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: e5f07c29fa8ea544a95bed49ccb9fe4f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.36862746}
@@ -318,6 +318,7 @@ MonoBehaviour:
   indicadorSelecao: {fileID: 1450012395223172863}
   indicadorDeBloqueio: {fileID: 4326754892116245145}
   vidaUnidade: {fileID: 0}
+  recursosUnidade: {fileID: 0}
   spritePisca: {fileID: 0}
   unitData: {fileID: 11400000, guid: 6d7f0a99d6b2cb84fac8248d82daee08, type: 2}
   currentStatus:

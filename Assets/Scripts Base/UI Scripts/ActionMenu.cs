@@ -90,9 +90,13 @@ public class ActionMenu : MonoBehaviour
     }
     public void MostrarMenuDeAtaques()
     {
+        if (unitManager.unidadeSelecionada == null) return;
         painelDeButõesDeAtaques.SetActive(true);
         painelDeMovimento.SetActive(false);
         var ataques = unitManager.unidadeSelecionada.Ataques; //armazena os ataques da unidade selecionada
+
+        Debug.Log(unitManager);
+        Debug.Log(unitManager.unidadeSelecionada);
 
         for(int i =0; i < botoesAtaque.Length; i++)
         {

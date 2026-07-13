@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class ConditionCongelamento : BattleConditions
 {
+    public ConditionCongelamento(ConditionData data) : base(data)
+    {
+    }
 
     public override void AoAplicar(Unidade unidade) //inicio
     {

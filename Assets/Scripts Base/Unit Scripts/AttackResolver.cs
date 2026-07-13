@@ -1,9 +1,18 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
 public class AttackResolver : MonoBehaviour
 {
+    [Header("Prefab das condições")]
+    public GameObject bleedPrefab;
+    public GameObject firePrefab;
+    public GameObject freezePrefab;
+    public GameObject cursePrefab;
+    public GameObject staticPrefab;
+    public GameObject colapsePrefab;
+    public GameObject poisonPrefab;
 
     public void ExecutarAtaque(Unidade atacante, AttackData ataque, Tile tileAlvo)
     {
@@ -43,6 +52,11 @@ public class AttackResolver : MonoBehaviour
     private void AplicarCura(Unidade healer, Unidade alvo, AttackData attackData)
     {
         float cura = DamageCalculator.CalcularCura(healer, attackData);
+        if (!alvo.PodeCurar)
+        {
+            Debug.Log($"{alvo.unitData.nome} não pode ser");
+            return;
+        } 
 
         alvo.ReceberCura(cura);
     }
@@ -84,7 +98,7 @@ public class AttackResolver : MonoBehaviour
         if (!RolarChance(ataque.chanceDeCondição))
             return;
 
-        BattleConditions condicao = CriarCondicao(ataque.condicao);
+        BattleConditions cond = CriarCondicao(ataque.condicao);
 
         condicao.duração = ataque.duracaoDaCondição;
         condicao.nome = ataque.condicao.ToString();
@@ -94,6 +108,8 @@ public class AttackResolver : MonoBehaviour
         if (condicao != null)
         {
             alvo.AdicionarCondição(condicao);
+            AplicarVisualCondição(alvo, freezePrefab);
+
         }
     }
     private bool RolarChance(float chance)
@@ -101,33 +117,37 @@ public class AttackResolver : MonoBehaviour
         return Random.value <= chance;
     }
 
-    private BattleConditions CriarCondicao(Condicao tipo)
+    private BattleConditions CriarCondicao(ConditionData data)
     {
         switch (tipo)
         {
             case Condicao.Queimadura:
-                return new ConditionQueimadura();
+                return new ConditionQueimadura(data);
 
             case Condicao.Sangramento:
-                return new ConditionSangramento();
+                return new ConditionSangramento(data);
 
             case Condicao.Congelamento:
-                return new ConditionCongelamento();
+                return new ConditionCongelamento(data);
 
             case Condicao.Estatica:
-                return new ConditionEstatica();
+                return new ConditionEstatica(data);
 
             case Condicao.Maldição:
-                return new ConditionMaldição();
+                return new ConditionMaldição(data);
             case Condicao.Envenenamento:
-                return new ConditionEnvenenamento();
+                return new ConditionEnvenenamento(data);
 
             case Condicao.Colapso:
-                return new ConditionColapso();
+                return new ConditionColapso(data);
 
             default:
                 return null;
         }
+    }
+    public void AplicarVisualCondição(Unidade unidade, GameObject obj)
+    {
+        GameObject efeito = Instantiate(obj, unidade.transform);
     }
 
 

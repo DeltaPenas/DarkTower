@@ -72,12 +72,12 @@ public enum EfeitoAtaque
 public enum Condicao
 {
     Nenhuma,
-    Sangramento,
-    Queimadura,
-    Congelamento,
-    Estatica,
-    Envenenamento,
-    Maldição,
-    Colapso
+    Sangramento, //sprite feito
+    Queimadura, //sprite feito
+    Congelamento, //sprite feito
+    Estatica, //sprite feito
+    Envenenamento, //sprite feito
+    Maldição, //sprite feito
+    Colapso //sprite feito
 
 }

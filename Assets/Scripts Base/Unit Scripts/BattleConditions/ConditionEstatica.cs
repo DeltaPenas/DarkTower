@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class ConditionEstatica : BattleConditions
 {
+    public ConditionEstatica(ConditionData data) : base(data)
+    {
+    }
 
     public override void AoAplicar(Unidade unidade) //inicio
     {

@@ -320,10 +320,27 @@ public class Unidade : MonoBehaviour
 
     public void AdicionarModificação(StatusModifier mod)
     {
+        StatusModifier existente = modificadores.Find(c => c.nome == mod.nome);
+        if(existente != null)
+        {
+            existente.duracao += mod.duracao;
+            return;
+        }
+
+
         modificadores.Add(mod);
     }
+
     public void AdicionarCondição(BattleConditions cond)
     {
+        BattleConditions existente = condicoes.Find(c => c.nome == cond.nome);
+
+        if(existente != null)
+        {
+            existente.duração += cond.duração;
+            return;
+        }
+
         condicoes.Add(cond);
         cond.AoAplicar(this);
     }

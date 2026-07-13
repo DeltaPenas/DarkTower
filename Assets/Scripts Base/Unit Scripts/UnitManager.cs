@@ -15,7 +15,10 @@ public class UnitManager : MonoBehaviour
     public enum ModoSelecao{ Movimento, Ataque, Nenhum}
     public ModoSelecao ModoAtual { get; private set; } = ModoSelecao.Nenhum;
     private List<Tile> tilesDestacadas = new();
+    public List<GameObject> prefabEfeitos;
     public AttackData ataqueTeste;
+
+    
 
     void Start()
     {
@@ -88,6 +91,7 @@ public class UnitManager : MonoBehaviour
         }
 
         FecharInformaçãoes();
+        ActionMenu.Instance.EsconderTudo();
 
         LimparHighLight();
     }
