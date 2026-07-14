@@ -15,15 +15,15 @@ MonoBehaviour:
   nomeDoAtaque: Magic Missile
   "descri\xE7\xE3o": Glowing Missile of pure magical power
   areaAtaque: 0
-  tipoDoAlvo: 0
+  tipoDoAlvo: 2
   Efeito: 0
   alcance: 8
   area: 1
   multiplicadorDeDano: 1.2
   finalizaTurno: 1
   custoMana: 6
-  condicao: 6
-  "chanceDeCondi\xE7\xE3o": 0.1
+  condicao: {fileID: 0}
+  "chanceDeCondi\xE7\xE3o": 1
   "duracaoDaCondi\xE7\xE3o": 3
   valorEfeito: 0
   duracao: 0

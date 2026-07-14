@@ -11,6 +11,7 @@ public class Unidade : MonoBehaviour
     [SerializeField] public RecursosUnidade recursosUnidade;
     [SerializeField] public SpritePisca spritePisca;
     public UnitData unitData;
+    private ConditionVisual conditionVisual;
     
 
     [Header("Status")]
@@ -38,6 +39,7 @@ public class Unidade : MonoBehaviour
         spritePisca = GetComponent<SpritePisca>();
         vidaUnidade = GetComponent<VidaUnidade>();
         recursosUnidade = GetComponent<RecursosUnidade>();
+        conditionVisual = GetComponent<ConditionVisual>();
         currentStatus = unitData.statusBase.Clone();
         
 
@@ -333,7 +335,7 @@ public class Unidade : MonoBehaviour
 
     public void AdicionarCondição(BattleConditions cond)
     {
-        BattleConditions existente = condicoes.Find(c => c.nome == cond.nome);
+        BattleConditions existente = condicoes.Find(c => c.data.nome == cond.data.nome);
 
         if(existente != null)
         {
@@ -343,6 +345,7 @@ public class Unidade : MonoBehaviour
 
         condicoes.Add(cond);
         cond.AoAplicar(this);
+        conditionVisual.AdicionarVisual(cond.data);
     }
 
 
@@ -355,6 +358,8 @@ public class Unidade : MonoBehaviour
     {
         Debug.Log($"Condição {condicoes[indice]}a acabou");
         condicoes[indice].AoRemover(this);
+        conditionVisual.RemoverVisual(condicoes[indice].data);
+
         condicoes.RemoveAt(indice);
     }
 
@@ -407,7 +412,7 @@ public class Unidade : MonoBehaviour
 
         foreach (BattleConditions cond in condicoes)
         {
-            texto += $"Mod:{ cond.nome} turnos:{cond.duração} -  ";
+            texto += $"Mod:{ cond.data.nome} turnos:{cond.duração} -  ";
         }
         return texto;
         

@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 2542116863732223925}
   - component: {fileID: 8879383254012508781}
   - component: {fileID: 6874281538152943965}
+  - component: {fileID: -5282490033252322473}
   m_Layer: 0
   m_Name: Priest Lamb-Sheet_0
   m_TagString: Untagged
@@ -319,6 +320,7 @@ MonoBehaviour:
   indicadorSelecao: {fileID: 1976083492109455525}
   indicadorDeBloqueio: {fileID: 5743322417547279934}
   vidaUnidade: {fileID: 0}
+  recursosUnidade: {fileID: 0}
   spritePisca: {fileID: 0}
   unitData: {fileID: 11400000, guid: c61976bc50757974da028942ba8fcbe5, type: 2}
   currentStatus:
@@ -444,3 +446,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-5282490033252322473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8046496189748362834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6709d8adc77a44c449b4165cb0ffdd1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ConditionVisual

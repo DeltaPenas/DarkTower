@@ -220,6 +220,7 @@ GameObject:
   - component: {fileID: -1511151506417452228}
   - component: {fileID: 9105202564799132711}
   - component: {fileID: 2961671173193570649}
+  - component: {fileID: -8047851360881891217}
   m_Layer: 0
   m_Name: Dog Guard Unit
   m_TagString: Untagged
@@ -431,3 +432,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-8047851360881891217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8447236105561348024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6709d8adc77a44c449b4165cb0ffdd1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ConditionVisual

@@ -183,6 +183,7 @@ GameObject:
   - component: {fileID: 2096017655352095694}
   - component: {fileID: 5249161083327106083}
   - component: {fileID: 386250001142158386}
+  - component: {fileID: 5947484079661473898}
   m_Layer: 0
   m_Name: PoisonSlime
   m_TagString: Untagged
@@ -304,9 +305,9 @@ MonoBehaviour:
   indicadorSelecao: {fileID: 3038891854320320084}
   indicadorDeBloqueio: {fileID: 9699652477137818}
   vidaUnidade: {fileID: 5249161083327106083}
+  recursosUnidade: {fileID: 0}
   spritePisca: {fileID: 2096017655352095694}
   unitData: {fileID: 11400000, guid: f9183ab87ff823645af9301d85d7fe64, type: 2}
-  barraDeVida: {fileID: 2829428231926561072}
   currentStatus:
     vida: 0
     ataque: 0
@@ -319,6 +320,7 @@ MonoBehaviour:
   PodeAgir: 1
   PodeCurar: 1
   velocidadeMovimento: 4
+  barraDeVida: {fileID: 2829428231926561072}
 --- !u!114 &2075345542507173011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,6 +424,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.7347848, y: 0.6042173}
   m_EdgeRadius: 0
+--- !u!114 &5947484079661473898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2178867488166790750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6709d8adc77a44c449b4165cb0ffdd1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ConditionVisual
 --- !u!1 &3038891854320320084
 GameObject:
   m_ObjectHideFlags: 0
