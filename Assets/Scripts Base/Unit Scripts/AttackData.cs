@@ -11,6 +11,7 @@ public class AttackData: ScriptableObject
     public AreaAtaque areaAtaque;
     public TipoAlvo tipoDoAlvo;
     public EfeitoAtaque Efeito;
+    public GameObject prefabVisual;
     
     [Header("Combate")]
     public int alcance;
@@ -45,7 +46,8 @@ public enum TipoVisual
 {
     fisico,
     projetil,
-    area
+    area,
+    direto,
 }
 
 public enum AreaAtaque

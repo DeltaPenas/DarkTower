@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class UnitManager : MonoBehaviour
    
     [SerializeField] private GridManager gridManager;
     [SerializeField] private AttackResolver attackResolver;
+    [SerializeField] private AttackExecutor attackExecutor;
     public enum ModoSelecao{ Movimento, Ataque, Nenhum}
     public ModoSelecao ModoAtual { get; private set; } = ModoSelecao.Nenhum;
     private List<Tile> tilesDestacadas = new();
@@ -22,6 +24,7 @@ public class UnitManager : MonoBehaviour
 
     void Start()
     {
+        attackExecutor = GetComponent<AttackExecutor>();
         attackResolver = GetComponent<AttackResolver>();
         actionMenuUI = FindAnyObjectByType<ActionMenu>();
     }
@@ -158,7 +161,7 @@ public void ClicarTile(Tile tile)
             break;
 
         case ModoSelecao.Ataque:
-            ExecutarAtaque(tile);
+            StartCoroutine(ExecutarAtaque(tile));
             break;
     }
 }
@@ -241,20 +244,16 @@ public void ClicarTile(Tile tile)
 
     }
 
-    private void ExecutarAtaque(Tile tile)
+    private IEnumerator ExecutarAtaque(Tile tile)
     {
-        if (tile.UnidadeAtual == null)
-            return;
+        if (tile.UnidadeAtual == null) yield return null;
         
-        if(!attackResolver.ValidarAlvo(unidadeSelecionada, tile.UnidadeAtual, ataqueSelecionado)) return;
+        if(!attackResolver.ValidarAlvo(unidadeSelecionada, tile.UnidadeAtual, ataqueSelecionado)) yield return null;
 
-        if(!ValidarMana(unidadeSelecionada, ataqueSelecionado)) return;
+        if(!ValidarMana(unidadeSelecionada, ataqueSelecionado)) yield return null;
         unidadeSelecionada.PerderMana(ataqueSelecionado.custoMana);
 
-        attackResolver.ExecutarAtaque(
-            unidadeSelecionada,
-            ataqueSelecionado,
-            tile);
+        yield return attackExecutor.Executar(unidadeSelecionada, ataqueSelecionado, tile);
 
         unidadeSelecionada.SetEstado(EstadoUnidade.FinalizouTurno);
 
