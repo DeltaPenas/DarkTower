@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 784d85716085d9a42bf22d35b9ce883c, type: 3}
   m_Name: Curse
   m_EditorClassIdentifier: Assembly-CSharp::ConditionData
-  nome: 
-  tipo: 0
+  nome: Curse
+  tipo: 6
   duracaoBase: 0
   valorEfeito: 0
-  prefabVisual: {fileID: 0}
+  prefabVisual: {fileID: 3757974448578610514, guid: a33d4bc3a84a691419550ae7b7f26214, type: 3}

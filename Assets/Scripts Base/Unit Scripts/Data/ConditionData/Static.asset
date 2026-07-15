@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 784d85716085d9a42bf22d35b9ce883c, type: 3}
   m_Name: Static
   m_EditorClassIdentifier: Assembly-CSharp::ConditionData
-  nome: 
-  tipo: 0
+  nome: Static
+  tipo: 4
   duracaoBase: 0
   valorEfeito: 0
-  prefabVisual: {fileID: 0}
+  prefabVisual: {fileID: 4157748649173884583, guid: c6b3da4f04a46fc44902f0944efa98aa, type: 3}

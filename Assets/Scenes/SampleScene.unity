@@ -3659,8 +3659,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnerDeUnidades
   todasUnidades: []
-  unitPrefab: {fileID: 7511086609440051412, guid: fb6a6f18a54807343ac3797eec266250, type: 3}
   inimigoPrefab: {fileID: 3296546943767006039, guid: 887fd71e10864244aacc1608c51615d9, type: 3}
+  unidadeMago: {fileID: 4292570814440950878, guid: f2412a9dc410d874d9c5541b4065e349, type: 3}
+  unidadeGuarda: {fileID: 1967543027099041983, guid: 8ed68fd7102886f41958c94a90260fae, type: 3}
+  unidadeClerigo: {fileID: 7511086609440051412, guid: fb6a6f18a54807343ac3797eec266250, type: 3}
   grid: {fileID: 782981026}
 --- !u!114 &782981029
 MonoBehaviour:

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 784d85716085d9a42bf22d35b9ce883c, type: 3}
   m_Name: Poison
   m_EditorClassIdentifier: Assembly-CSharp::ConditionData
-  nome: 
-  tipo: 0
+  nome: Poison
+  tipo: 5
   duracaoBase: 0
   valorEfeito: 0
-  prefabVisual: {fileID: 0}
+  prefabVisual: {fileID: 5702172525230609762, guid: 17530060ae13cf945a164cc6a1bc3a61, type: 3}

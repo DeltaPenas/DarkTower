@@ -35,17 +35,17 @@ public class AttackData: ScriptableObject
 
 
     [Header("Tipos")]
-    public Tipo tipo;
+    public TipoVisual tipoVisual;
     public ElementData elemento;
     
 }
 
 
-public enum Tipo
+public enum TipoVisual
 {
     fisico,
-    magico,
-    suporte
+    projetil,
+    area
 }
 
 public enum AreaAtaque
@@ -72,12 +72,12 @@ public enum EfeitoAtaque
 public enum Condicao
 {
     Nenhuma,
-    Sangramento, //sprite feito
-    Queimadura, //sprite feito
-    Congelamento, //sprite feito
-    Estatica, //sprite feito
-    Envenenamento, //sprite feito
-    Maldição, //sprite feito
-    Colapso //sprite feito
+    Sangramento, 
+    Queimadura, 
+    Congelamento,
+    Estatica, 
+    Envenenamento, 
+    Maldição, 
+    Colapso,
 
 }

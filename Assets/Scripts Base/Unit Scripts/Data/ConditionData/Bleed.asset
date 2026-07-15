@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 784d85716085d9a42bf22d35b9ce883c, type: 3}
   m_Name: Bleed
   m_EditorClassIdentifier: Assembly-CSharp::ConditionData
-  nome: 
-  tipo: 0
+  nome: Bleed
+  tipo: 1
   duracaoBase: 0
   valorEfeito: 0
-  prefabVisual: {fileID: 0}
+  prefabVisual: {fileID: 4344642416863804175, guid: a14ea360be01d4e40a0f56533481a175, type: 3}

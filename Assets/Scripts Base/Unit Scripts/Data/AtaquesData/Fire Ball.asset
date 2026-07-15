@@ -22,7 +22,7 @@ MonoBehaviour:
   multiplicadorDeDano: 1.3
   finalizaTurno: 1
   custoMana: 10
-  condicao: 2
+  condicao: {fileID: 11400000, guid: 763fd5c28c464a4468f93aabd58d0e5b, type: 2}
   "chanceDeCondi\xE7\xE3o": 0.25
   "duracaoDaCondi\xE7\xE3o": 3
   valorEfeito: 1.3
