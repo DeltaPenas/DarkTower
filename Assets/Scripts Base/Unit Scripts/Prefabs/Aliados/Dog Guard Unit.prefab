@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 9105202564799132711}
   - component: {fileID: 2961671173193570649}
   - component: {fileID: -8047851360881891217}
+  - component: {fileID: -5883116094387814746}
   m_Layer: 0
   m_Name: Dog Guard Unit
   m_TagString: Untagged
@@ -318,9 +319,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerUnit
   indicadorSelecao: {fileID: 1450012395223172863}
   indicadorDeBloqueio: {fileID: 4326754892116245145}
-  vidaUnidade: {fileID: 0}
-  recursosUnidade: {fileID: 0}
-  spritePisca: {fileID: 0}
+  vidaUnidade: {fileID: 8797467871791797346}
+  recursosUnidade: {fileID: -1511151506417452228}
+  spritePisca: {fileID: -5883116094387814746}
   unitData: {fileID: 11400000, guid: 6d7f0a99d6b2cb84fac8248d82daee08, type: 2}
   currentStatus:
     vida: 0
@@ -444,3 +445,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6709d8adc77a44c449b4165cb0ffdd1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ConditionVisual
+--- !u!114 &-5883116094387814746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8447236105561348024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 133ce1db0a2432f4e937c7458701ecb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpritePisca
+  velocidadeDecaimento: 5

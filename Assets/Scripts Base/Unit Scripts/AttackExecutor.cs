@@ -8,9 +8,21 @@ public class AttackExecutor : MonoBehaviour
 
     public IEnumerator Executar(Unidade atacante, AttackData ataque, Tile tileAlvo)
     {
+        if(!attackResolver.ValidarAlvo(atacante, tileAlvo.UnidadeAtual, ataque))  yield break;
+
+        if (atacante.Estado == EstadoUnidade.FinalizouTurno)
+        {
+            Debug.Log("essa unidade ja atacou");
+            yield break;
+        }
+
+        atacante.SetEstado(EstadoUnidade.FinalizouTurno);
+        ActionMenu.Instance.EsconderTudo();
+        
         yield return ExecutarVisual(atacante, ataque, tileAlvo);
 
         attackResolver.ExecutarAtaque(atacante, ataque, tileAlvo);
+        
         
 
     }
@@ -31,6 +43,10 @@ public class AttackExecutor : MonoBehaviour
             yield return ExecutarArea(atacante, ataque, tileAlvo);
             break;
 
+            case TipoVisual.direto:
+            yield return ExecutarDireto(atacante, ataque, tileAlvo);
+            break;
+
         }
     }
 
@@ -39,6 +55,9 @@ public class AttackExecutor : MonoBehaviour
     public IEnumerator ExecutarProjetil(Unidade atacante, AttackData ataque, Tile tileAlvo)
     {
         GameObject projetil = Instantiate(ataque.prefabVisual, atacante.transform.position, quaternion.identity);
+        Projetil proj = projetil.GetComponent<Projetil>();
+
+        proj.AoInicializar(tileAlvo.transform.position);
 
         Vector3 destino = tileAlvo.transform.position;
 
@@ -48,14 +67,14 @@ public class AttackExecutor : MonoBehaviour
             (
                 projetil.transform.position,
                 destino,
-                3 * Time.deltaTime
+                ataque.velocidadeVisual * Time.deltaTime
 
             );
             yield return null;
         }
 
 
-        Destroy(projetil);
+        proj.AoConcluir();
     }
 
     public IEnumerator ExecutarMelee(Unidade atacante, AttackData ataque, Tile tileAlvo)
@@ -63,6 +82,15 @@ public class AttackExecutor : MonoBehaviour
     
         yield return null;
         Debug.Log("golpe foi melee");
+    }
+    public IEnumerator ExecutarDireto(Unidade atacante, AttackData ataque, Tile tileAlvo)
+    {
+        GameObject efeitoVisual = Instantiate(ataque.prefabVisual, tileAlvo.transform.position, quaternion.identity);
+
+        yield return new WaitForSeconds(0.1f); 
+
+       
+        
     }
 
     public IEnumerator ExecutarArea(Unidade atacante, AttackData ataque, Tile tileAlvo)

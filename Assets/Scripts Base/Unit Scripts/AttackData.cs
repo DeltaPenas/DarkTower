@@ -19,6 +19,7 @@ public class AttackData: ScriptableObject
     public float multiplicadorDeDano = 1f; //Uso tanto pra multiplicar o dano quanto pra aplicar buffs/debuffs, acho que tenho q mudar esse nome
     public bool finalizaTurno = true;
     public float custoMana = 0;
+    public float velocidadeVisual;
 
     [Header("Condições")]
     public ConditionData condicao;

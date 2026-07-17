@@ -15,14 +15,16 @@ MonoBehaviour:
   nomeDoAtaque: Curse
   "descri\xE7\xE3o": 'A curse from de sky, reduces the target''s strength. '
   areaAtaque: 0
-  tipoDoAlvo: 0
+  tipoDoAlvo: 2
   Efeito: 3
+  prefabVisual: {fileID: 8978641863940099968, guid: 0c05ab68f4316ac459e134299a2532b4, type: 3}
   alcance: 10
   area: 1
   multiplicadorDeDano: 1
   finalizaTurno: 1
   custoMana: 9
-  condicao: {fileID: 11400000, guid: e74a0366b00929748ae80dd403e903fc, type: 2}
+  velocidadeVisual: 2
+  condicao: {fileID: 11400000, guid: 06b2fdd4979e71b4ab627a89b1f54502, type: 2}
   "chanceDeCondi\xE7\xE3o": 0
   "duracaoDaCondi\xE7\xE3o": 0
   valorEfeito: 0
@@ -30,5 +32,5 @@ MonoBehaviour:
   valor: -1.5
   tipoModificador: 1
   atributo: 1
-  tipo: 2
-  elemento: {fileID: 11400000, guid: 5c94826487142ab47b97d8e9a09392e9, type: 2}
+  tipoVisual: 3
+  elemento: {fileID: 11400000, guid: aeefac3ef2733f44abefe9da4e2bf154, type: 2}

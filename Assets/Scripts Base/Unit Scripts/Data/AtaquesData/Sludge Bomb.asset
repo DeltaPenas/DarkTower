@@ -17,11 +17,13 @@ MonoBehaviour:
   areaAtaque: 1
   tipoDoAlvo: 0
   Efeito: 0
+  prefabVisual: {fileID: 7927696714040159246, guid: a803b0313207f3147a236781fde19a7c, type: 3}
   alcance: 2
   area: 2
   multiplicadorDeDano: 1.5
   finalizaTurno: 1
   custoMana: 3
+  velocidadeVisual: 0
   condicao: {fileID: 11400000, guid: d4802ce276489b7418f4e5b5b69f7c89, type: 2}
   "chanceDeCondi\xE7\xE3o": 0.5
   "duracaoDaCondi\xE7\xE3o": 3
@@ -30,5 +32,5 @@ MonoBehaviour:
   valor: 0
   tipoModificador: 0
   atributo: 0
-  tipo: 1
+  tipoVisual: 1
   elemento: {fileID: 11400000, guid: ee6f38aed0e2b3946b32aec572028499, type: 2}

@@ -33,6 +33,7 @@ public class VidaUnidade : MonoBehaviour
     {
         vidaMaxima -=dano;
         vidaAtual -=dano;
+        Debug.Log($"colapsou, dano: {dano}");
 
         if (vidaAtual <= 0 || vidaMaxima <= 0)
         {

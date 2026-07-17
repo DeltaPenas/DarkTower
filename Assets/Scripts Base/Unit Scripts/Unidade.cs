@@ -30,6 +30,7 @@ public class Unidade : MonoBehaviour
     public bool PodeMover = true;
     public bool PodeAgir = true;
     public bool PodeCurar = true;
+    public bool jaAtacou = false;
     [SerializeField] private float velocidadeMovimento = 4f;
     public Vector2Int GridPosition => TileAtual.GridPosition;
 

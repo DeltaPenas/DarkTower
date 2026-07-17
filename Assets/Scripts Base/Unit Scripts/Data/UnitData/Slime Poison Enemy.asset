@@ -19,7 +19,7 @@ MonoBehaviour:
   classe: 2
   Team: 1
   statusBase:
-    vida: 3
+    vida: 5
     ataque: 1.5
     movimento: 2
     mana: 25

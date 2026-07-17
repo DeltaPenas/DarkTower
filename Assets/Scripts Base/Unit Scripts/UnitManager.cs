@@ -129,6 +129,11 @@ public class UnitManager : MonoBehaviour
 
         foreach (Tile tile in tilesDestacadas)
         {
+            if (tile.UnidadeAtual == null)
+                continue;
+
+            if (!attackResolver.ValidarAlvo(unidadeSelecionada, tile.UnidadeAtual, ataqueSelecionado)) continue;
+
             tile.SetVisual(TileVisual.Ataque);
         }
     }
@@ -254,8 +259,6 @@ public void ClicarTile(Tile tile)
         unidadeSelecionada.PerderMana(ataqueSelecionado.custoMana);
 
         yield return attackExecutor.Executar(unidadeSelecionada, ataqueSelecionado, tile);
-
-        unidadeSelecionada.SetEstado(EstadoUnidade.FinalizouTurno);
 
         LimparHighLight();
 

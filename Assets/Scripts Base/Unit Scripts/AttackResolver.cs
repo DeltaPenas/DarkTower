@@ -34,6 +34,7 @@ public class AttackResolver : MonoBehaviour
                     break;
                 case EfeitoAtaque.Debuff:
                     AplicarDebuff(atacante, alvo, ataque);
+                    AplicarCondição(atacante, alvo, ataque);
                     break;
             }
             
