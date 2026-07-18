@@ -79,9 +79,14 @@ public class AttackExecutor : MonoBehaviour
 
     public IEnumerator ExecutarMelee(Unidade atacante, AttackData ataque, Tile tileAlvo)
     {
-    
-        yield return null;
-        Debug.Log("golpe foi melee");
+        Vector3 posInicial = atacante.transform.position;
+        Vector3 posFinal = tileAlvo.transform.position;
+        Vector3 posCentro = (posInicial + posFinal)/2;
+
+        GameObject efeitoVisual = Instantiate(ataque.prefabVisual, posCentro, quaternion.identity);  
+
+        yield return new WaitForSeconds(0.1f); 
+        
     }
     public IEnumerator ExecutarDireto(Unidade atacante, AttackData ataque, Tile tileAlvo)
     {

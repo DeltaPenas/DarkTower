@@ -13,6 +13,8 @@ public class InputManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            
+
             Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero);
@@ -24,6 +26,8 @@ public class InputManager : MonoBehaviour
 
             if (unidade != null)
             {
+               
+
                 if (unitManager.ModoAtual == UnitManager.ModoSelecao.Ataque)
                 {
                     unitManager.ClicarTile(unidade.TileAtual);

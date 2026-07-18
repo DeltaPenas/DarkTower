@@ -19,6 +19,7 @@ public class UnitManager : MonoBehaviour
     private List<Tile> tilesDestacadas = new();
     public List<GameObject> prefabEfeitos;
     public AttackData ataqueTeste;
+    public bool unidadeEmMovimento;
 
     
 
@@ -42,12 +43,16 @@ public class UnitManager : MonoBehaviour
         unidadeEmFoco = null;
         actionMenuUI.FecharInfoButton();
     }
+    
+    
 
 
     public void Selecionar(Unidade unidade)
     {
         if (ModoAtual == ModoSelecao.Ataque) return;
         if (ModoAtual == ModoSelecao.Movimento) return;
+        if(unidadeEmMovimento) return;
+        
 
         if (unidadeSelecionada == unidade)
         {
@@ -155,6 +160,7 @@ public void ClicarTile(Tile tile)
 {
     if (unidadeSelecionada == null)
         return;
+    
 
     if (!tile.EstaDestacado)
         return;

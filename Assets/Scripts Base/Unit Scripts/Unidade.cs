@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
 public class Unidade : MonoBehaviour
 {
     [Header("Referencias")]
     [SerializeField] public GameObject indicadorSelecao;
+    [SerializeField] public UnitManager unitManager;
     [SerializeField] public GameObject indicadorDeBloqueio;
     [SerializeField] public VidaUnidade vidaUnidade;
     [SerializeField] public RecursosUnidade recursosUnidade;
@@ -37,6 +39,7 @@ public class Unidade : MonoBehaviour
 
     public void Awake()
     {
+        unitManager = FindAnyObjectByType<UnitManager>();
         spritePisca = GetComponent<SpritePisca>();
         vidaUnidade = GetComponent<VidaUnidade>();
         recursosUnidade = GetComponent<RecursosUnidade>();
@@ -86,6 +89,7 @@ public class Unidade : MonoBehaviour
     public IEnumerator MoverCoroutine(List<Tile> caminho)
     {
         EstaMovendo = true;
+        unitManager.unidadeEmMovimento = true;
         ActionMenu.Instance.EsconderTudo();
         
 
@@ -99,6 +103,7 @@ public class Unidade : MonoBehaviour
             }
 
         EstaMovendo = false;
+        unitManager.unidadeEmMovimento = false;
         if(unitData.Team == Team.Player)
         {
             ActionMenu.Instance.FecharPainelDeMovimento();

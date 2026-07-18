@@ -12,25 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c7bb9a56fa3265429a23c2ef0f6cfa5, type: 3}
   m_Name: Piercing Blow
   m_EditorClassIdentifier: Assembly-CSharp::AttackData
-  nomeDoAtaque: 
-  "descri\xE7\xE3o": 
+  nomeDoAtaque: Piercing Blow
+  "descri\xE7\xE3o": A precise piercing attack that deals low damage but has a high
+    chance of causing bleeding.
   areaAtaque: 0
   tipoDoAlvo: 0
   Efeito: 0
   prefabVisual: {fileID: 0}
-  alcance: 0
-  area: 0
-  multiplicadorDeDano: 1
+  alcance: 1
+  area: 1
+  multiplicadorDeDano: 0.5
   finalizaTurno: 1
-  custoMana: 0
-  velocidadeVisual: 0
-  condicao: {fileID: 0}
-  "chanceDeCondi\xE7\xE3o": 0
-  "duracaoDaCondi\xE7\xE3o": 0
-  valorEfeito: 0
+  custoMana: 3
+  velocidadeVisual: 1
+  condicao: {fileID: 11400000, guid: 027b5829c043dea439b8f2b681f5e39e, type: 2}
+  "chanceDeCondi\xE7\xE3o": 1
+  "duracaoDaCondi\xE7\xE3o": 3
+  valorEfeito: 3
   duracao: 0
   valor: 0
   tipoModificador: 0
   atributo: 0
   tipoVisual: 0
-  elemento: {fileID: 0}
+  elemento: {fileID: 11400000, guid: 03df307c3c996f647b11b8a419e0b79c, type: 2}

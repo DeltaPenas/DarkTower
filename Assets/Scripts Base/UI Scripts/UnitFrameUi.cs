@@ -54,7 +54,7 @@ public class UnitFrameUi : MonoBehaviour
     }
     public void AtualizarTextoVidas(Unidade unidade)
     {
-       textoVida.text = $"HP {(int)unidade.vidaUnidade.vidaAtual}/{(int)unidade.vidaUnidade.vidaMaxima}"; 
+       textoVida.text = $"HP {unidade.vidaUnidade.vidaAtual}/{unidade.vidaUnidade.vidaMaxima}"; 
     }
     public void AtualizarTextoMana(Unidade unidade)
     {
