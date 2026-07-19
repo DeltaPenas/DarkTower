@@ -4,7 +4,7 @@ public abstract class BattleConditions
     public ConditionData data;
 
     public string Nome => data.nome;
-    public float ValorEfeito => data.valorEfeito;
+    public float ValorEfeito;
 
     public BattleConditions(ConditionData data)
     {

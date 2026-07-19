@@ -3745,6 +3745,7 @@ MonoBehaviour:
   prefabEfeitos:
   - {fileID: 0}
   ataqueTeste: {fileID: 11400000, guid: a46458f51d17482458a9f9bb843f06dd, type: 2}
+  unidadeEmMovimento: 0
 --- !u!114 &782981030
 MonoBehaviour:
   m_ObjectHideFlags: 0

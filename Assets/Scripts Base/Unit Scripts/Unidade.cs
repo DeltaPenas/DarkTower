@@ -152,6 +152,11 @@ public class Unidade : MonoBehaviour
     {
       
     }
+    public virtual void Colapsar(float dano)
+    {
+        
+    }
+
     public virtual void ReceberCura(float cura)
     {
         
@@ -346,6 +351,7 @@ public class Unidade : MonoBehaviour
         if(existente != null)
         {
             existente.duração += cond.duração;
+            existente.ValorEfeito += cond.ValorEfeito/2;
             return;
         }
 
@@ -418,7 +424,7 @@ public class Unidade : MonoBehaviour
 
         foreach (BattleConditions cond in condicoes)
         {
-            texto += $"Mod:{ cond.data.nome} turnos:{cond.duração} -  ";
+            texto += $"Mod:{ cond.data.nome} turnos:{cond.duração}, valor:{cond.ValorEfeito} - ";
         }
         return texto;
         

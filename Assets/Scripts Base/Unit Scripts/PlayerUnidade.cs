@@ -16,6 +16,12 @@ public class PlayerUnit : Unidade
         UnitUi.Instance.AtualizarVida();
         
     }
+    public override void Colapsar(float dano)
+    {
+        vidaUnidade.Colapsar(dano);
+        spritePisca.Piscar();
+        UnitUi.Instance.AtualizarVida();
+    }
 
     public override void PerderMana(float dano)
     {

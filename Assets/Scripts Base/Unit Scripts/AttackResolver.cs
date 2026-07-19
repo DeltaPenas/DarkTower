@@ -104,7 +104,8 @@ public class AttackResolver : MonoBehaviour
         if (condicao == null)
             return;
 
-        condicao.duração = ataque.duracaoDaCondição;
+        condicao.duração = ataque.duracaoDaCondição; // Aqui a gente modifica os status da condição
+        condicao.ValorEfeito = atacante.GetAtaqueAtual();
 
         alvo.AdicionarCondição(condicao);
     }

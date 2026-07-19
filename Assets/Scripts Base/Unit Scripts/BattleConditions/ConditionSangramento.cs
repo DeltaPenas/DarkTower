@@ -20,6 +20,7 @@ public class ConditionSangramento : BattleConditions
         {
            unidade.PodeCurar = false; 
         }
+        unidade.ReceberDano(ValorEfeito);
         Debug.Log("Unidade Continua Sangrando");
         
     }

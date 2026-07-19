@@ -20,11 +20,13 @@ public class UnitManager : MonoBehaviour
     public List<GameObject> prefabEfeitos;
     public AttackData ataqueTeste;
     public bool unidadeEmMovimento;
+    public Inventario Inventario { get; private set; };
 
     
 
     void Start()
     {
+        Inventario = new Inventario();
         attackExecutor = GetComponent<AttackExecutor>();
         attackResolver = GetComponent<AttackResolver>();
         actionMenuUI = FindAnyObjectByType<ActionMenu>();

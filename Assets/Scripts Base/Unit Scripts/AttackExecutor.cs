@@ -92,7 +92,7 @@ public class AttackExecutor : MonoBehaviour
     {
         GameObject efeitoVisual = Instantiate(ataque.prefabVisual, tileAlvo.transform.position, quaternion.identity);
 
-        yield return new WaitForSeconds(0.1f); 
+        yield return new WaitForSeconds(0.25f); 
 
        
         
