@@ -16,6 +16,7 @@ public class ItemData : ScriptableObject
     public Sprite icone;
     public float valor;
     public int duracaoEfeito;
+    public EfeitoItem efeitoItem;
     public float preço;
     public UnidadeAfetadas unidadeAfetadas;
 
@@ -24,7 +25,15 @@ public class ItemData : ScriptableObject
     public enum UnidadeAfetadas
     {
         Uma,
-        Todas
+        Todas,
+        
+    }
+    public enum EfeitoItem
+    {
+        cura,
+        buff,
+        Reviver,
+        LimparEfeitos,
     }
     
 }

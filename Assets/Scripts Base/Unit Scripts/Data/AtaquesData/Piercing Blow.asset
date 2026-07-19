@@ -16,7 +16,7 @@ MonoBehaviour:
   "descri\xE7\xE3o": A precise piercing attack that deals low damage but has a high
     chance of causing bleeding.
   areaAtaque: 0
-  tipoDoAlvo: 2
+  tipoDoAlvo: 0
   Efeito: 0
   prefabVisual: {fileID: 5147893357046861531, guid: 64cbd7c509d46e74081a56b24c1fdf7d, type: 3}
   alcance: 1

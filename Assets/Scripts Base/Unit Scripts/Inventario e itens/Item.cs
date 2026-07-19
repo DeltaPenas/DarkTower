@@ -1,15 +1,7 @@
-public abstract class Item
+using UnityEngine;
+
+public class Item: MonoBehaviour
 {
-    public ItemData data;
-
-
-    public virtual void AoUsar(Unidade unidade)
-    {
-        
-    }
-    public virtual void InicioDoTurno(Unidade unidade)
-    {
-        
-    }
-
+    public ItemData Data;
+    public int Quantidade;
 }

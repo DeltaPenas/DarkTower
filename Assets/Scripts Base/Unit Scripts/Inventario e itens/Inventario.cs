@@ -6,24 +6,32 @@ public class Inventario
 {
     private List<Item> itens = new List<Item>();
 
-    public void Adicionar(ItemData itemData, int quantidade)
+    public void Adicionar(ItemData data, int quantidade)
     {
+        Item novoItem = new Item();
+        novoItem.Quantidade = quantidade;
+        novoItem.Data = data;
 
+        itens.Add(novoItem);
     }
 
     public void Remover(Item item, int quantidade)
     {
+        item.Quantidade -= quantidade;
 
+        if(item.Quantidade <= 0)
+        {
+            itens.Remove(item);
+        }
     }
     
     public bool Contem(ItemData itemData)
     {
         foreach (var item in itens)
         {
-            if (item.data == itemData)
+            if (item.Data == itemData)
             {
                 return true;
-                break;
             }
         }
         return false;
@@ -34,7 +42,7 @@ public class Inventario
     {
         foreach (var item in itens)
         {
-            if (item.data == itemData)
+            if (item.Data == itemData)
             {
                 return item;
             }

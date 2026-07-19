@@ -15,9 +15,9 @@ MonoBehaviour:
   nomeDoAtaque: Thunder
   "descri\xE7\xE3o": Thunder coming from the ceiling??
   areaAtaque: 2
-  tipoDoAlvo: 2
+  tipoDoAlvo: 0
   Efeito: 0
-  prefabVisual: {fileID: 8978641863940099968, guid: 0c05ab68f4316ac459e134299a2532b4, type: 3}
+  prefabVisual: {fileID: 2002632519656863977, guid: ddd4632142aeb7a458d6da5519fd9fcf, type: 3}
   alcance: 4
   area: 1
   multiplicadorDeDano: 1

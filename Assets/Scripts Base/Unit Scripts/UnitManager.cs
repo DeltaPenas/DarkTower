@@ -20,7 +20,7 @@ public class UnitManager : MonoBehaviour
     public List<GameObject> prefabEfeitos;
     public AttackData ataqueTeste;
     public bool unidadeEmMovimento;
-    public Inventario Inventario { get; private set; };
+    public Inventario Inventario { get; private set; }
 
     
 
@@ -301,6 +301,11 @@ public void ClicarTile(Tile tile)
 
     }
 
+    private void AdicionarItem(ItemData itemData)
+    {
+        Inventario.Adicionar(itemData, 1);
+    }
+
     public void ValidarAcoes(Unidade unidade)
     {
         if (unidade.PodeMover)
@@ -311,6 +316,50 @@ public void ClicarTile(Tile tile)
         {
            actionMenuUI.DesabilitarButtonMove(); 
         }
+    }
+
+
+    //Sessão dos itens
+
+
+    public void UsarItem(Item item)
+    {
+        if(item.Quantidade <= 0) return; //Só pra garantir caso tenha algum bug
+
+        switch (item.Data.efeitoItem)
+        {
+            case ItemData.EfeitoItem.cura:
+                UsarItemCura(item, unidadeSelecionada);
+            break;
+            case ItemData.EfeitoItem.buff:
+                UsarItemBuff(item, unidadeSelecionada);
+            break;
+            case ItemData.EfeitoItem.Reviver:
+                UsarItemReviver(item, unidadeSelecionada);
+            break;
+
+        }
+
+
+
+
+    }
+
+    public void UsarItemCura(Item item, Unidade alvo)
+    {
+        
+        alvo.ReceberCura(item.Data.valor);
+
+    }
+
+    public void UsarItemBuff(Item item, Unidade alvo)
+    {
+        
+    }
+
+    public void UsarItemReviver(Item item, Unidade alvo)
+    {
+        
     }
 
 
