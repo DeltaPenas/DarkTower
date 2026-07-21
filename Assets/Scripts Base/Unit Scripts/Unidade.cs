@@ -366,7 +366,7 @@ public class Unidade : MonoBehaviour
         Debug.Log($"A modificação {modificadores[indice]} acabou");
         modificadores.RemoveAt(indice);
     }
-    private void RemoverCondição(int indice)
+    public void RemoverCondição(int indice)
     {
         Debug.Log($"Condição {condicoes[indice]}a acabou");
         condicoes[indice].AoRemover(this);

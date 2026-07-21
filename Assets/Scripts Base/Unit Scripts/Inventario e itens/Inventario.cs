@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Inventario
 {
-    private List<Item> itens = new List<Item>();
+    public List<Item> itens = new List<Item>();
 
     public void Adicionar(ItemData data, int quantidade)
     {

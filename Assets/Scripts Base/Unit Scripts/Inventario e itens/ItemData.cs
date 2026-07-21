@@ -17,6 +17,7 @@ public class ItemData : ScriptableObject
     public float valor;
     public int duracaoEfeito;
     public EfeitoItem efeitoItem;
+    public UnitStatus.StatsType atributo;
     public float preço;
     public UnidadeAfetadas unidadeAfetadas;
 
@@ -31,6 +32,7 @@ public class ItemData : ScriptableObject
     public enum EfeitoItem
     {
         cura,
+        mana,
         buff,
         Reviver,
         LimparEfeitos,

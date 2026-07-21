@@ -13,11 +13,13 @@ public class UnitManager : MonoBehaviour
    
     [SerializeField] private GridManager gridManager;
     [SerializeField] private AttackResolver attackResolver;
+    [SerializeField] private ItemResolver itemResolver;
     [SerializeField] private AttackExecutor attackExecutor;
     public enum ModoSelecao{ Movimento, Ataque, Nenhum}
     public ModoSelecao ModoAtual { get; private set; } = ModoSelecao.Nenhum;
     private List<Tile> tilesDestacadas = new();
     public List<GameObject> prefabEfeitos;
+    public List<ItemData> itensDeTeste;
     public AttackData ataqueTeste;
     public bool unidadeEmMovimento;
     public Inventario Inventario { get; private set; }
@@ -27,9 +29,27 @@ public class UnitManager : MonoBehaviour
     void Start()
     {
         Inventario = new Inventario();
+        itemResolver = GetComponent<ItemResolver>();
         attackExecutor = GetComponent<AttackExecutor>();
         attackResolver = GetComponent<AttackResolver>();
         actionMenuUI = FindAnyObjectByType<ActionMenu>();
+        CarregarInventario();
+    }
+
+    public void CarregarInventario()
+    {
+        foreach (ItemData data in itensDeTeste)
+        {
+            Inventario.Adicionar(data, 1);
+            
+
+        }
+
+        foreach (Item i in Inventario.itens)
+        {
+           Debug.Log($"Item: {i.Data.nome}, Quantidade: {i.Quantidade}"); 
+        }
+        
     }
 
     public void MostrarInformações(Unidade unidade)
@@ -326,41 +346,10 @@ public void ClicarTile(Tile tile)
     {
         if(item.Quantidade <= 0) return; //Só pra garantir caso tenha algum bug
 
-        switch (item.Data.efeitoItem)
-        {
-            case ItemData.EfeitoItem.cura:
-                UsarItemCura(item, unidadeSelecionada);
-            break;
-            case ItemData.EfeitoItem.buff:
-                UsarItemBuff(item, unidadeSelecionada);
-            break;
-            case ItemData.EfeitoItem.Reviver:
-                UsarItemReviver(item, unidadeSelecionada);
-            break;
-
-        }
-
-
-
+       
 
     }
 
-    public void UsarItemCura(Item item, Unidade alvo)
-    {
-        
-        alvo.ReceberCura(item.Data.valor);
-
-    }
-
-    public void UsarItemBuff(Item item, Unidade alvo)
-    {
-        
-    }
-
-    public void UsarItemReviver(Item item, Unidade alvo)
-    {
-        
-    }
 
 
 
