@@ -219,6 +219,7 @@ public void ClicarTile(Tile tile)
             break;
             case AcaoUnidade.Item:
                 Debug.Log("Usou um item");
+                unidadeSelecionada.SetEstado(EstadoUnidade.FinalizouTurno);
             break;
         }
     }
@@ -355,6 +356,10 @@ public void ClicarTile(Tile tile)
         item.itemFrame.AtualizarItem();
 
         inventarioController.FecharInventario();
+
+        ExecutarAcão(AcaoUnidade.Item);
+        LimparSelecao();
+        TurnManager.Instance.VerificarFimDoTurno();
 
         
 
