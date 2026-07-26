@@ -44,7 +44,8 @@ public class ItemResolver : MonoBehaviour
     public void UsarItemMana(Item item, Unidade alvo)
     {
         float valorDaMana = alvo.recursosUnidade.manaMaxima * item.Data.valor;
-        alvo.recursosUnidade.RecuperarMana(valorDaMana);
+        alvo.GanharMana(valorDaMana);
+        Debug.Log("Item Resolver, recuperou mana");
     }
 
     public void UsarItemBuff(Item item, Unidade alvo)

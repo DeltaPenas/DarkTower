@@ -23,12 +23,26 @@ public class ItemFrame : MonoBehaviour
         itemAtual = item;
         itemIcone.sprite = item.Data.icone;
         qtd.text = item.Quantidade.ToString();
+        item.itemFrame = this;
         
     }
 
     public void DefinirItemEmDestaque()
     {
         inventarioController.DefinirItemSelecionado(itemAtual);
+    }
+
+    public void AtualizarItem()
+    {
+        itemAtual.Quantidade -=1;
+        qtd.text = itemAtual.Quantidade.ToString();
+
+        if(itemAtual.Quantidade <= 0)
+        {
+            inventarioController.LimparGUI();
+            Destroy(gameObject);
+        }
+
     }
 
 

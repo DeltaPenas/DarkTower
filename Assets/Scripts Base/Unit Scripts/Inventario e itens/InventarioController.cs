@@ -24,6 +24,10 @@ public class InventarioController : MonoBehaviour
         unitManager = FindAnyObjectByType<UnitManager>();
 
     }
+    public void UsarItemNaUnidadeSelecionada()
+    {
+        unitManager.UsarItem(itemSelecionado);
+    }
 
 
     public void InicializarItensDoInventario()
@@ -33,6 +37,7 @@ public class InventarioController : MonoBehaviour
         {
             GameObject itemFrame = Instantiate(prefabItemFrame, painelDeItens.transform);
             itemFrame.GetComponent<ItemFrame>().InicializarItemFrame(item);
+        
         }
     }
 

@@ -42,7 +42,7 @@ public class UnitManager : MonoBehaviour
     {
         foreach (ItemData data in itensDeTeste)
         {
-            Inventario.Adicionar(data, 1);
+            Inventario.Adicionar(data, 2);
             
 
         }
@@ -348,7 +348,15 @@ public void ClicarTile(Tile tile)
 
     public void UsarItem(Item item)
     {
-        if(item.Quantidade <= 0) return; //Só pra garantir caso tenha algum bug
+        if(item.Quantidade <= 0) return;
+        
+        itemResolver.ValidarEfeitoDoItem(item, unidadeSelecionada);
+
+        item.itemFrame.AtualizarItem();
+
+        inventarioController.FecharInventario();
+
+        
 
        
 
