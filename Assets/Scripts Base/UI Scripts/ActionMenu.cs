@@ -63,6 +63,16 @@ public class ActionMenu : MonoBehaviour
     {
         painelDeInformações.SetActive(false);
     }
+    public void MostrarInventario()
+    {
+        PainelDeItens.SetActive(true);
+        painelDeButõesDeAção.SetActive(false);
+    }
+    public void FecharInventario()
+    {
+        PainelDeItens.SetActive(false);
+        painelDeButõesDeAção.SetActive(true);
+    }
 
 
 
@@ -142,10 +152,6 @@ public class ActionMenu : MonoBehaviour
     {
         painelDeButõesDeAção.SetActive(false);
         painelDeButõesDeAtaques.SetActive(true);
-    }
-    public void AbrirInventario()
-    {
-        Debug.Log("Abriu Inventario");
     }
    
     public void ButtonCancelarPrincipal()

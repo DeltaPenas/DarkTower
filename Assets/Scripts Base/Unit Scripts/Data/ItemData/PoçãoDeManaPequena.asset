@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   nome: Small mana potion
   "descri\xE7\xE3o": A small mana potion, restores 25% of the unit's maximum Mana.
-  icone: {fileID: 21300000, guid: 19ec0099b89d9f943aacf8cb0f4bbe31, type: 3}
+  icone: {fileID: -4245146045422966859, guid: b81635c736f85fd4c903acab31fb2882, type: 3}
   valor: 0.25
   duracaoEfeito: 0
   efeitoItem: 1

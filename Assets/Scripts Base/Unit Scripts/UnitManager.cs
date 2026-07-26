@@ -23,6 +23,7 @@ public class UnitManager : MonoBehaviour
     public AttackData ataqueTeste;
     public bool unidadeEmMovimento;
     public Inventario Inventario { get; private set; }
+    public InventarioController inventarioController;
 
     
 
@@ -33,6 +34,7 @@ public class UnitManager : MonoBehaviour
         attackExecutor = GetComponent<AttackExecutor>();
         attackResolver = GetComponent<AttackResolver>();
         actionMenuUI = FindAnyObjectByType<ActionMenu>();
+        inventarioController = FindAnyObjectByType<InventarioController>();
         CarregarInventario();
     }
 
@@ -49,6 +51,8 @@ public class UnitManager : MonoBehaviour
         {
            Debug.Log($"Item: {i.Data.nome}, Quantidade: {i.Quantidade}"); 
         }
+
+        inventarioController.InicializarItensDoInventario();
         
     }
 
