@@ -17,6 +17,7 @@ public class ItemData : ScriptableObject
     public float valor;
     public int duracaoEfeito;
     public EfeitoItem efeitoItem;
+    public GameObject efeitoVisual;
     public UnitStatus.StatsType atributo;
     public float preço;
     public UnidadeAfetadas unidadeAfetadas;
@@ -34,7 +35,6 @@ public class ItemData : ScriptableObject
         cura,
         mana,
         buff,
-        Reviver,
         LimparEfeitos,
     }
     

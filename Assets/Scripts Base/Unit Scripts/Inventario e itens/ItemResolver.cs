@@ -19,43 +19,97 @@ public class ItemResolver : MonoBehaviour
             case ItemData.EfeitoItem.buff:
                 UsarItemBuff(item, alvo);
             break;
-            case ItemData.EfeitoItem.Reviver:
-                UsarItemReviver(item, alvo);
-            break;
             case ItemData.EfeitoItem.LimparEfeitos:
                 LimparCondições(alvo);
             break;
-
-
         }
 
 
 
 
     }
+    public bool AfetaTodos(Item item)
+    {
+        if(item.Data.unidadeAfetadas == ItemData.UnidadeAfetadas.Todas)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
+    }
+
 
     public void UsarItemCura(Item item, Unidade alvo)
     {
-        float valorDaCura = alvo.vidaUnidade.vidaMaxima * item.Data.valor;
+        if (AfetaTodos(item))
+        {
+            foreach(Unidade unidadesAliada in TurnManager.Instance.unidadesPlayer)
+            {
+                float valorDaCura = unidadesAliada.GetVidaMaximaAtual() * item.Data.valor;
+                unidadesAliada.ReceberCura(valorDaCura);
+            }
+
+        }
+        else
+        {
+            float valorDaCura = alvo.GetVidaMaximaAtual() * item.Data.valor;
         
-        alvo.ReceberCura(valorDaCura);
+            alvo.ReceberCura(valorDaCura);
+        }
+        
 
     }
     public void UsarItemMana(Item item, Unidade alvo)
     {
-        float valorDaMana = alvo.recursosUnidade.manaMaxima * item.Data.valor;
-        alvo.GanharMana(valorDaMana);
-        Debug.Log("Item Resolver, recuperou mana");
+        if (AfetaTodos(item))
+        {
+            foreach(Unidade unidadesAliada in TurnManager.Instance.unidadesPlayer)
+            {
+                float valorDaMana = unidadesAliada.GetManaAtual() * item.Data.valor;
+                unidadesAliada.GanharMana(valorDaMana);
+            }
+
+        }
+        else
+        {
+            float valorDaMana = alvo.recursosUnidade.manaMaxima * item.Data.valor;
+            alvo.GanharMana(valorDaMana);
+
+        }
+
+
+       
+        
     }
 
     public void UsarItemBuff(Item item, Unidade alvo)
     {
-        Debug.Log($"o {alvo} foi buffado pelo item {item.Data.nome}");
-    }
+        StatusModifier mod = new StatusModifier();
 
-    public void UsarItemReviver(Item item, Unidade alvo)
-    {
-        Debug.Log($"o {alvo} foi Revivido pelo item {item.Data.nome}");
+        mod.nome = item.Data.nome;
+        mod.atributo = item.Data.atributo;
+        mod.valor = item.Data.valor;
+        mod.tipoModificador = TipoModificador.porcentagem;
+        mod.duracao = item.Data.duracaoEfeito;
+
+        if (AfetaTodos(item))
+        {
+            foreach(Unidade unidadesAliada in TurnManager.Instance.unidadesPlayer)
+            {
+                
+                unidadesAliada.AdicionarModificação(mod);
+            }
+        }
+        else
+        {
+            alvo.AdicionarModificação(mod);
+        }
+
+        
+
     }
 
     public void LimparCondições(Unidade alvo)

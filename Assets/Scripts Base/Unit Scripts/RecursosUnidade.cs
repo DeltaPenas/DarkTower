@@ -23,7 +23,6 @@ public class RecursosUnidade: MonoBehaviour
 
     public void RecuperarMana(float cura)
     {
-        Debug.Log("Recursos da unidade: Recuperou mana");
         manaAtual = MathF.Min(manaAtual + cura, manaMaxima);
     }
     public void PerderMana(float perda)
