@@ -18,6 +18,7 @@ MonoBehaviour:
   valor: 0.25
   duracaoEfeito: 0
   efeitoItem: 0
+  efeitoVisual: {fileID: 0}
   atributo: 1
   "pre\xE7o": 5
   unidadeAfetadas: 0

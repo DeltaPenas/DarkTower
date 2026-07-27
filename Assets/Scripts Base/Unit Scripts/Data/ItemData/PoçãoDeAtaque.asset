@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3276c22acea7ce4aa1242f6fab2c36c, type: 3}
   m_Name: "Po\xE7\xE3oDeAtaque"
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  nome: 
-  "descri\xE7\xE3o": 
-  icone: {fileID: 0}
-  valor: 0
-  duracaoEfeito: 0
-  efeitoItem: 0
+  nome: Potion of Strength
+  "descri\xE7\xE3o": A potion created to boost strength. Increases the unit's base
+    attack by 50% for 3 turns.
+  icone: {fileID: 21300000, guid: 0c4408294766e1648b34d4f67a3767ed, type: 3}
+  valor: 0.5
+  duracaoEfeito: 3
+  efeitoItem: 2
   efeitoVisual: {fileID: 0}
-  atributo: 0
+  atributo: 1
   "pre\xE7o": 0
   unidadeAfetadas: 0

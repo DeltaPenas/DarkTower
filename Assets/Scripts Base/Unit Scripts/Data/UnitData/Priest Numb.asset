@@ -23,7 +23,7 @@ MonoBehaviour:
     ataque: 0.5
     movimento: 4
     mana: 50
-    defesa: 0
+    defesa: 0.2
   ataques:
   - {fileID: 11400000, guid: 99fd7216fbda4c04681a8749d468239f, type: 2}
   - {fileID: 11400000, guid: d8ec0e1497773264da901678edbe3312, type: 2}

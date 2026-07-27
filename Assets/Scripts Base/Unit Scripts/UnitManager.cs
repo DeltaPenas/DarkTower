@@ -38,11 +38,25 @@ public class UnitManager : MonoBehaviour
         CarregarInventario();
     }
 
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            foreach (ItemData data in itensDeTeste)
+        {
+            Inventario.Adicionar(data, 1);
+            
+
+        }
+        }
+    }
+
     public void CarregarInventario()
     {
         foreach (ItemData data in itensDeTeste)
         {
-            Inventario.Adicionar(data, 2);
+            Inventario.Adicionar(data, 1);
             
 
         }

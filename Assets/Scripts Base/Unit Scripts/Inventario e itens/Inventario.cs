@@ -8,9 +8,19 @@ public class Inventario
 
     public void Adicionar(ItemData data, int quantidade)
     {
+
+        Item existente = itens.Find(i => i.Data == data);
+        if(existente != null)
+        {
+            existente.Quantidade += quantidade;
+            existente.itemFrame.qtd.text = existente.Quantidade.ToString();
+            return;
+        }
+
         Item novoItem = new Item();
         novoItem.Quantidade = quantidade;
         novoItem.Data = data;
+
 
         itens.Add(novoItem);
     }

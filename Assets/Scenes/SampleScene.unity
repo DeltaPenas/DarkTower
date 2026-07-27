@@ -4274,6 +4274,8 @@ MonoBehaviour:
   itensDeTeste:
   - {fileID: 11400000, guid: ebe1a513a76cbf448a1588f4d9a93776, type: 2}
   - {fileID: 11400000, guid: c0d0c1bda0ce7cd4181950d5191b0363, type: 2}
+  - {fileID: 11400000, guid: 1eca59f3af62b51499a3927721735eb2, type: 2}
+  - {fileID: 11400000, guid: 454cecf7a3315c5499f3c53b4660d774, type: 2}
   ataqueTeste: {fileID: 11400000, guid: a46458f51d17482458a9f9bb843f06dd, type: 2}
   unidadeEmMovimento: 0
   inventarioController: {fileID: 1846045692}
