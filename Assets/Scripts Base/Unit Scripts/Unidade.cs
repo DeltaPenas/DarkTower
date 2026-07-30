@@ -29,6 +29,7 @@ public class Unidade : MonoBehaviour
     public bool Bloqueando = false;
     public Tile TileAtual {get; private set;}
     public bool EstaMovendo { get; private set; }
+    public bool EstaMorta {get; private set;}
     public bool PodeMover = true;
     public bool PodeAgir = true;
     public bool PodeCurar = true;
