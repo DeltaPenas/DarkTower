@@ -9,6 +9,7 @@ public class UnitStatus
     public float vida; // vida maxima, algumas habiliades podem escalar com a vida da unidade.
     public float ataque; //as habilidades ofensivas vão ter um dano base que vai ser multiplicado pelo ataque da unidade.
     public int movimento; // quantidade de casas que uma unidade pode mover.
+    public float agilidade;
     public float mana; // recurso pra usar habilidades magicas.
     public float defesa; // bloqueio de danos.
 
@@ -21,7 +22,8 @@ public class UnitStatus
             ataque = ataque,
             movimento = movimento,
             mana = mana,
-            defesa = defesa
+            defesa = defesa,
+            agilidade = agilidade
 
         };
     }
@@ -31,6 +33,7 @@ public class UnitStatus
         vida,
         ataque,
         movimento,
+        agilidade,
         mana,
         defesa
     }

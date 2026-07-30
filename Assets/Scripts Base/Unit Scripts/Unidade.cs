@@ -216,29 +216,55 @@ public class Unidade : MonoBehaviour
     //Toda Parte De Modificadores
 
     public float GetAtaqueAtual()
-{
-    float ataqueAtual = currentStatus.ataque;
-
-    foreach(StatusModifier modificador in modificadores)
     {
-        // Verifica o tipo do atributo do modificador
-        if(modificador.atributo != UnitStatus.StatsType.ataque)continue;
+        float ataqueAtual = currentStatus.ataque;
 
-        // Como ele altera flat (um inteiro) ou %
-        switch(modificador.tipoModificador)
+        foreach(StatusModifier modificador in modificadores)
         {
-            case TipoModificador.flat:
-                ataqueAtual += modificador.valor;
-                break;
+            // Verifica o tipo do atributo do modificador
+            if(modificador.atributo != UnitStatus.StatsType.ataque)continue;
 
-            case TipoModificador.porcentagem:
-                ataqueAtual *= 1 + modificador.valor;
-                break;
+            // Como ele altera flat (um inteiro) ou %
+            switch(modificador.tipoModificador)
+            {
+                case TipoModificador.flat:
+                    ataqueAtual += modificador.valor;
+                    break;
+
+                case TipoModificador.porcentagem:
+                    ataqueAtual *= 1 + modificador.valor;
+                    break;
+            }
         }
-    }
 
     return ataqueAtual;
-}
+    }
+
+    public float GetAgilidadeAtual()
+    {
+        float agilidadeAtual = currentStatus.agilidade;
+
+        foreach(StatusModifier modificador in modificadores)
+        {
+            if(modificador.atributo != UnitStatus.StatsType.agilidade) continue;
+
+            switch(modificador.tipoModificador)
+            {
+                case TipoModificador.flat:
+                    agilidadeAtual += modificador.valor;
+                    break;
+
+                case TipoModificador.porcentagem:
+                    agilidadeAtual *= 1 + modificador.valor;
+                    break;
+            }
+        }
+        return agilidadeAtual;
+    }
+
+
+
+
 
     public float GetDefesaAtual()
     {

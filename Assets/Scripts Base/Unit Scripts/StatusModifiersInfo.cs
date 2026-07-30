@@ -4,7 +4,8 @@ public enum TipoStatus
     Defesa,
     VidaMaxima,
     ManaMaxima,
-    Movimento
+    Movimento,
+    Agilidade
 }
 public enum TipoModificador
 {
