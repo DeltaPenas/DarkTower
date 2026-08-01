@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Android.Gradle.Manifest;
 using UnityEngine;
+using System;
 
 public class Unidade : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class Unidade : MonoBehaviour
     [SerializeField] public SpritePisca spritePisca;
     public UnitData unitData;
     private ConditionVisual conditionVisual;
+    public event Action<Unidade> OnMorreu;
     
 
     [Header("Status")]
@@ -187,8 +189,6 @@ public class Unidade : MonoBehaviour
     public void NovoTurno()
     {
     
-        Debug.Log("Novo turno");
-
         // Estado base da unidade
         PodeAgir = true;
         PodeMover = true;
@@ -205,12 +205,17 @@ public class Unidade : MonoBehaviour
         Estado = EstadoUnidade.Disponivel;
     }
 
-    public void Morrer()
+    public virtual void Morrer()
     {
+        if (EstaMorta)
+            return;
+
+        EstaMorta = true;
+        SetEstado(EstadoUnidade.Morta);
+        OnMorreu?.Invoke(this);
+
         TurnManager.Instance.RemoverUnidade(this);
-        TileAtual.RemoverUnidade();
-        TurnManager.Instance.VerificarFimDeJogo();
-        Destroy(gameObject, 0.5f);
+
     }
 
 

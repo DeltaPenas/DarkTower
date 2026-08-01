@@ -4196,6 +4196,7 @@ GameObject:
   - component: {fileID: 782981030}
   - component: {fileID: 782981031}
   - component: {fileID: 782981032}
+  - component: {fileID: 782981033}
   m_Layer: 0
   m_Name: CombatManager
   m_TagString: Untagged
@@ -4323,6 +4324,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d71a4c2f828f4641a039ef317a63639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemResolver
+--- !u!114 &782981033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782981025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec30fa13a66e1af4ca0341cf0bffedc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InitiativeManager
 --- !u!1 &785441042
 GameObject:
   m_ObjectHideFlags: 0

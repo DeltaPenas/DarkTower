@@ -61,38 +61,31 @@ public class EnemyIA : MonoBehaviour
     }
 
     private void Atacar(Unidade alvo)
-    {
-    float dano =
-        DamageCalculator.Calcular(
-            unidade,
-            alvo,
-            ataqueBasico);
-
-    alvo.ReceberDano(dano);
-    Debug.Log($"Unidadee: {unidade} atacou o alvo {alvo}");
-
-    unidade.SetEstado(EstadoUnidade.FinalizouTurno);
-    }
+        {
+            float dano = DamageCalculator.Calcular( unidade, alvo, ataqueBasico);
+            alvo.ReceberDano(dano);
+            Debug.Log($"Unidadee: {unidade} atacou o alvo {alvo}");
+        }
 
     private IEnumerator MoverEmDirecao(Unidade alvo)
     {
-    List<Tile> caminho = GridManager.Instance.EncontrarCaminho(
-        unidade.TileAtual,
-        alvo.TileAtual);
+        List<Tile> caminho = GridManager.Instance.EncontrarCaminho(
+            unidade.TileAtual,
+            alvo.TileAtual);
 
-    if (caminho.Count <= 1)
-    yield break;
+        if (caminho.Count <= 1)
+        yield break;
 
-    caminho.RemoveAt(caminho.Count - 1);
+        caminho.RemoveAt(caminho.Count - 1);
 
-    if (caminho.Count > unidade.currentStatus.movimento)
-    {
-        caminho = caminho.GetRange(
-            0,
-            unidade.currentStatus.movimento);
-    }
+            if (caminho.Count > unidade.currentStatus.movimento)
+            {
+                caminho = caminho.GetRange(
+                    0,
+                    unidade.currentStatus.movimento);
+            }
 
-    yield return unidade.MoverCoroutine(caminho);
+        yield return unidade.MoverCoroutine(caminho);
     }
 
 }

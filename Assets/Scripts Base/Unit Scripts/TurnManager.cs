@@ -5,17 +5,22 @@ using UnityEngine;
 public class TurnManager : MonoBehaviour
 {
     public static TurnManager Instance;
+    public InitiativeManager initiativeManager;
     public UnitUi unitUi;
     public Turno TurnoAtual;
+    
 
     public List<Unidade> unidadesPlayer = new();
     public List<Unidade> unidadesInimigos = new();
+    public List<Unidade> unidadesValidas = new();
+    public Unidade unidadeAtual {get; private set;}
 
     public void Awake()
     {
         Instance = this;
-        IniciarTurnoDoPlayer();
+        IniciarCombate();
         unitUi = FindAnyObjectByType<UnitUi>();
+        initiativeManager = FindAnyObjectByType<InitiativeManager>();
     }
 
     public void CarregarUiDeUnidades()
@@ -34,114 +39,118 @@ public class TurnManager : MonoBehaviour
         {
             unidadesInimigos.Add(unidade);
         }
+
+
+        unidade.OnMorreu += UnidadeMorreu;
     }
 
-    public void IniciarTurnoDoPlayer()
-    {
-        Debug.Log("Turno do player");
-        TurnoAtual = Turno.Player;
 
-        foreach(Unidade unidade in unidadesPlayer)
+    private void UnidadeMorreu(Unidade unidade)
+    {
+        Debug.Log($"A unidade {unidade.unitData.nome} foi de base!");
+        VerificarFimDeJogo();
+    }
+
+    public void IniciarCombate()
+    {
+        List<Unidade> todasUnidades = new();
+        
+        todasUnidades.AddRange(unidadesPlayer);
+        todasUnidades.AddRange(unidadesInimigos);
+
+        initiativeManager.ConstruirFila(todasUnidades);
+
+        Unidade primeira = initiativeManager.GetUnidadeAtual();
+
+        IniciarTurno(primeira);
+        
+    }
+
+    private void IniciarTurno(Unidade unidade)
+    {
+        unidadeAtual = unidade;
+        
+
+        if (unidade.EstaMorta)
         {
-            unidade.NovoTurno();
-           
+            FinalizarTurnoDaUnidade();
         }
-        
-    }
-    public void IniciarTurnoDoInimigo()
-    {
-        TurnoAtual = Turno.Inimigo;
-        Debug.Log("Turno do inimigo");
 
-        foreach(Unidade unidade in unidadesInimigos)
+        unidade.NovoTurno();
+
+        if (unidade.unitData.Team == Team.Player)
         {
-            unidade.NovoTurno();
-           
-        }
-        
-        StartCoroutine(ExecutarTurnoInimigo());
-
-    }
-
-
-
-    public void VerificarFimDoTurno()
-    {
-        List<Unidade> lista = TurnoAtual == Turno.Player ? unidadesPlayer : unidadesInimigos; 
-
-        foreach (Unidade unidade in lista)
-    {
-        if(unidade.Estado != EstadoUnidade.FinalizouTurno) return;    
-        
-    }
-        Debug.Log("Verificando fim do turno");
-        PassarTurno();
-
-    }
-
-    public void PassarTurno()
-    {
-        if(TurnoAtual == Turno.Player)
-        {
-            IniciarTurnoDoInimigo();
+            Debug.Log($"Turno do Player, unidade Atual{unidade.unitData.nome}");
         }
         else
         {
-            IniciarTurnoDoPlayer();
+            StartCoroutine(ExecutarTurnoInimigo(unidade));
         }
+
+
+    }
+
+
+ 
+    private void FinalizarTurnoDaUnidade()
+    {
+        if(unidadeAtual != null) return;
+        unidadeAtual.SetEstado(EstadoUnidade.FinalizouTurno);
+
+        Unidade proxima = initiativeManager.ProximaUnidade();
+
+        IniciarTurno(proxima);
+
+
+
+    }
+    
+    public void VerificarFimDoTurno()
+    {
+        FinalizarTurnoDaUnidade();
+
     }
 
     public void VerificarFimDeJogo()
     {
-        if (unidadesPlayer.Count == 0)
+        bool existePlayerVivo = unidadesPlayer.Exists(u => !u.EstaMorta);
+        bool existeInimigoVivo = unidadesInimigos.Exists(u => !u.EstaMorta);
+
+
+        if (!existePlayerVivo)
         {
             Debug.Log("Derrota!");
-            return;
-        }
-
-        if (unidadesInimigos.Count == 0)
+        }else if (!existeInimigoVivo)
         {
-            Debug.Log("Vitória!");
-            return;
+            Debug.Log("Vitoria!");
         }
     }
 
     public void RemoverUnidade(Unidade unidade)
     {
-        if(unidade.unitData.Team == Team.Player)
-        {
-            unidadesPlayer.Remove(unidade);
-        }
-        else
-        {
-            unidadesInimigos.Remove(unidade);
-        }
+        unidadesValidas.Remove(unidade);
     }
 
-    private IEnumerator ExecutarTurnoInimigo()
+    private IEnumerator ExecutarTurnoInimigo(Unidade unidade)
     {
-        foreach (Unidade unidade in unidadesInimigos)
+        EnemyIA ia = unidade.GetComponent<EnemyIA>();
+
+        if (ia != null)
         {
-            EnemyIA ia = unidade.GetComponent<EnemyIA>();
+            yield return new WaitForSeconds(0.5f);
 
-            if (ia != null)
-            {
-                yield return new WaitForSeconds(0.5f);
+            unidade.indicadorSelecao.SetActive(true);
 
-                unidade.indicadorSelecao.SetActive(true);
+            yield return new WaitForSeconds(1f);
 
-                yield return new WaitForSeconds(1f);
+            yield return ia.ExecutarTurno();
 
-                // Espera a IA terminar o turno
-                yield return ia.ExecutarTurno();
+            yield return new WaitForSeconds(0.5f);
 
-                yield return new WaitForSeconds(0.5f);
-
-                unidade.indicadorSelecao.SetActive(false);
-            }
+            unidade.indicadorSelecao.SetActive(false);
         }
 
-        IniciarTurnoDoPlayer();
+        FinalizarTurnoDaUnidade();
     }
         
         

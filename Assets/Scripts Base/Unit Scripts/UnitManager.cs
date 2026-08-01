@@ -311,6 +311,8 @@ public void ClicarTile(Tile tile)
 
         ModoAtual = ModoSelecao.Nenhum;
 
+        unidadeSelecionada.SetEstado(EstadoUnidade.FinalizouTurno);
+
         actionMenuUI.EsconderMenuPrincipal();
         actionMenuUI.FecharPainelDeAtaque();
 

@@ -6,22 +6,35 @@ using UnityEngine;
 public class InitiativeManager : MonoBehaviour
 {
     private List<Unidade> fila = new();
+    private List <Unidade> unidades = new();
     private int indiceAtual = 0;
 
     public event Action<List<Unidade>> OnFilaAtualizada;
     public event Action<Unidade> OnTurnoIniciado;
 
 
-    public void ConstruirFila(List<Unidade> unidades)
+    public void ConstruirFila(List<Unidade> unidadesCombate)
     {
-        fila = unidades
-                .OrderByDescending(u => u.GetAgilidadeAtual())
-                .ToList();
+        unidades = new List<Unidade>(unidadesCombate);
 
-                indiceAtual = 0;
+        CalcularFila();
                 
         
     }
+
+    private void CalcularFila()
+    {
+        fila = unidades
+            .Where(u => !u.EstaMorta)
+            .OrderByDescending(u => u.GetAgilidadeAtual())
+            .ToList();
+
+        indiceAtual = 0;
+
+        OnFilaAtualizada?.Invoke(fila);
+    }
+
+
     public Unidade GetUnidadeAtual()
     {
         return fila[indiceAtual];
@@ -31,21 +44,21 @@ public class InitiativeManager : MonoBehaviour
     {
         indiceAtual++;
 
-        if(indiceAtual >= fila.Count)
+        if (indiceAtual >= fila.Count)
         {
             NovaRodada();
         }
 
-        return fila[indiceAtual];
+        Unidade atual = fila[indiceAtual];
+
+        OnTurnoIniciado?.Invoke(atual);
+
+        return atual;
     }
 
     public void NovaRodada()
     {
-        fila = fila
-        .OrderByDescending(u => u.GetAgilidadeAtual())
-        .ToList();
-
-        indiceAtual = 0;
+        CalcularFila();
     }
     
 

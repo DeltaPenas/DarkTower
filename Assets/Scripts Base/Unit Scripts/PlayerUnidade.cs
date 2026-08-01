@@ -33,4 +33,12 @@ public class PlayerUnit : Unidade
         recursosUnidade.RecuperarMana(cura);
         UnitUi.Instance.AtualizarMana();
     }
+
+    public override void Morrer()
+    {
+        base.Morrer();
+    }
+
+
+
 }

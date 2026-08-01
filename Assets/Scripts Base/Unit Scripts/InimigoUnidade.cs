@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class InimigoUnidade : Unidade
@@ -20,6 +21,20 @@ public class InimigoUnidade : Unidade
     {
         vidaUnidade.Curar(cura);
         barraDeVida.AtualizarVida(vidaUnidade.vidaAtual, vidaUnidade.vidaMaxima);
+    }
+
+    public override void Morrer()
+    {
+        base.Morrer();
+
+        StartCoroutine(Morte());
+    }
+
+    public IEnumerator Morte()
+    {
+        yield return new WaitForSeconds(0.3f);
+
+        Destroy(gameObject);
     }
     
 }
