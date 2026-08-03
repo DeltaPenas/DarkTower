@@ -214,7 +214,6 @@ public class Unidade : MonoBehaviour
         SetEstado(EstadoUnidade.Morta);
         OnMorreu?.Invoke(this);
 
-        TurnManager.Instance.RemoverUnidade(this);
 
     }
 

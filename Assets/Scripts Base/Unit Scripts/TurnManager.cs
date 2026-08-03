@@ -2,25 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class TurnManager : MonoBehaviour
 {
     public static TurnManager Instance;
     public InitiativeManager initiativeManager;
     public UnitUi unitUi;
-    public Turno TurnoAtual;
-    
+  
 
     public List<Unidade> unidadesPlayer = new();
     public List<Unidade> unidadesInimigos = new();
-    public List<Unidade> unidadesValidas = new();
     public Unidade unidadeAtual {get; private set;}
 
     public void Awake()
     {
         Instance = this;
-        IniciarCombate();
         unitUi = FindAnyObjectByType<UnitUi>();
         initiativeManager = FindAnyObjectByType<InitiativeManager>();
+        
+
     }
 
     public void CarregarUiDeUnidades()
@@ -54,6 +54,9 @@ public class TurnManager : MonoBehaviour
     public void IniciarCombate()
     {
         List<Unidade> todasUnidades = new();
+
+
+
         
         todasUnidades.AddRange(unidadesPlayer);
         todasUnidades.AddRange(unidadesInimigos);
@@ -62,6 +65,12 @@ public class TurnManager : MonoBehaviour
 
         Unidade primeira = initiativeManager.GetUnidadeAtual();
 
+        if(todasUnidades.Count <= 0)
+        {
+            Debug.Log("Não há unidades para iniciar o combate.");
+            return;
+        }
+
         IniciarTurno(primeira);
         
     }
@@ -69,11 +78,13 @@ public class TurnManager : MonoBehaviour
     private void IniciarTurno(Unidade unidade)
     {
         unidadeAtual = unidade;
+        initiativeManager.DispararInicioTurno(unidade);
         
 
         if (unidade.EstaMorta)
         {
             FinalizarTurnoDaUnidade();
+            return;
         }
 
         unidade.NovoTurno();
@@ -94,10 +105,17 @@ public class TurnManager : MonoBehaviour
  
     private void FinalizarTurnoDaUnidade()
     {
-        if(unidadeAtual != null) return;
+        if(unidadeAtual == null) return;
         unidadeAtual.SetEstado(EstadoUnidade.FinalizouTurno);
 
         Unidade proxima = initiativeManager.ProximaUnidade();
+
+
+        if (proxima == null)
+        {
+            VerificarFimDeJogo();
+            return;
+        }
 
         IniciarTurno(proxima);
 
@@ -125,12 +143,6 @@ public class TurnManager : MonoBehaviour
             Debug.Log("Vitoria!");
         }
     }
-
-    public void RemoverUnidade(Unidade unidade)
-    {
-        unidadesValidas.Remove(unidade);
-    }
-
     private IEnumerator ExecutarTurnoInimigo(Unidade unidade)
     {
         EnemyIA ia = unidade.GetComponent<EnemyIA>();

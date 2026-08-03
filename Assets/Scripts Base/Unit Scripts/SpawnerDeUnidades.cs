@@ -31,9 +31,11 @@ public class SpawnerDeUnidades : MonoBehaviour
         Tile tile3 = grid.GetTilePos(new Vector2Int(2,0));
         Spawn(inimigoPrefab, tile2);
         Spawn(inimigoPrefab, tile3);
+       
 
 
         TurnManager.Instance.CarregarUiDeUnidades();
+        TurnManager.Instance.IniciarCombate();
 
 
 

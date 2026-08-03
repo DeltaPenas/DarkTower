@@ -17,12 +17,12 @@ public class InitiativeManager : MonoBehaviour
     {
         unidades = new List<Unidade>(unidadesCombate);
 
-        CalcularFila();
+        ReCalcularFila();
                 
         
     }
 
-    private void CalcularFila()
+    private void ReCalcularFila()
     {
         fila = unidades
             .Where(u => !u.EstaMorta)
@@ -42,24 +42,37 @@ public class InitiativeManager : MonoBehaviour
 
     public Unidade ProximaUnidade()
     {
-        indiceAtual++;
-
-        if (indiceAtual >= fila.Count)
+        while (true)
         {
-            NovaRodada();
+            indiceAtual++;
+
+            if (indiceAtual >= fila.Count)
+            {
+                NovaRodada();
+
+                if (fila.Count == 0)
+                    return null;
+            }
+
+            Unidade unidade = fila[indiceAtual];
+
+            if (!unidade.EstaMorta)
+            {
+                OnTurnoIniciado?.Invoke(unidade);
+                return unidade;
+            }
         }
-
-        Unidade atual = fila[indiceAtual];
-
-        OnTurnoIniciado?.Invoke(atual);
-
-        return atual;
     }
 
     public void NovaRodada()
     {
-        CalcularFila();
+        ReCalcularFila();
     }
+
+    public void DispararInicioTurno(Unidade unidade)
+{
+    OnTurnoIniciado?.Invoke(unidade);
+}
     
 
 
