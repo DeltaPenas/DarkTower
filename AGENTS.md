@@ -2,7 +2,7 @@
 - Project name: My project
 - Unity version: Unity 6000.3.11f1
 - Active game object:
-  - Name: CombatManager
+  - Name: Priest Lamb-Sheet_0
   - Tag: Untagged
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

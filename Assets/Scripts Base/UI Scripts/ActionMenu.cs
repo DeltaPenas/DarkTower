@@ -30,11 +30,10 @@ public class ActionMenu : MonoBehaviour
     [SerializeField] public TextMeshProUGUI condições;
 
 
-    void Start()
+    void Awake()
     {
         unitManager = FindAnyObjectByType<UnitManager>();
         Instance = this;
-        EsconderTudo();
     }
 
     public void EsconderTudo()
@@ -190,7 +189,6 @@ public class ActionMenu : MonoBehaviour
     {
         unitManager.Bloquear();
 
-        EsconderTudo();
     }
 
     public void DesabilitarButtonMove()

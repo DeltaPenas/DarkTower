@@ -8,7 +8,8 @@ public class TurnManager : MonoBehaviour
     public static TurnManager Instance;
     public InitiativeManager initiativeManager;
     public UnitUi unitUi;
-  
+    public UnitManager unitManager;
+
 
     public List<Unidade> unidadesPlayer = new();
     public List<Unidade> unidadesInimigos = new();
@@ -18,8 +19,10 @@ public class TurnManager : MonoBehaviour
     {
         Instance = this;
         unitUi = FindAnyObjectByType<UnitUi>();
+        unitManager = FindAnyObjectByType<UnitManager>();
         initiativeManager = FindAnyObjectByType<InitiativeManager>();
-        
+        Debug.Log(unitManager);
+
 
     }
 
@@ -78,31 +81,49 @@ public class TurnManager : MonoBehaviour
     private void IniciarTurno(Unidade unidade)
     {
         unidadeAtual = unidade;
-        initiativeManager.DispararInicioTurno(unidade);
+
+        if (unidade == null)
+        {
+            VerificarFimDeJogo();
+            return;
+        }
+
         
 
         if (unidade.EstaMorta)
         {
+  
             FinalizarTurnoDaUnidade();
             return;
         }
 
+       
+
         unidade.NovoTurno();
+
+        
 
         if (unidade.unitData.Team == Team.Player)
         {
-            Debug.Log($"Turno do Player, unidade Atual{unidade.unitData.nome}");
+           
+
+
+            unitManager.Selecionar(unidade);
+            unitManager.actionMenuUI.MostrarMenuPrincipal();
+            unitManager.MostrarInformações(unidade);
+
+
         }
         else
         {
+          
+
             StartCoroutine(ExecutarTurnoInimigo(unidade));
         }
-
-
     }
 
 
- 
+
     private void FinalizarTurnoDaUnidade()
     {
         if(unidadeAtual == null) return;
@@ -163,6 +184,11 @@ public class TurnManager : MonoBehaviour
         }
 
         FinalizarTurnoDaUnidade();
+    }
+
+    public bool UnidadeValida(Unidade unidade)
+    {
+        return unidade != null && !unidade.EstaMorta && unidade == unidadeAtual && unidade.unitData.Team == Team.Player;
     }
         
         

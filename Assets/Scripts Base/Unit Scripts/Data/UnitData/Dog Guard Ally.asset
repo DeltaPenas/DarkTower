@@ -22,6 +22,7 @@ MonoBehaviour:
     vida: 8
     ataque: 1.5
     movimento: 3
+    agilidade: 2
     mana: 25
     defesa: 0.5
   ataques:

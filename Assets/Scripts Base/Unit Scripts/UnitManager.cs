@@ -25,16 +25,21 @@ public class UnitManager : MonoBehaviour
     public Inventario Inventario { get; private set; }
     public InventarioController inventarioController;
 
-    
 
-    void Start()
+
+    private void Awake()
     {
         Inventario = new Inventario();
+
         itemResolver = GetComponent<ItemResolver>();
         attackExecutor = GetComponent<AttackExecutor>();
         attackResolver = GetComponent<AttackResolver>();
+
         actionMenuUI = FindAnyObjectByType<ActionMenu>();
         inventarioController = FindAnyObjectByType<InventarioController>();
+    }
+    private void Start()
+    {
         CarregarInventario();
     }
 
@@ -89,23 +94,24 @@ public class UnitManager : MonoBehaviour
 
     public void Selecionar(Unidade unidade)
     {
-        if (ModoAtual == ModoSelecao.Ataque) return;
-        if (ModoAtual == ModoSelecao.Movimento) return;
-        if(unidadeEmMovimento) return;
+        Debug.Log(actionMenuUI);
+        Unidade atual = TurnManager.Instance.unidadeAtual;
+        if (atual == null) return;
+        if (ModoAtual != ModoSelecao.Nenhum) return;
+        if (unidade != atual) return;
         
 
-        if (unidadeSelecionada == unidade)
+        if(unidadeEmMovimento) return;
+
+        if (!TurnManager.Instance.UnidadeValida(unidade))
         {
             LimparSelecao();
             return;
         }
 
-        LimparSelecao();
+        
 
-        MostrarInformações(unidade);
-
-        if (unidade.unitData.Team != Team.Player)
-            return;
+      
 
         switch (unidade.Estado)
         {
@@ -118,7 +124,12 @@ public class UnitManager : MonoBehaviour
 
                 ModoAtual = ModoSelecao.Nenhum;
 
-                actionMenuUI.MostrarMenuPrincipal();
+                if (actionMenuUI == null)
+                {
+                    Debug.LogError("ActionMenu é nulo");
+                }
+
+               actionMenuUI.MostrarMenuPrincipal();
 
                 ValidarAcoes(unidadeSelecionada);
 
@@ -128,6 +139,8 @@ public class UnitManager : MonoBehaviour
                 Debug.Log("Essa unidade já terminou o turno.");
                 break;
         }
+
+        Debug.Log($"Selecionand unidade {unidade.unitData.nome}");
     }
 
     public void LimparSelecao()
@@ -138,8 +151,8 @@ public class UnitManager : MonoBehaviour
             unidadeSelecionada = null;
         }
 
-        FecharInformaçãoes();
-        ActionMenu.Instance.EsconderTudo();
+        
+        actionMenuUI.EsconderTudo();
 
         LimparHighLight();
     }
@@ -163,8 +176,6 @@ public class UnitManager : MonoBehaviour
         if (!tile.EstaOcupada) tile.SetVisual(TileVisual.Movimento);
     }
     }
-
-
 
 
     private void MostrarAtaque()
@@ -216,9 +227,6 @@ public void ClicarTile(Tile tile)
             break;
     }
 }
-
-   
-
     private void ExecutarAcão(AcaoUnidade acao)
     {
         switch (acao)
@@ -247,7 +255,6 @@ public void ClicarTile(Tile tile)
         ModoAtual = ModoSelecao.Ataque;
         MostrarAtaque();
 
-
     }
     public void EntrarEmModoMovimento()
     {
@@ -266,7 +273,6 @@ public void ClicarTile(Tile tile)
         LimparHighLight();
         ModoAtual = ModoSelecao.Nenhum; 
     }
-
 
 
     //Temporario Bloquear
@@ -376,17 +382,9 @@ public void ClicarTile(Tile tile)
         ExecutarAcão(AcaoUnidade.Item);
         LimparSelecao();
         TurnManager.Instance.VerificarFimDoTurno();
-
-        
-
-       
+  
 
     }
-
-
-
-
-    
-        
+   
 
 }
