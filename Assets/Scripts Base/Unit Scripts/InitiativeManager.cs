@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class InitiativeManager : MonoBehaviour
 {
+    
     private List<Unidade> fila = new();
     private List <Unidade> unidades = new();
     private int indiceAtual = 0;
@@ -13,11 +14,25 @@ public class InitiativeManager : MonoBehaviour
     public event Action<Unidade> OnTurnoIniciado;
 
 
+    
     public void ConstruirFila(List<Unidade> unidadesCombate)
     {
         unidades = new List<Unidade>(unidadesCombate);
 
         ReCalcularFila();
+
+        Debug.Log("Fila construida");
+
+        string unidadesNaFila = string.Empty;
+
+        foreach (Unidade unidade in fila)
+        {
+            unidadesNaFila += unidade.unitData.nome.ToString() + ", ";  
+        }
+
+        Debug.Log(unidadesNaFila);
+
+
                 
         
     }

@@ -31,7 +31,7 @@ public class Unidade : MonoBehaviour
     public bool Bloqueando = false;
     public Tile TileAtual {get; private set;}
     public bool EstaMovendo { get; private set; }
-    public bool EstaMorta {get; private set;}
+    public bool EstaMorta;
     public bool PodeMover = true;
     public bool PodeAgir = true;
     public bool PodeCurar = true;
@@ -189,18 +189,20 @@ public class Unidade : MonoBehaviour
 
     public void NovoTurno()
     {
-    
-        // Estado base da unidade
+        if (EstaMorta) return;
+
         PodeAgir = true;
         PodeMover = true;
         PodeCurar = true;
 
         Desbloquear();
 
-        
         AtualizarCondicoes();
 
-        
+        // Morreu por condição? Encerra aqui.
+        if (EstaMorta)
+            return;
+
         AtualizarModificações();
 
         Estado = EstadoUnidade.Disponivel;
@@ -214,6 +216,7 @@ public class Unidade : MonoBehaviour
         EstaMorta = true;
         SetEstado(EstadoUnidade.Morta);
         OnMorreu?.Invoke(this);
+        
 
 
     }

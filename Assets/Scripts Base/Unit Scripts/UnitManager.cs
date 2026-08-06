@@ -79,7 +79,7 @@ public class UnitManager : MonoBehaviour
     {
         unidadeEmFoco = unidade;
 
-        ActionMenu.Instance.MostrarInforButton();
+        actionMenuUI.MostrarInforButton();
         actionMenuUI.ConfigurarMenuDeInformaçõesDasUnidades(unidade);
 
     }
@@ -109,10 +109,6 @@ public class UnitManager : MonoBehaviour
             return;
         }
 
-        
-
-      
-
         switch (unidade.Estado)
         {
             case EstadoUnidade.Disponivel:
@@ -131,7 +127,10 @@ public class UnitManager : MonoBehaviour
 
                actionMenuUI.MostrarMenuPrincipal();
 
-                ValidarAcoes(unidadeSelecionada);
+               ValidarAcoes(unidadeSelecionada);
+                
+                actionMenuUI.ConfigurarMenuDeInformaçõesDasUnidades(unidadeSelecionada);
+                actionMenuUI.MostrarInforButton();
 
                 break;
 

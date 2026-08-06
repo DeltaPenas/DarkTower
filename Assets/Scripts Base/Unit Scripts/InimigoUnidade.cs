@@ -33,8 +33,9 @@ public class InimigoUnidade : Unidade
     public IEnumerator Morte()
     {
         yield return new WaitForSeconds(0.3f);
+        TileAtual.RemoverUnidade();
+        gameObject.SetActive(false);
 
-        Destroy(gameObject);
     }
     
 }

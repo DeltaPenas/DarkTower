@@ -50,15 +50,20 @@ public class TurnManager : MonoBehaviour
 
     private void UnidadeMorreu(Unidade unidade)
     {
-        Debug.Log($"A unidade {unidade.unitData.nome} foi de base!");
+        
+        Debug.Log($"A unidade {unidade.unitData.nome} morreu!");
+        if (unidade == unidadeAtual)
+        {
+            StopAllCoroutines();
+            FinalizarTurnoDaUnidade();
+        }
+
         VerificarFimDeJogo();
     }
 
     public void IniciarCombate()
     {
         List<Unidade> todasUnidades = new();
-
-
 
         
         todasUnidades.AddRange(unidadesPlayer);
@@ -80,6 +85,7 @@ public class TurnManager : MonoBehaviour
 
     private void IniciarTurno(Unidade unidade)
     {
+        
         unidadeAtual = unidade;
 
         if (unidade == null)
@@ -88,8 +94,6 @@ public class TurnManager : MonoBehaviour
             return;
         }
 
-        
-
         if (unidade.EstaMorta)
         {
   
@@ -97,27 +101,25 @@ public class TurnManager : MonoBehaviour
             return;
         }
 
-       
-
         unidade.NovoTurno();
 
-        
+        if (unidade.EstaMorta || unidade == null)
+        {
+            FinalizarTurnoDaUnidade();
+            return;
+        }
+
 
         if (unidade.unitData.Team == Team.Player)
         {
-           
 
 
+            unitManager.LimparSelecao();
             unitManager.Selecionar(unidade);
-            unitManager.actionMenuUI.MostrarMenuPrincipal();
-            unitManager.MostrarInformações(unidade);
-
 
         }
         else
-        {
-          
-
+        { 
             StartCoroutine(ExecutarTurnoInimigo(unidade));
         }
     }
@@ -126,8 +128,12 @@ public class TurnManager : MonoBehaviour
 
     private void FinalizarTurnoDaUnidade()
     {
-        if(unidadeAtual == null) return;
+        if (unidadeAtual == null) {
+            Debug.Log("Unidade com turno a ser finalizado está nulo");
+            return;
+        } 
         unidadeAtual.SetEstado(EstadoUnidade.FinalizouTurno);
+       
 
         Unidade proxima = initiativeManager.ProximaUnidade();
 
@@ -166,13 +172,28 @@ public class TurnManager : MonoBehaviour
     }
     private IEnumerator ExecutarTurnoInimigo(Unidade unidade)
     {
+        if(unidade.EstaMorta || unidade == null)
+        {
+            FinalizarTurnoDaUnidade();
+        }
+            
+
         EnemyIA ia = unidade.GetComponent<EnemyIA>();
 
         if (ia != null)
         {
             yield return new WaitForSeconds(0.5f);
 
-            unidade.indicadorSelecao.SetActive(true);
+
+
+            if (unidade != null)
+            {
+                unidade.indicadorSelecao.SetActive(true);
+            }
+            else {
+                FinalizarTurnoDaUnidade();
+                yield break;
+            }
 
             yield return new WaitForSeconds(1f);
 

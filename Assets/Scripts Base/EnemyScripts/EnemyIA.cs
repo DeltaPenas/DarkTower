@@ -14,6 +14,9 @@ public class EnemyIA : MonoBehaviour
 
     public IEnumerator ExecutarTurno()
     {
+        if (unidade.EstaMorta)
+            yield break;
+
         Unidade alvo = EncontrarAlvoMaisProximo();
 
         if (alvo == null)
@@ -26,6 +29,8 @@ public class EnemyIA : MonoBehaviour
         }
 
         yield return MoverEmDirecao(alvo);
+        if (unidade.EstaMorta)
+            yield break;
 
         if (EstaEmAlcance(alvo, ataqueBasico.alcance))
         {
@@ -62,6 +67,11 @@ public class EnemyIA : MonoBehaviour
 
     private void Atacar(Unidade alvo)
         {
+        if (unidade.EstaMorta)
+        {
+            return;
+        }
+
             float dano = DamageCalculator.Calcular( unidade, alvo, ataqueBasico);
             alvo.ReceberDano(dano);
             Debug.Log($"Unidadee: {unidade} atacou o alvo {alvo}");
