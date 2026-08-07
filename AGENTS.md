@@ -2,7 +2,7 @@
 - Project name: My project
 - Unity version: Unity 6000.3.11f1
 - Active game object:
-  - Name: TurnManager
+  - Name: Icone
   - Tag: Untagged
-  - Layer: Default
+  - Layer: UI
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

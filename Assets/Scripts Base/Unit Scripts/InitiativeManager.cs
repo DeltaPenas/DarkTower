@@ -6,7 +6,8 @@ using UnityEngine;
 public class InitiativeManager : MonoBehaviour
 {
     
-    private List<Unidade> fila = new();
+    public List<Unidade> fila = new();
+    private UnitInitiativeUI unitInitiativeUI;
     private List <Unidade> unidades = new();
     private int indiceAtual = 0;
 
@@ -14,10 +15,18 @@ public class InitiativeManager : MonoBehaviour
     public event Action<Unidade> OnTurnoIniciado;
 
 
-    
+    private void Awake()
+    {
+        unitInitiativeUI = FindAnyObjectByType<UnitInitiativeUI>();
+    }
+
+
+
     public void ConstruirFila(List<Unidade> unidadesCombate)
     {
         unidades = new List<Unidade>(unidadesCombate);
+
+        unitInitiativeUI.LimparListaDeIniciativa();
 
         ReCalcularFila();
 
@@ -29,12 +38,9 @@ public class InitiativeManager : MonoBehaviour
         {
             unidadesNaFila += unidade.unitData.nome.ToString() + ", ";  
         }
-
-        Debug.Log(unidadesNaFila);
-
-
-                
         
+        
+
     }
 
     private void ReCalcularFila()
@@ -47,6 +53,10 @@ public class InitiativeManager : MonoBehaviour
         indiceAtual = 0;
 
         OnFilaAtualizada?.Invoke(fila);
+
+
+        
+        unitInitiativeUI.InicializarListaDaIniciativa(fila);
     }
 
 
