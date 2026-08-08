@@ -4337,6 +4337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec30fa13a66e1af4ca0341cf0bffedc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InitiativeManager
+  fila: []
 --- !u!1 &785441042
 GameObject:
   m_ObjectHideFlags: 0
@@ -6997,6 +6998,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1274598143}
   - component: {fileID: 1274598144}
+  - component: {fileID: 1274598145}
   m_Layer: 5
   m_Name: Container de iniciativa
   m_TagString: Untagged
@@ -7041,7 +7043,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 0
+  m_Spacing: 10
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -7049,6 +7051,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1274598145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274598142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7c147cf1ab35d841b9a1742c083ece6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitInitiativeUI
+  icone: {fileID: 1329085335091198484, guid: 87334124c71dccf4fae1bd3bfff8d54c, type: 3}
+  icones: []
+  initiativeManager: {fileID: 0}
 --- !u!1 &1278456355
 GameObject:
   m_ObjectHideFlags: 0

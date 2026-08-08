@@ -6,10 +6,12 @@ public class UnitInitiativeIcon : MonoBehaviour
     public Unidade Unidade { get; private set; }
     [SerializeField] private Image unitIconImage;
     [SerializeField] private UnitInitiativeUI unitInitiativeUI;
+   
 
     public void Awake()
     {
-        unitInitiativeUI = GetComponentInParent<UnitInitiativeUI>(); 
+        unitInitiativeUI = GetComponentInParent<UnitInitiativeUI>();
+        
     }
 
 
@@ -20,6 +22,8 @@ public class UnitInitiativeIcon : MonoBehaviour
             unitIconImage.sprite = unidade.unitData.icone;
             Unidade = unidade;
             Unidade.OnMorreu += RemoverIcone;
+
+            RemoverDestaque();
 
 
         }
@@ -37,11 +41,17 @@ public class UnitInitiativeIcon : MonoBehaviour
 
     public void Destacar()
     {
+        Color transparencia = unitIconImage.color;
+        transparencia.a = 1f;
 
+        unitIconImage.color = transparencia;
     }
     public void RemoverDestaque()
     {
+        Color transparencia = unitIconImage.color;
+        transparencia.a = 0.2f;
 
+        unitIconImage.color = transparencia;
     }
 
 }

@@ -20,7 +20,7 @@ MonoBehaviour:
   Team: 0
   statusBase:
     vida: 12
-    ataque: 0.5
+    ataque: 90
     movimento: 4
     agilidade: 4
     mana: 50

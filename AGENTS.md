@@ -2,7 +2,7 @@
 - Project name: My project
 - Unity version: Unity 6000.3.11f1
 - Active game object:
-  - Name: Icone
+  - Name: Canvas
   - Tag: Untagged
   - Layer: UI
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

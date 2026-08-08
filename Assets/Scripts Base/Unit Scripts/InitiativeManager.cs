@@ -26,7 +26,7 @@ public class InitiativeManager : MonoBehaviour
     {
         unidades = new List<Unidade>(unidadesCombate);
 
-        unitInitiativeUI.LimparListaDeIniciativa();
+        
 
         ReCalcularFila();
 
@@ -45,6 +45,8 @@ public class InitiativeManager : MonoBehaviour
 
     private void ReCalcularFila()
     {
+        unitInitiativeUI.LimparListaDeIniciativa();
+
         fila = unidades
             .Where(u => !u.EstaMorta)
             .OrderByDescending(u => u.GetAgilidadeAtual())
