@@ -2,7 +2,7 @@
 - Project name: My project
 - Unity version: Unity 6000.3.11f1
 - Active game object:
-  - Name: Canvas
+  - Name: PoisonSlime
   - Tag: Untagged
-  - Layer: UI
+  - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

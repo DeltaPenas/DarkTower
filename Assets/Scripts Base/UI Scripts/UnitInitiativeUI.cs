@@ -34,7 +34,7 @@ public class UnitInitiativeUI : MonoBehaviour
 
         }
 
-        DestacarUnidade(listaDeUnidades[0]);
+       DestacarUnidade(listaDeUnidades[0]);
     }
     private void DestacarUnidade(Unidade unidade)
     {

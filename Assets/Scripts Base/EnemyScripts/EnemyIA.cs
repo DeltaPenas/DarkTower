@@ -7,6 +7,7 @@ public class EnemyIA : MonoBehaviour
 {
     private Unidade unidade;
     [SerializeField] private AttackData ataqueBasico;
+    [SerializeField] private AttackData ataqueEmDestque;
     void Awake()
     {
         unidade = GetComponent<Unidade>();
@@ -65,6 +66,38 @@ public class EnemyIA : MonoBehaviour
         return distancia <= alcance;
     }
 
+    private void EscolherAtaque()
+    {
+        float maiorValor = -1f;
+
+        foreach(AttackData ataque in unidade.unitData.ataques)
+        {
+            float valor = AvaliarAtaque(ataque, EncontrarAlvoMaisProximo());
+
+            if (valor > maiorValor)
+            {
+                maiorValor = valor;
+                ataqueEmDestque = ataque;
+            }
+        }
+
+
+    }
+    float AvaliarAtaque(AttackData ataque, Unidade alvo)
+    {
+        if (alvo.unitData.imunidades.Contains(ataque.elemento))
+            return 0;
+
+        float valor = 1f;
+
+        if (alvo.unitData.resistencias.Contains(ataque.elemento))
+            valor = 0.5f;
+        else if (alvo.unitData.fraquezas.Contains(ataque.elemento))
+            valor = 1.5f;
+
+        return valor;
+    }
+
     private void Atacar(Unidade alvo)
         {
         if (unidade.EstaMorta)
@@ -72,7 +105,9 @@ public class EnemyIA : MonoBehaviour
             return;
         }
 
-            float dano = DamageCalculator.Calcular( unidade, alvo, ataqueBasico);
+
+            EscolherAtaque();
+            float dano = DamageCalculator.Calcular( unidade, alvo, ataqueEmDestque);
             alvo.ReceberDano(dano);
             Debug.Log($"Unidadee: {unidade} atacou o alvo {alvo}");
         }
