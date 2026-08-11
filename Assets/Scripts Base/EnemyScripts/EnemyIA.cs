@@ -6,11 +6,14 @@ using UnityEngine;
 public class EnemyIA : MonoBehaviour
 {
     private Unidade unidade;
-    [SerializeField] private AttackData ataqueBasico;
     [SerializeField] private AttackData ataqueEmDestque;
+    [SerializeField] private AttackResolver attackResolver;
+    [SerializeField] private AttackExecutor attackExecutor;
     void Awake()
     {
         unidade = GetComponent<Unidade>();
+        attackResolver = FindAnyObjectByType<AttackResolver>();
+        attackExecutor = FindAnyObjectByType<AttackExecutor>();
     }
 
     public IEnumerator ExecutarTurno()
@@ -19,36 +22,39 @@ public class EnemyIA : MonoBehaviour
             yield break;
 
         Unidade alvo = EncontrarAlvoMaisProximo();
+        EscolherAtaque();
 
         if (alvo == null)
             yield break;
 
-        if (EstaEmAlcance(alvo, 1))
-        {
-            Atacar(alvo);
-            yield break;
-        }
-
+        
         yield return MoverEmDirecao(alvo);
         if (unidade.EstaMorta)
             yield break;
 
-        if (EstaEmAlcance(alvo, ataqueBasico.alcance))
+        if (EstaEmAlcance(alvo, ataqueEmDestque.alcance))
         {
-            Atacar(alvo);
+          
+           StartCoroutine(ExecutarAtaque());
         }
     }
 
     public Unidade EncontrarAlvoMaisProximo()
     {
+       
         Unidade alvo = null;
         int menorDistancia = int.MaxValue;
 
-        foreach(Unidade player in TurnManager.Instance.unidadesPlayer)
-        {
-            int distancia = Mathf.Abs(player.GridPosition.x - unidade.GridPosition.x) + Mathf.Abs(player.GridPosition.y - unidade.GridPosition.y); //pegar a distancia
+   
 
-            if (distancia <= menorDistancia)
+        foreach (Unidade player in TurnManager.Instance.unidadesPlayer)
+        {
+            if (player.EstaMorta) continue;
+
+            int distancia = Mathf.Abs(player.GridPosition.x - unidade.GridPosition.x) +
+                Mathf.Abs(player.GridPosition.y - unidade.GridPosition.y); //pegar a distancia
+
+            if (distancia < menorDistancia)
             {
                 menorDistancia = distancia;
                 alvo = player;
@@ -98,19 +104,14 @@ public class EnemyIA : MonoBehaviour
         return valor;
     }
 
-    private void Atacar(Unidade alvo)
-        {
-        if (unidade.EstaMorta)
-        {
-            return;
-        }
+   
+    private IEnumerator ExecutarAtaque() {
 
+        if (unidade.EstaMorta) yield return null;
+        if(!attackResolver.ValidarAlvo(unidade, EncontrarAlvoMaisProximo(), ataqueEmDestque)) yield return null;
+        yield return attackExecutor.Executar(unidade, ataqueEmDestque, EncontrarAlvoMaisProximo().TileAtual);
 
-            EscolherAtaque();
-            float dano = DamageCalculator.Calcular( unidade, alvo, ataqueEmDestque);
-            alvo.ReceberDano(dano);
-            Debug.Log($"Unidadee: {unidade} atacou o alvo {alvo}");
-        }
+    }
 
     private IEnumerator MoverEmDirecao(Unidade alvo)
     {

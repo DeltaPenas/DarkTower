@@ -13,6 +13,7 @@ public class Unidade : MonoBehaviour
     [SerializeField] public VidaUnidade vidaUnidade;
     [SerializeField] public RecursosUnidade recursosUnidade;
     [SerializeField] public SpritePisca spritePisca;
+    [SerializeField] public SpriteRenderer spriteRenderer;
     public UnitData unitData;
     private ConditionVisual conditionVisual;
     public event Action<Unidade> OnMorreu;
@@ -44,6 +45,7 @@ public class Unidade : MonoBehaviour
     {
         unitManager = FindAnyObjectByType<UnitManager>();
         spritePisca = GetComponent<SpritePisca>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         vidaUnidade = GetComponent<VidaUnidade>();
         recursosUnidade = GetComponent<RecursosUnidade>();
         conditionVisual = GetComponent<ConditionVisual>();
@@ -216,9 +218,29 @@ public class Unidade : MonoBehaviour
         EstaMorta = true;
         SetEstado(EstadoUnidade.Morta);
         OnMorreu?.Invoke(this);
+        DesabilitarVisual();
+
+
+
+
+    }
+
+
+    public void DesabilitarVisual()
+    {
+        Color transparencia = spriteRenderer.color;
+
+        transparencia.a = 0.3f;
+
+        spriteRenderer.color = transparencia;
+    }
+    public void HabilitarVisual()
+    {
+        Color normal = spriteRenderer.color;
+
+        normal.a = 1f;
+        spriteRenderer.color = normal;
         
-
-
     }
 
 

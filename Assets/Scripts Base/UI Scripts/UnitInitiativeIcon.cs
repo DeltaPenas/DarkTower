@@ -13,6 +13,11 @@ public class UnitInitiativeIcon : MonoBehaviour
         unitInitiativeUI = GetComponentInParent<UnitInitiativeUI>();
         
     }
+    private void OnDestroy()
+    {
+        if (Unidade != null)
+            Unidade.OnMorreu -= RemoverIcone;
+    }
 
 
     public void SetUnitData(Unidade unidade)
@@ -35,6 +40,9 @@ public class UnitInitiativeIcon : MonoBehaviour
 
     public void RemoverIcone(Unidade unidade)
     {
+        if (this == null)
+            return;
+
         unitInitiativeUI.icones.Remove(this);
         Destroy(gameObject);
     }

@@ -40,6 +40,8 @@ public class UnitInitiativeUI : MonoBehaviour
     {
         foreach(UnitInitiativeIcon icon in icones)
         {
+            if (icon == null) continue;
+
             if (icon.Unidade == unidade)
             {
                 icon.Destacar();
@@ -56,8 +58,8 @@ public class UnitInitiativeUI : MonoBehaviour
     {
         foreach (UnitInitiativeIcon icon in icones)
         {
-            Destroy(icon.gameObject);
-            Debug.Log("DESTROY ICON");
+            if (icon != null) Destroy(icon.gameObject);    
+ 
         }
         icones.Clear();
     }

@@ -9,6 +9,7 @@ public class PlayerUnit : Unidade
         
         spritePisca.Piscar();
         UnitUi.Instance.AtualizarVida();
+        Desbloquear();
     }
     public override void ReceberCura(float cura)
     {
@@ -37,6 +38,7 @@ public class PlayerUnit : Unidade
     public override void Morrer()
     {
         base.Morrer();
+        
     }
 
 

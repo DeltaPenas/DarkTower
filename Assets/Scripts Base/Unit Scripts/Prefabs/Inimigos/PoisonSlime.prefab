@@ -303,6 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InimigoUnidade
   indicadorSelecao: {fileID: 3038891854320320084}
+  unitManager: {fileID: 0}
   indicadorDeBloqueio: {fileID: 9699652477137818}
   vidaUnidade: {fileID: 5249161083327106083}
   recursosUnidade: {fileID: 0}
@@ -312,13 +313,16 @@ MonoBehaviour:
     vida: 0
     ataque: 0
     movimento: 0
+    agilidade: 0
     mana: 0
     defesa: 0
   Estado: 0
   Bloqueando: 0
+  EstaMorta: 0
   PodeMover: 1
   PodeAgir: 1
   PodeCurar: 1
+  jaAtacou: 0
   velocidadeMovimento: 4
   barraDeVida: {fileID: 2829428231926561072}
 --- !u!114 &2075345542507173011
@@ -333,7 +337,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145bc79d116b1a144946fb6c9e680f36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyIA
-  ataqueBasico: {fileID: 11400000, guid: 677254fb846172f47b3fd714dc96a65f, type: 2}
+  ataqueBasico: {fileID: 0}
+  ataqueEmDestque: {fileID: 0}
 --- !u!114 &2829428231926561072
 MonoBehaviour:
   m_ObjectHideFlags: 0
