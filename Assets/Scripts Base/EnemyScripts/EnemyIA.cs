@@ -22,21 +22,36 @@ public class EnemyIA : MonoBehaviour
             yield break;
 
         Unidade alvo = EncontrarAlvoMaisProximo();
+        Debug.Log($"A {unidade.unitData.nome} escolheu {alvo.unitData.nome} como alvo ");
+
+
         EscolherAtaque();
+        Debug.Log($"Ataque escolhido: {ataqueEmDestque.nomeDoAtaque}");
+        Debug.Log($"Alcance do ataque: {ataqueEmDestque.alcance}");
 
         if (alvo == null)
             yield break;
 
-        
-        yield return MoverEmDirecao(alvo);
-        if (unidade.EstaMorta)
+        if (EstaEmAlcance(alvo, ataqueEmDestque.alcance))
+        {
+            Debug.Log("alvo ja está em alcance");
+            yield return ExecutarAtaque();
             yield break;
+        }
+
+        Debug.Log($"distancia até o alvo: {GetDistancia(alvo)}");
+        yield return MoverEmDirecao(alvo);
+
+        if (unidade.EstaMorta) yield break;
 
         if (EstaEmAlcance(alvo, ataqueEmDestque.alcance))
         {
-          
-           StartCoroutine(ExecutarAtaque());
+
+            yield return ExecutarAtaque();
+
         }
+
+
     }
 
     public Unidade EncontrarAlvoMaisProximo()
@@ -64,10 +79,16 @@ public class EnemyIA : MonoBehaviour
 
         return alvo;
     }
+    public int GetDistancia(Unidade alvo)
+    {
+        int distancia = Mathf.Abs(alvo.GridPosition.x - unidade.GridPosition.x) + Mathf.Abs(alvo.GridPosition.y - unidade.GridPosition.y);
+
+        return distancia;
+    }
 
     private bool EstaEmAlcance(Unidade alvo, int alcance)
     {
-        int distancia = Mathf.Abs(alvo.GridPosition.x - unidade.GridPosition.x) + Mathf.Abs(alvo.GridPosition.y - unidade.GridPosition.y);
+        int distancia = GetDistancia(alvo);
 
         return distancia <= alcance;
     }
