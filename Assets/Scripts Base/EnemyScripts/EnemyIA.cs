@@ -54,7 +54,7 @@ public class EnemyIA : MonoBehaviour
 
     }
 
-    public Unidade EncontrarAlvoMaisProximo()
+    private Unidade EncontrarAlvoMaisProximo()
     {
        
         Unidade alvo = null;
@@ -79,6 +79,9 @@ public class EnemyIA : MonoBehaviour
 
         return alvo;
     }
+   
+
+
     public int GetDistancia(Unidade alvo)
     {
         int distancia = Mathf.Abs(alvo.GridPosition.x - unidade.GridPosition.x) + Mathf.Abs(alvo.GridPosition.y - unidade.GridPosition.y);
@@ -110,6 +113,78 @@ public class EnemyIA : MonoBehaviour
 
 
     }
+
+    private AttackData EncontrarMelhorCura()
+    {
+        AttackData cura = null;
+        float maiorValor = 0;
+
+        foreach(AttackData ataque in unidade.unitData.ataques)
+        {
+            if (ataque.Efeito != EfeitoAtaque.Cura) continue;
+
+            Unidade alvo = EncontrarMelhorAlvoCura(ataque);
+
+            if (alvo == null) continue;
+
+
+            float valor = AvaliarCura(alvo, ataque);
+
+            if(valor > maiorValor)
+            {
+                maiorValor = valor;
+                cura = ataque;
+            }
+         
+
+         
+
+        }
+
+
+        return cura;
+    }
+
+    private Unidade EncontrarMelhorAlvoCura(AttackData ataque)
+    {
+        Unidade melhorAlvo = null;
+        float maiorValor = 0;
+
+        foreach (Unidade aliado in TurnManager.Instance.unidadesInimigos)
+        {
+            float valor = AvaliarCura(melhorAlvo, ataque);
+
+            if (valor > maiorValor)
+            {
+                maiorValor = valor;
+                melhorAlvo = aliado;
+            }
+
+
+        }
+
+        return melhorAlvo;
+    }
+
+
+    float AvaliarCura(Unidade aliado, AttackData ataque)
+    {
+        if (aliado.GetVidaAtual() == 0) return 0;
+        if (aliado.EstaMorta) return 0;
+
+        float vidaPerdida = aliado.GetVidaMaximaAtual() - aliado.GetVidaAtual();
+
+        if (vidaPerdida <= 0) return 0;
+
+        float cura = DamageCalculator.CalcularCura(unidade, ataque);
+
+        return Mathf.Min(cura, vidaPerdida);
+
+
+    }
+
+
+
     float AvaliarAtaque(AttackData ataque, Unidade alvo)
     {
         if (alvo.unitData.imunidades.Contains(ataque.elemento))
@@ -124,7 +199,6 @@ public class EnemyIA : MonoBehaviour
 
         return valor;
     }
-
    
     private IEnumerator ExecutarAtaque() {
 
