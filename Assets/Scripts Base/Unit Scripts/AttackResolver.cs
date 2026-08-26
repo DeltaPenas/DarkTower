@@ -20,6 +20,8 @@ public class AttackResolver : MonoBehaviour
 
         foreach(Unidade alvo in alvos)
         {
+            if (alvo.EstaMorta) continue;
+
             switch (ataque.Efeito)
             {
                 case EfeitoAtaque.Dano:

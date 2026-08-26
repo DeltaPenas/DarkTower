@@ -159,6 +159,7 @@ public class UnitManager : MonoBehaviour
     {
         foreach (Tile tile in tilesDestacadas)
         {
+            //if (tile.UnidadeAtual.EstaMorta) continue;
             tile.RestaurarVisual();
         }
 
@@ -186,6 +187,8 @@ public class UnitManager : MonoBehaviour
         {
             if (tile.UnidadeAtual == null)
                 continue;
+
+            if (tile.UnidadeAtual.EstaMorta) continue;
 
             if (!attackResolver.ValidarAlvo(unidadeSelecionada, tile.UnidadeAtual, ataqueSelecionado)) continue;
 

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
@@ -42,9 +43,15 @@ public class Tile : MonoBehaviour
 
         if (UnidadeAtual.unitData.Team == Team.Player)
         {
+            if (UnidadeAtual.EstaMorta)
+            {
+                SetVisual(TileVisual.Invalido);
+                return;
+            }
             SetVisual(TileVisual.Ocupado);
         }else if (UnidadeAtual.unitData.Team == Team.Inimigos)
         {
+
            SetVisual(TileVisual.OcupadoInimigo); 
         }
     }
@@ -74,6 +81,9 @@ public class Tile : MonoBehaviour
                 break;
             case TileVisual.AreaDoAtaque:
                 sp.color = Color.darkBlue;
+                break;
+            case TileVisual.Invalido:
+                sp.color = Color.black;
                 break;
         }
     }

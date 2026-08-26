@@ -219,9 +219,8 @@ public class Unidade : MonoBehaviour
         SetEstado(EstadoUnidade.Morta);
         OnMorreu?.Invoke(this);
         DesabilitarVisual();
-
-
-
+        LimparCondicoes();
+        LimparModificações();
 
     }
 
@@ -229,21 +228,15 @@ public class Unidade : MonoBehaviour
     public void DesabilitarVisual()
     {
         Color transparencia = spriteRenderer.color;
-
         transparencia.a = 0.3f;
-
         spriteRenderer.color = transparencia;
     }
     public void HabilitarVisual()
     {
         Color normal = spriteRenderer.color;
-
         normal.a = 1f;
         spriteRenderer.color = normal;
-        
     }
-
-
     //Toda Parte De Modificadores
 
     public float GetAtaqueAtual()
@@ -292,8 +285,6 @@ public class Unidade : MonoBehaviour
         }
         return agilidadeAtual;
     }
-
-
 
 
 
@@ -382,7 +373,6 @@ public class Unidade : MonoBehaviour
                 case TipoModificador.flat:
                     movimentoAtual += (int)modificador.valor;
                     break;
-
                 case TipoModificador.porcentagem:
                     movimentoAtual *= (int)(1 + modificador.valor);
                     break;
@@ -401,8 +391,6 @@ public class Unidade : MonoBehaviour
             existente.duracao += mod.duracao;
             return;
         }
-
-
         modificadores.Add(mod);
     }
 
@@ -416,7 +404,6 @@ public class Unidade : MonoBehaviour
             existente.ValorEfeito += cond.ValorEfeito/2;
             return;
         }
-
         condicoes.Add(cond);
         cond.AoAplicar(this);
         conditionVisual.AdicionarVisual(cond.data);
@@ -433,7 +420,6 @@ public class Unidade : MonoBehaviour
         Debug.Log($"Condição {condicoes[indice]}a acabou");
         condicoes[indice].AoRemover(this);
         conditionVisual.RemoverVisual(condicoes[indice].data);
-
         condicoes.RemoveAt(indice);
     }
 
@@ -449,6 +435,14 @@ public class Unidade : MonoBehaviour
             }
         }
     }
+    public void LimparModificações()
+    {
+        foreach(StatusModifier mod in modificadores)
+        {
+            modificadores.Remove(mod);
+        }
+    }
+
     public void AtualizarCondicoes()
     {
         for(int i = condicoes.Count -1; i >= 0; i--)
@@ -461,6 +455,15 @@ public class Unidade : MonoBehaviour
                 RemoverCondição(i);
             }
         }
+    }
+
+    public void LimparCondicoes()
+    {
+       for(int i = 0; i < condicoes.Count; i++)
+        {
+            RemoverCondição(i);
+        }
+
     }
 
 
@@ -489,12 +492,5 @@ public class Unidade : MonoBehaviour
             texto += $"Mod:{ cond.data.nome} turnos:{cond.duração}, valor:{cond.ValorEfeito} - ";
         }
         return texto;
-        
     }
-    
-
-    
-
-
-
 }

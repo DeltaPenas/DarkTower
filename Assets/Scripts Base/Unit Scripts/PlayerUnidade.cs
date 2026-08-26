@@ -38,7 +38,7 @@ public class PlayerUnit : Unidade
     public override void Morrer()
     {
         base.Morrer();
-        
+        TileAtual.SetVisual(TileVisual.Invalido);
     }
 
 
