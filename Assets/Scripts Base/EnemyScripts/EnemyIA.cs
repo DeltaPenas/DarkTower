@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class EnemyIA : MonoBehaviour
 {
@@ -77,28 +78,29 @@ public class EnemyIA : MonoBehaviour
 
     private Unidade EncontrarAlvoMaisProximo()
     {
-       
-        Unidade alvo = null;
-        int menorDistancia = int.MaxValue;
+        List<Unidade> alvos = new List<Unidade>();
 
-   
-
-        foreach (Unidade player in TurnManager.Instance.unidadesPlayer)
+        foreach(Unidade inimigo in TurnManager.Instance.unidadesPlayer)
         {
-            if (player.EstaMorta) continue;
+            if (inimigo.EstaMorta) continue;
 
-            int distancia = Mathf.Abs(player.GridPosition.x - unidade.GridPosition.x) +
-                Mathf.Abs(player.GridPosition.y - unidade.GridPosition.y); //pegar a distancia
-
-            if (distancia < menorDistancia)
-            {
-                menorDistancia = distancia;
-                alvo = player;
-            }
-
+            alvos.Add(inimigo);
         }
 
-        return alvo;
+        alvos.Sort((a, b) => GetDistancia(a).CompareTo(GetDistancia(b)));
+
+        foreach(Unidade alvo in alvos)
+        {
+            List<Tile> caminho = GridManager.Instance.EncontrarCaminho(unidade.TileAtual, alvo.TileAtual);
+
+            if(caminho.Count > 0)
+            {
+                return alvo;
+            }
+        }
+
+        return null;
+
     }
 
     private IEnumerator ExecutarAtaqueOuMover(Unidade alvo)
@@ -232,8 +234,10 @@ public class EnemyIA : MonoBehaviour
 
     float AvaliarCura(Unidade aliado, AttackData ataque)
     {
+        
         if (aliado.GetVidaAtual() == 0) return 0;
         if (aliado.EstaMorta) return 0;
+        
 
         float vidaPerdida = aliado.GetVidaMaximaAtual() - aliado.GetVidaAtual();
 
