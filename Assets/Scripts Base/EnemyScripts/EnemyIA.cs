@@ -9,6 +9,16 @@ public class EnemyIA : MonoBehaviour
     [SerializeField] private AttackData ataqueEmDestque;
     [SerializeField] private AttackResolver attackResolver;
     [SerializeField] private AttackExecutor attackExecutor;
+
+    private enum AcaoInimigo
+    {
+        Atacar,
+        Curar,
+        Mover
+
+    }
+
+
     void Awake()
     {
         unidade = GetComponent<Unidade>();
@@ -22,37 +32,56 @@ public class EnemyIA : MonoBehaviour
             yield break;
 
         Unidade alvo = EncontrarAlvoMaisProximo();
-        Debug.Log($"A {unidade.unitData.nome} escolheu {alvo.unitData.nome} como alvo ");
-
-
-        EscolherAtaque();
-        Debug.Log($"Ataque escolhido: {ataqueEmDestque.nomeDoAtaque}");
-        Debug.Log($"Alcance do ataque: {ataqueEmDestque.alcance}");
 
         if (alvo == null)
             yield break;
 
-        if (EstaEmAlcance(alvo, ataqueEmDestque.alcance))
+        Debug.Log($"A {unidade.unitData.nome} escolheu {alvo.unitData.nome} como alvo ");
+
+
+        EscolherAtaque();
+        EncontrarMelhorCura();
+
+       
+
+        AcaoInimigo acao = EscolherAcao(alvo);
+
+        switch (acao)
         {
-            Debug.Log("alvo ja está em alcance");
-            yield return ExecutarAtaque();
-            yield break;
+            case AcaoInimigo.Atacar:
+                yield return ExecutarAtaqueOuMover(alvo);
+                break;
+
+            case AcaoInimigo.Curar:
+                yield return ExecutarCura();
+                break;
+
+            case AcaoInimigo.Mover:
+                yield return MoverEmDirecao(alvo);
+                break;
         }
-
-        Debug.Log($"distancia até o alvo: {GetDistancia(alvo)}");
-        yield return MoverEmDirecao(alvo);
-
-        if (unidade.EstaMorta) yield break;
-
-        if (EstaEmAlcance(alvo, ataqueEmDestque.alcance))
-        {
-
-            yield return ExecutarAtaque();
-
-        }
-
 
     }
+
+    private AcaoInimigo EscolherAcao(Unidade alvo)
+    {
+        AttackData melhorCura = EncontrarMelhorCura();
+
+        bool podeAtacar = ataqueEmDestque != null &&
+                          EstaEmAlcance(alvo, ataqueEmDestque.alcance);
+
+        bool podeCurar = melhorCura != null;
+
+        if (podeCurar)
+            return AcaoInimigo.Curar;
+
+        if (podeAtacar)
+            return AcaoInimigo.Atacar;
+
+        return AcaoInimigo.Mover;
+    }
+
+
 
     private Unidade EncontrarAlvoMaisProximo()
     {
@@ -79,7 +108,28 @@ public class EnemyIA : MonoBehaviour
 
         return alvo;
     }
-   
+
+    private IEnumerator ExecutarAtaqueOuMover(Unidade alvo)
+    {
+        if (EstaEmAlcance(alvo, ataqueEmDestque.alcance))
+        {
+            yield return ExecutarAtaque();
+            yield break;
+        }
+
+        Debug.Log($"distancia até o alvo: {GetDistancia(alvo)}");
+
+        yield return MoverEmDirecao(alvo);
+
+        if (unidade.EstaMorta)
+            yield break;
+
+        if (EstaEmAlcance(alvo, ataqueEmDestque.alcance))
+        {
+            yield return ExecutarAtaque();
+        }
+    }
+
 
 
     public int GetDistancia(Unidade alvo)
@@ -98,11 +148,20 @@ public class EnemyIA : MonoBehaviour
 
     private void EscolherAtaque()
     {
+        ataqueEmDestque = null;
         float maiorValor = -1f;
 
-        foreach(AttackData ataque in unidade.unitData.ataques)
+        Unidade alvo = EncontrarAlvoMaisProximo();
+
+        if (alvo == null)
+            return;
+
+        foreach (AttackData ataque in unidade.unitData.ataques)
         {
-            float valor = AvaliarAtaque(ataque, EncontrarAlvoMaisProximo());
+            if (ataque.Efeito == EfeitoAtaque.Cura)
+                continue;
+
+            float valor = AvaliarAtaque(ataque, alvo);
 
             if (valor > maiorValor)
             {
@@ -110,8 +169,6 @@ public class EnemyIA : MonoBehaviour
                 ataqueEmDestque = ataque;
             }
         }
-
-
     }
 
     private AttackData EncontrarMelhorCura()
@@ -152,15 +209,13 @@ public class EnemyIA : MonoBehaviour
 
         foreach (Unidade aliado in TurnManager.Instance.unidadesInimigos)
         {
-            float valor = AvaliarCura(melhorAlvo, ataque);
+            float valor = AvaliarCura(aliado, ataque);
 
             if (valor > maiorValor)
             {
                 maiorValor = valor;
                 melhorAlvo = aliado;
             }
-
-
         }
 
         return melhorAlvo;

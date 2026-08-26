@@ -343,6 +343,11 @@ public class Unidade : MonoBehaviour
        return vidaMaximaAtual; 
     }
 
+    public float GetVidaAtual()
+    {
+        return vidaUnidade.vidaAtual;
+    }
+
     public float GetManaAtual()
     {
        float manaMaximaAtual = currentStatus.mana;
