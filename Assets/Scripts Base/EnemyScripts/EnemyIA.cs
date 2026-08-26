@@ -7,6 +7,12 @@ public class EnemyIA : MonoBehaviour
 {
     private Unidade unidade;
     [SerializeField] private AttackData ataqueEmDestque;
+    [SerializeField] private float valorAtaqueEmDestaque;
+
+    [SerializeField] private AttackData curaEmDestaque;
+    [SerializeField] private Unidade alvoCuraEmDestaque;
+    [SerializeField] private float valorCuraEmDestaque;
+
     [SerializeField] private AttackResolver attackResolver;
     [SerializeField] private AttackExecutor attackExecutor;
 
@@ -36,15 +42,15 @@ public class EnemyIA : MonoBehaviour
         if (alvo == null)
             yield break;
 
-        Debug.Log($"A {unidade.unitData.nome} escolheu {alvo.unitData.nome} como alvo ");
-
+        Debug.Log(
+            $"A {unidade.unitData.nome} escolheu {alvo.unitData.nome} como alvo"
+        );
 
         EscolherAtaque();
-        EncontrarMelhorCura();
 
-       
+        AttackData melhorCura = EncontrarMelhorCura();
 
-        AcaoInimigo acao = EscolherAcao(alvo);
+        AcaoInimigo acao = EscolherAcao();
 
         switch (acao)
         {
@@ -53,32 +59,18 @@ public class EnemyIA : MonoBehaviour
                 break;
 
             case AcaoInimigo.Curar:
-                yield return ExecutarCura();
+                yield return ExecutarCuraOuMover();
                 break;
 
-            case AcaoInimigo.Mover:
-                yield return MoverEmDirecao(alvo);
-                break;
         }
-
     }
 
-    private AcaoInimigo EscolherAcao(Unidade alvo)
+    private AcaoInimigo EscolherAcao()
     {
-        AttackData melhorCura = EncontrarMelhorCura();
-
-        bool podeAtacar = ataqueEmDestque != null &&
-                          EstaEmAlcance(alvo, ataqueEmDestque.alcance);
-
-        bool podeCurar = melhorCura != null;
-
-        if (podeCurar)
+        if (valorCuraEmDestaque > valorAtaqueEmDestaque)
             return AcaoInimigo.Curar;
 
-        if (podeAtacar)
-            return AcaoInimigo.Atacar;
-
-        return AcaoInimigo.Mover;
+        return AcaoInimigo.Atacar;
     }
 
 
@@ -129,6 +121,20 @@ public class EnemyIA : MonoBehaviour
             yield return ExecutarAtaque();
         }
     }
+    private IEnumerator ExecutarCuraOuMover()
+    {
+        if (EstaEmAlcance(alvoCuraEmDestaque, curaEmDestaque.alcance)) {
+            yield return ExecutarCura();
+            yield break;
+        }
+        yield return MoverEmDirecao(alvoCuraEmDestaque);
+
+        if (unidade.EstaMorta) yield break;
+
+        if(EstaEmAlcance(alvoCuraEmDestaque, curaEmDestaque.alcance)) {  yield return ExecutarCura();}
+
+
+    }
 
 
 
@@ -149,7 +155,7 @@ public class EnemyIA : MonoBehaviour
     private void EscolherAtaque()
     {
         ataqueEmDestque = null;
-        float maiorValor = -1f;
+        valorAtaqueEmDestaque = -1f;
 
         Unidade alvo = EncontrarAlvoMaisProximo();
 
@@ -163,9 +169,9 @@ public class EnemyIA : MonoBehaviour
 
             float valor = AvaliarAtaque(ataque, alvo);
 
-            if (valor > maiorValor)
+            if (valor > valorAtaqueEmDestaque)
             {
-                maiorValor = valor;
+                valorAtaqueEmDestaque = valor;
                 ataqueEmDestque = ataque;
             }
         }
@@ -173,8 +179,9 @@ public class EnemyIA : MonoBehaviour
 
     private AttackData EncontrarMelhorCura()
     {
+        curaEmDestaque = null;
         AttackData cura = null;
-        float maiorValor = 0;
+        valorCuraEmDestaque = 0;
 
         foreach(AttackData ataque in unidade.unitData.ataques)
         {
@@ -187,10 +194,11 @@ public class EnemyIA : MonoBehaviour
 
             float valor = AvaliarCura(alvo, ataque);
 
-            if(valor > maiorValor)
+            if(valor > valorCuraEmDestaque)
             {
-                maiorValor = valor;
-                cura = ataque;
+                valorCuraEmDestaque = valor;
+                curaEmDestaque = ataque;
+                alvoCuraEmDestaque = alvo;
             }
          
 
@@ -235,9 +243,7 @@ public class EnemyIA : MonoBehaviour
 
         return Mathf.Min(cura, vidaPerdida);
 
-
     }
-
 
 
     float AvaliarAtaque(AttackData ataque, Unidade alvo)
@@ -261,6 +267,18 @@ public class EnemyIA : MonoBehaviour
         if(!attackResolver.ValidarAlvo(unidade, EncontrarAlvoMaisProximo(), ataqueEmDestque)) yield return null;
         yield return attackExecutor.Executar(unidade, ataqueEmDestque, EncontrarAlvoMaisProximo().TileAtual);
 
+    }
+
+    private IEnumerator ExecutarCura()
+    {
+        if (unidade.EstaMorta) yield break;
+
+        if (!attackResolver.ValidarAlvo(unidade,alvoCuraEmDestaque,curaEmDestaque)){ yield break;}
+
+        yield return attackExecutor.Executar(
+            unidade,
+            curaEmDestaque,
+            alvoCuraEmDestaque.TileAtual);
     }
 
     private IEnumerator MoverEmDirecao(Unidade alvo)
