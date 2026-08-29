@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 371ef7b485eb01e45b3061a5b5e71440, type: 3}
   m_Name: Slime Poison Enemy
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
-  nome: 
+  nome: Slime
   icone: {fileID: -601485459377658664, guid: e45b97d9dc641de49b5ec33727a4d9c2, type: 3}
   retrato: {fileID: 0}
   prefab: {fileID: 0}

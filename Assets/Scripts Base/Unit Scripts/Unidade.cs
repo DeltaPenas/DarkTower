@@ -113,7 +113,6 @@ public class Unidade : MonoBehaviour
         {
             ActionMenu.Instance.FecharPainelDeMovimento();
             ActionMenu.Instance.MostrarMenuPrincipal();
-            ActionMenu.Instance.MostrarInforButton();
             ActionMenu.Instance.DesabilitarButtonMove();
         }
         

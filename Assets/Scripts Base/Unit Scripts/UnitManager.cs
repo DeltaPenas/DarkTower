@@ -79,14 +79,14 @@ public class UnitManager : MonoBehaviour
     {
         unidadeEmFoco = unidade;
 
-        actionMenuUI.MostrarInforButton();
-        actionMenuUI.ConfigurarMenuDeInformaçõesDasUnidades(unidade);
+   
+        actionMenuUI.ConfigurarMenuDeInformaçõesDasUnidades();
 
     }
+
     public void FecharInformaçãoes()
     {
         unidadeEmFoco = null;
-        actionMenuUI.FecharInfoButton();
     }
     
     
@@ -129,9 +129,8 @@ public class UnitManager : MonoBehaviour
 
                ValidarAcoes(unidadeSelecionada);
                 
-                actionMenuUI.ConfigurarMenuDeInformaçõesDasUnidades(unidadeSelecionada);
-                actionMenuUI.MostrarInforButton();
-
+             
+           
                 break;
 
             case EstadoUnidade.FinalizouTurno:

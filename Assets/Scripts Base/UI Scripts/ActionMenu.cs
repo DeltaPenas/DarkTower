@@ -15,23 +15,17 @@ public class ActionMenu : MonoBehaviour
     [SerializeField] private UnitManager unitManager;
     [SerializeField] private GameObject buttonMove;
     [SerializeField] private Button[] botoesAtaque;
-    [SerializeField] private GameObject infoButton;
     [SerializeField] public static ActionMenu Instance;
 
     [Header("Info Menu")]
-    [SerializeField] public GameObject painelDeInformações;
-    [SerializeField] public TextMeshProUGUI nomeUnidade;
-    [SerializeField] public TextMeshProUGUI vidaUnidade;
-    [SerializeField] public TextMeshProUGUI manaUnidade;
-    [SerializeField] public TextMeshProUGUI ataqueUnidade;
-    [SerializeField] public TextMeshProUGUI defesaUnidade;
-    [SerializeField] public TextMeshProUGUI movimentoUnidade;
-    [SerializeField] public TextMeshProUGUI modificadores;
-    [SerializeField] public TextMeshProUGUI condições;
+    [SerializeField] private GameObject painelDeInfoDasUnidades;
+    [SerializeField] private UnitInfoPainelController unitInfoPainelController;
+    
 
 
     void Awake()
     {
+        unitInfoPainelController = FindAnyObjectByType<UnitInfoPainelController>();
         unitManager = FindAnyObjectByType<UnitManager>();
         Instance = this;
     }
@@ -43,24 +37,21 @@ public class ActionMenu : MonoBehaviour
     painelDeCancelarAtaque.SetActive(false);
     painelDeMovimento.SetActive(false);
     PainelDeItens.SetActive(false);
-    infoButton.SetActive(false);
+    painelDeInfoDasUnidades.SetActive(false);
+
     }
-    public void MostrarInforButton()
-    {
-        infoButton.SetActive(true);
-        
-    }
-    public void FecharInfoButton()
-    {
-       infoButton.SetActive(false); 
-    }
+   
+    
     public void ChamarMenuDeInfos()
     {
-        painelDeInformações.SetActive(true);
+        painelDeInfoDasUnidades.SetActive(true);
+        unitInfoPainelController.Incializar();
     }
     public void FecharMenuInfos()
     {
-        painelDeInformações.SetActive(false);
+        unitInfoPainelController.Limpar();
+        painelDeInfoDasUnidades.SetActive(false);
+        
     }
     public void MostrarInventario()
     {
@@ -75,17 +66,16 @@ public class ActionMenu : MonoBehaviour
 
 
 
-    public void ConfigurarMenuDeInformaçõesDasUnidades(Unidade unidade)
+    public void ConfigurarMenuDeInformaçõesDasUnidades()
     {
-        nomeUnidade.text = unidade.unitData.nome;
-        vidaUnidade.text = "Vida Maxima: " + unidade.GetVidaMaximaAtual().ToString();
-        manaUnidade.text = "Mana Maxima: " + unidade.GetManaAtual().ToString();
-        ataqueUnidade.text = "Ataque: " + unidade.GetAtaqueAtual().ToString();
-        defesaUnidade.text = "Defesa: " + unidade.GetDefesaAtual().ToString();
-        movimentoUnidade.text = "Movimento: " + unidade.GetMovimentoAtual().ToString();
-        modificadores.text = "Modificadores: " + unidade.GetTextoModificadores();
-        condições.text = "Condições: " + unidade.GetTextoCondições();
+        
+        foreach(Unidade unidade in TurnManager.Instance.unidadesPlayer)
+        {
+            Debug.Log(unidade.unitData.nome);
+        }
     }
+
+   
 
     public void MostrarMenuPrincipal()
     {
