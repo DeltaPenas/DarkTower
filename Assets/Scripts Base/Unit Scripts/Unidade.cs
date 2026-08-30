@@ -444,12 +444,15 @@ public class Unidade : MonoBehaviour
 
     public void AtualizarCondicoes()
     {
-        for(int i = condicoes.Count -1; i >= 0; i--)
+        for (int i = condicoes.Count - 1; i >= 0; i--)
         {
             condicoes[i].duração--;
             condicoes[i].InicioDoTurno(this);
 
-            if(condicoes[i].duração <= 0)
+            if (EstaMorta)
+                return;
+
+            if (condicoes[i].duração <= 0)
             {
                 RemoverCondição(i);
             }
