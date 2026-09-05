@@ -6,21 +6,33 @@ using UnityEngine.Rendering;
 
 public class EnemyIA : MonoBehaviour
 {
+    [Header("Config interna")]
     private Unidade unidade;
-    [SerializeField] private AttackData ataqueEmDestque;
-    [SerializeField] private float valorAtaqueEmDestaque;
-
-    [SerializeField] private AttackData curaEmDestaque;
-    [SerializeField] private Unidade alvoCuraEmDestaque;
-    [SerializeField] private float valorCuraEmDestaque;
-
-    [SerializeField] private AttackResolver attackResolver;
     [SerializeField] private AttackExecutor attackExecutor;
+    [SerializeField] private AttackResolver attackResolver;
+
+    [Header("Ataques em Destque")]
+    [SerializeField] private AttackData ataqueEmDestque;
+    [SerializeField] private AttackData curaEmDestaque;
+    [SerializeField] private AttackData buffEmDestaque;
+
+    [Header("Alvos em Destaque")]
+    [SerializeField] private Unidade alvoCuraEmDestaque;
+    [SerializeField] private Unidade alvoBuffEmDestaque;
+
+
+
+    [Header("valores")]
+    [SerializeField] private float valorAtaqueEmDestaque;
+    [SerializeField] private float valorCuraEmDestaque;
+    [SerializeField] private float valorBuffEmDestaque;
+
 
     private enum AcaoInimigo
     {
         Atacar,
         Curar,
+        Buffar,
         Mover
 
     }
@@ -264,6 +276,10 @@ public class EnemyIA : MonoBehaviour
 
         return valor;
     }
+    float AvaliarBuff(AttackData ataque)
+    {
+        return ataque.valorEfeito;
+    }
    
     private IEnumerator ExecutarAtaque() {
 
@@ -277,12 +293,19 @@ public class EnemyIA : MonoBehaviour
     {
         if (unidade.EstaMorta) yield break;
 
-        if (!attackResolver.ValidarAlvo(unidade,alvoCuraEmDestaque,curaEmDestaque)){ yield break;}
+        if (!attackResolver.ValidarAlvo(unidade,alvoCuraEmDestaque,curaEmDestaque)) yield break;
 
         yield return attackExecutor.Executar(
             unidade,
             curaEmDestaque,
             alvoCuraEmDestaque.TileAtual);
+    }
+    private IEnumerator ExecutarBuff()
+    {
+        if (unidade.EstaMorta) yield break;
+        if (!attackResolver.ValidarAlvo(unidade, alvoBuffEmDestaque, buffEmDestaque)) yield break;
+
+        yield return attackExecutor.Executar(unidade, buffEmDestaque, alvoBuffEmDestaque.TileAtual);
     }
 
     private IEnumerator MoverEmDirecao(Unidade alvo)

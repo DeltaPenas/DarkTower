@@ -10,29 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 371ef7b485eb01e45b3061a5b5e71440, type: 3}
-  m_Name: Slime Poison Enemy
+  m_Name: Mushroom Base
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
-  nome: Slime
-  icone: {fileID: -601485459377658664, guid: e45b97d9dc641de49b5ec33727a4d9c2, type: 3}
-  retrato: {fileID: 0}
-  prefab: {fileID: 0}
-  classe: 2
+  nome: Mushroom drone
+  icone: {fileID: -2864922965622120714, guid: 3417b692b54d1a747a886b83f562c984, type: 3}
+  retrato: {fileID: -3303567971553913982, guid: b13005f7a1a40b84ea7d7c394c7c2253, type: 3}
+  prefab: {fileID: 7996210127606993026, guid: 191c01d7642cf2649b95f2793dc7244a, type: 3}
+  classe: 1
   Team: 1
   statusBase:
     vida: 5
-    ataque: 1.5
-    movimento: 2
-    agilidade: 1
-    mana: 25
+    ataque: 0.5
+    movimento: 4
+    agilidade: 3
+    mana: 40
     defesa: 0
   ataques:
-  - {fileID: 11400000, guid: 677254fb846172f47b3fd714dc96a65f, type: 2}
+  - {fileID: 11400000, guid: 60eb48bba2e96a143abc01d8e09755f3, type: 2}
+  - {fileID: 11400000, guid: d8ec0e1497773264da901678edbe3312, type: 2}
   afinidade:
-  - {fileID: 11400000, guid: ee6f38aed0e2b3946b32aec572028499, type: 2}
+  - {fileID: 11400000, guid: aeefac3ef2733f44abefe9da4e2bf154, type: 2}
   fraquezas:
   - {fileID: 11400000, guid: 5c94826487142ab47b97d8e9a09392e9, type: 2}
   - {fileID: 11400000, guid: 17c46a500e98d424bbf022748eb1e50c, type: 2}
   resistencias:
-  - {fileID: 0}
-  imunidades:
   - {fileID: 11400000, guid: ee6f38aed0e2b3946b32aec572028499, type: 2}
+  imunidades: []

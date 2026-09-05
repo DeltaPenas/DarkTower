@@ -7,6 +7,7 @@ public class SpawnerDeUnidades : MonoBehaviour
 
     public List<Unidade> todasUnidades = new();
     [SerializeField] private Unidade inimigoPrefab;
+    [SerializeField] private List<Unidade> unidadesInimigas;
     [SerializeField] private Unidade unidadeMago;
     [SerializeField] private Unidade unidadeGuarda;
     [SerializeField] private Unidade unidadeClerigo;
@@ -29,8 +30,8 @@ public class SpawnerDeUnidades : MonoBehaviour
 
         Tile tile2 = grid.GetTilePos(new Vector2Int(1, 0));
         Tile tile3 = grid.GetTilePos(new Vector2Int(2,0));
-        Spawn(inimigoPrefab, tile2);
-        Spawn(inimigoPrefab, tile3);
+        Spawn(unidadesInimigas[0], tile2);
+        Spawn(unidadesInimigas[1], tile3);
        
 
 
