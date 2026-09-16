@@ -6,6 +6,9 @@ public class SpawnerDeUnidades : MonoBehaviour
 {
 
     public List<Unidade> todasUnidades = new();
+    public List<Tile> tilesDeSpawnDosInimigos = new();
+
+
     [SerializeField] private Unidade inimigoPrefab;
     [SerializeField] private List<Unidade> unidadesInimigas;
     [SerializeField] private Unidade unidadeMago;
@@ -41,7 +44,7 @@ public class SpawnerDeUnidades : MonoBehaviour
 
 
     }
-    public void Spawn(Unidade prefab, Tile tile)
+    private void Spawn(Unidade prefab, Tile tile)
     {
         Unidade unidade = Instantiate(prefab);
 
@@ -58,6 +61,18 @@ public class SpawnerDeUnidades : MonoBehaviour
         
 
     }
+    private void SpawnarInimigos()
+    {
+
+        foreach(Unidade inimigo in unidadesInimigas)
+        {
+            Tile tileLivre = GridManager.Instance.GetTileAleatorioLivre();
+            Spawn(inimigo, tileLivre);
+        }
+    }
+
+    
+   
 
     
 }

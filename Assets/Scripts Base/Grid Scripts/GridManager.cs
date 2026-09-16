@@ -75,6 +75,31 @@ public class GridManager : MonoBehaviour
 
         return tiles[pos.x, pos.y];
     }
+    public Tile GetTileAleatorioLivre()
+    {
+        List<Tile> tilesLivres = new();
+
+        for (int x = 0; x < largura; x++)
+        {
+            for (int y = 0; y < altura; y++)
+            {
+                Tile tile = tiles[x, y];
+
+                if (!tile.EstaOcupada)
+                {
+                    tilesLivres.Add(tile);
+                }
+            }
+        }
+
+        if (tilesLivres.Count == 0)
+            return null;
+
+        int indice = UnityEngine.Random.Range(0, tilesLivres.Count);
+
+        return tilesLivres[indice];
+    }
+
 
     public List<Tile> GetTilesEmAlcance(Tile origem, int alcance)
     {
