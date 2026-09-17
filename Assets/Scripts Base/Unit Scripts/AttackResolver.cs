@@ -57,7 +57,7 @@ public class AttackResolver : MonoBehaviour
         float cura = DamageCalculator.CalcularCura(healer, attackData);
         if (!alvo.PodeCurar)
         {
-            Debug.Log($"{alvo.unitData.nome} não pode ser");
+            Debug.Log($"{alvo.unitData.nome} não pode ser curado");
             return;
         } 
 

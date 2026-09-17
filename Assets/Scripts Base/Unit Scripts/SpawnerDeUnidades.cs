@@ -6,11 +6,10 @@ public class SpawnerDeUnidades : MonoBehaviour
 {
 
     public List<Unidade> todasUnidades = new();
-    public List<Tile> tilesDeSpawnDosInimigos = new();
 
-
-    [SerializeField] private Unidade inimigoPrefab;
+    [SerializeField] private List<Unidade> unidadesAliadas;
     [SerializeField] private List<Unidade> unidadesInimigas;
+
     [SerializeField] private Unidade unidadeMago;
     [SerializeField] private Unidade unidadeGuarda;
     [SerializeField] private Unidade unidadeClerigo;
@@ -21,28 +20,14 @@ public class SpawnerDeUnidades : MonoBehaviour
 
     public void Start()
     {
+        SpawnarAliados();
+        SpawnarInimigos();
 
-        Tile tile = grid.GetTilePos(new Vector2Int(0, 0));
-        Tile tile4 = grid.GetTilePos(new Vector2Int(0, 1));
-        Tile tile5 = grid.GetTilePos(new Vector2Int(0,2));
-
-        Spawn(unidadeMago, tile);
-        Spawn(unidadeGuarda, tile4);
-        Spawn(unidadeClerigo, tile5);
-
-
-        Tile tile2 = grid.GetTilePos(new Vector2Int(1, 0));
-        Tile tile3 = grid.GetTilePos(new Vector2Int(2,0));
-        Spawn(unidadesInimigas[0], tile2);
-        Spawn(unidadesInimigas[1], tile3);
        
 
 
         TurnManager.Instance.CarregarUiDeUnidades();
         TurnManager.Instance.IniciarCombate();
-
-
-
     }
     private void Spawn(Unidade prefab, Tile tile)
     {
@@ -60,6 +45,21 @@ public class SpawnerDeUnidades : MonoBehaviour
         }
         
 
+    }
+
+    private void SpawnarAliados()
+    {
+        int indice = 0;
+
+        foreach(Unidade aliado in unidadesAliadas)
+        {
+            Tile tile = new Tile();
+             tile = grid.GetTilePos(new Vector2Int(0, indice));
+
+            Spawn(aliado, tile);
+
+            indice++;
+        }
     }
     private void SpawnarInimigos()
     {
