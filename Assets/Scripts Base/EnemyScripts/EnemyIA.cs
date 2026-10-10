@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -249,8 +250,9 @@ public class EnemyIA : MonoBehaviour
         
         if (aliado.GetVidaAtual() == 0) return 0;
         if (aliado.EstaMorta) return 0;
-        
+        if (!aliado.PodeCurar) return 0; //caso alguma condicao nao deixe curar
 
+        
         float vidaPerdida = aliado.GetVidaMaximaAtual() - aliado.GetVidaAtual();
 
         if (vidaPerdida <= 0) return 0;
