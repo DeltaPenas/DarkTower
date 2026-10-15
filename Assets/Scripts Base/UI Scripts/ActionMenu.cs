@@ -19,6 +19,8 @@ public class ActionMenu : MonoBehaviour
 
     [Header("Info Menu")]
     [SerializeField] private GameObject painelDeInfoDasUnidades;
+    [SerializeField] private GameObject UnitFrames;
+    [SerializeField] private GameObject ContainerDeIniciativa;
     [SerializeField] private UnitInfoPainelController unitInfoPainelController;
     
 
@@ -40,10 +42,25 @@ public class ActionMenu : MonoBehaviour
     painelDeInfoDasUnidades.SetActive(false);
 
     }
-   
-    
+
+    public void EsconderAçõesPrincipais()
+    {
+        UnitFrames.SetActive(false);
+        ContainerDeIniciativa.SetActive(false);
+        painelDeButõesDeAção.SetActive(false);
+
+
+    }
+    public void MostrarAçõesPrincipais()
+    {
+        UnitFrames.SetActive(true);
+        ContainerDeIniciativa.SetActive(true);
+        painelDeButõesDeAção.SetActive(true);
+    }
+
     public void ChamarMenuDeInfos()
     {
+        EsconderAçõesPrincipais();
         painelDeInfoDasUnidades.SetActive(true);
         unitInfoPainelController.Incializar();
     }
@@ -51,7 +68,9 @@ public class ActionMenu : MonoBehaviour
     {
         unitInfoPainelController.Limpar();
         painelDeInfoDasUnidades.SetActive(false);
-        
+        MostrarAçõesPrincipais();
+
+
     }
     public void MostrarInventario()
     {
