@@ -1,0 +1,429 @@
+fileFormatVersion: 2
+guid: 2d261509569d8a044b4cd59bd7b32ebb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2711190471101443444
+    second: Arrow Rain-Sheet_0
+  - first:
+      213: 2714866169059274673
+    second: Arrow Rain-Sheet_1
+  - first:
+      213: -7607850887182543705
+    second: Arrow Rain-Sheet_2
+  - first:
+      213: -5100375142081779502
+    second: Arrow Rain-Sheet_3
+  - first:
+      213: 5089180229965817708
+    second: Arrow Rain-Sheet_4
+  - first:
+      213: -5328394381435268688
+    second: Arrow Rain-Sheet_5
+  - first:
+      213: 693167136483211409
+    second: Arrow Rain-Sheet_6
+  - first:
+      213: 1447654635983829601
+    second: Arrow Rain-Sheet_7
+  - first:
+      213: 3466215252021556723
+    second: Arrow Rain-Sheet_8
+  - first:
+      213: 7430653936471857637
+    second: Arrow Rain-Sheet_9
+  - first:
+      213: 5075398732883765819
+    second: Arrow Rain-Sheet_10
+  - first:
+      213: 4728945073824711507
+    second: Arrow Rain-Sheet_11
+  - first:
+      213: 5173627025264746694
+    second: Arrow Rain-Sheet_12
+  - first:
+      213: 6126232739747541235
+    second: Arrow Rain-Sheet_13
+  - first:
+      213: 5336828672875719878
+    second: Arrow Rain-Sheet_14
+  - first:
+      213: 1787463577378401739
+    second: Arrow Rain-Sheet_15
+  - first:
+      213: 8251811431372715152
+    second: Arrow Rain-Sheet_16
+  - first:
+      213: 836607501257640116
+    second: Arrow Rain-Sheet_17
+  - first:
+      213: 966822634728055910
+    second: Arrow Rain-Sheet_18
+  - first:
+      213: -2929818651839690602
+    second: Arrow Rain-Sheet_19
+  - first:
+      213: 8397334383309319769
+    second: Arrow Rain-Sheet_20
+  - first:
+      213: -8121374865828639950
+    second: Arrow Rain-Sheet_21
+  - first:
+      213: 3537909319083386949
+    second: Arrow Rain-Sheet_22
+  - first:
+      213: -8762864897255261554
+    second: Arrow Rain-Sheet_23
+  - first:
+      213: -3746094159325027619
+    second: Arrow Rain-Sheet_24
+  - first:
+      213: -3159326357985452979
+    second: Arrow Rain-Sheet_25
+  - first:
+      213: 3918969621202649502
+    second: Arrow Rain-Sheet_26
+  - first:
+      213: 8422408880017453437
+    second: Arrow Rain-Sheet_27
+  - first:
+      213: 7191670014215287194
+    second: Arrow Rain-Sheet_28
+  - first:
+      213: -7384627928122718632
+    second: Arrow Rain-Sheet_29
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Arrow Rain-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47dec647e5510a520800000000000000
+      internalID: 2711190471101443444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arrow Rain-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bfe08395642da520800000000000000
+      internalID: 2714866169059274673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arrow Rain-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a4185d1deb7b6690800000000000000
+      internalID: -7607850887182543705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arrow Rain-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d8abfac4d3d739b0800000000000000
+      internalID: -5100375142081779502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arrow Rain-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c67ad0d947660a640800000000000000
+      internalID: 5089180229965817708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arrow Rain-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b11d578a8dbd06b0800000000000000
+      internalID: -5328394381435268688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arrow Rain-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1987e0c86df9e9900800000000000000
+      internalID: 693167136483211409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arrow Rain-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16a734fa83a171410800000000000000
+      internalID: 1447654635983829601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arrow Rain-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f539cb28687a1030800000000000000
+      internalID: 3466215252021556723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 26fec1dcdd61d734f81138382b51b7fd
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Arrow Rain-Sheet_0: 2711190471101443444
+      Arrow Rain-Sheet_1: 2714866169059274673
+      Arrow Rain-Sheet_2: -7607850887182543705
+      Arrow Rain-Sheet_3: -5100375142081779502
+      Arrow Rain-Sheet_4: 5089180229965817708
+      Arrow Rain-Sheet_5: -5328394381435268688
+      Arrow Rain-Sheet_6: 693167136483211409
+      Arrow Rain-Sheet_7: 1447654635983829601
+      Arrow Rain-Sheet_8: 3466215252021556723
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

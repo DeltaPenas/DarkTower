@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 371ef7b485eb01e45b3061a5b5e71440, type: 3}
+  m_Name: Racoon Ranger Ally
+  m_EditorClassIdentifier: Assembly-CSharp::UnitData
+  nome: The Ranger
+  icone: {fileID: -4364363857097155388, guid: 6074dc2536a98d043b756df2f4268815, type: 3}
+  retrato: {fileID: -4364363857097155388, guid: 6f9ceee5ac69a624bb2dba39a6e70402, type: 3}
+  prefab: {fileID: 4890022269667886882, guid: f12bf743c48d0fe4490770b795b6a7b3, type: 3}
+  classe: 3
+  Team: 0
+  statusBase:
+    vida: 5
+    ataque: 0.8
+    movimento: 4
+    agilidade: 5
+    mana: 25
+    defesa: 0
+  ataques:
+  - {fileID: 11400000, guid: 23bd9e5204cb0a24e90a576836b87632, type: 2}
+  - {fileID: 11400000, guid: 355198dcfbfd8ca45a03ceb389f2a0b5, type: 2}
+  - {fileID: 11400000, guid: 3d906782eb653054f99443f623084f6f, type: 2}
+  - {fileID: 11400000, guid: 9e1465986c9fad543b83ec2b89901340, type: 2}
+  afinidade:
+  - {fileID: 11400000, guid: 03df307c3c996f647b11b8a419e0b79c, type: 2}
+  fraquezas:
+  - {fileID: 11400000, guid: 5c94826487142ab47b97d8e9a09392e9, type: 2}
+  - {fileID: 11400000, guid: aeefac3ef2733f44abefe9da4e2bf154, type: 2}
+  resistencias: []
+  imunidades: []
