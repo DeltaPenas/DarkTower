@@ -22,7 +22,7 @@ public class UnitInfoFrame : MonoBehaviour
         mana.text = "Mana: " + unidade.GetVidaMaximaAtual().ToString();
         ataque.text = "Ataque: " + unidade.GetAtaqueAtual().ToString();
         defesa.text = "Defesa: " + unidade.GetDefesaAtual().ToString();
-        agilidade.text = "Agilidade: " + unidade.GetAtaqueAtual().ToString();
+        agilidade.text = "Agilidade: " + unidade.GetAgilidadeAtual().ToString();
         movimento.text ="Movimento: " + unidade.GetMovimentoAtual().ToString();
 
 
