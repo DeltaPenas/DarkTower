@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c7bb9a56fa3265429a23c2ef0f6cfa5, type: 3}
   m_Name: Kinetic Surge
   m_EditorClassIdentifier: Assembly-CSharp::AttackData
-  nomeDoAtaque: Focus
-  "descri\xE7\xE3o": The unit focuses, increasing its attack by 50%.
+  nomeDoAtaque: Kinetic Surge
+  "descri\xE7\xE3o": The unit focuses, increasing its agility by 50%.
   areaAtaque: 0
   tipoDoAlvo: 3
   Efeito: 2
@@ -31,6 +31,6 @@ MonoBehaviour:
   duracao: 3
   valor: 0.5
   tipoModificador: 1
-  atributo: 1
+  atributo: 3
   tipoVisual: 3
   elemento: {fileID: 11400000, guid: 03df307c3c996f647b11b8a419e0b79c, type: 2}

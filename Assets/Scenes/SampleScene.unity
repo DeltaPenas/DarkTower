@@ -7460,6 +7460,8 @@ MonoBehaviour:
   - {fileID: 785441043}
   - {fileID: 1764955086}
   painelDeInfoDasUnidades: {fileID: 1516772063}
+  UnitFrames: {fileID: 669190089}
+  ContainerDeIniciativa: {fileID: 1274598142}
   unitInfoPainelController: {fileID: 0}
 --- !u!1 &1676561953
 GameObject:

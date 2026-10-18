@@ -29,7 +29,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 23bd9e5204cb0a24e90a576836b87632, type: 2}
   - {fileID: 11400000, guid: 355198dcfbfd8ca45a03ceb389f2a0b5, type: 2}
   - {fileID: 11400000, guid: 3d906782eb653054f99443f623084f6f, type: 2}
-  - {fileID: 11400000, guid: 9e1465986c9fad543b83ec2b89901340, type: 2}
+  - {fileID: 11400000, guid: 40f1e98db87d98741a50191bb3c61f65, type: 2}
   afinidade:
   - {fileID: 11400000, guid: 03df307c3c996f647b11b8a419e0b79c, type: 2}
   fraquezas:

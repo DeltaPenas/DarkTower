@@ -165,11 +165,37 @@ public class TurnManager : MonoBehaviour
         if (!existePlayerVivo)
         {
             Debug.Log("Derrota!");
-        }else if (!existeInimigoVivo)
+            ChamarResultado();
+        }
+        else if (!existeInimigoVivo)
         {
             Debug.Log("Vitoria!");
+            ChamarResultado();
         }
     }
+    private void ChamarResultado() {
+
+    }
+    private Team ValidarResultado()
+    {
+        bool existePlayerVivo = unidadesPlayer.Exists(u => !u.EstaMorta);
+        bool existeInimigoVivo = unidadesInimigos.Exists(u => !u.EstaMorta);
+
+        if (!existePlayerVivo)
+        {
+            return Team.Inimigos;
+        }
+        else if (!existeInimigoVivo)
+        {
+            return Team.Player;
+        }
+
+        return Team.Neutro;
+
+    }
+    
+
+
     private IEnumerator ExecutarTurnoInimigo(Unidade unidade)
     {
         if(unidade.EstaMorta || unidade == null)
